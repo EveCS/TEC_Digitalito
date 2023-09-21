@@ -14,44 +14,25 @@ export function Login() {
     const [correo, setCorreo] = useState("");
     const [contraseña, setContraseña] = useState("");
 
-    const [usuarios, setUsuarios] = useState([]);
-    const usuariosCollectionRef = collection(db, "usuarios");
+   // const [usuarios, setUsuarios] = useState([]);
+  //  const usuariosCollectionRef = collection(db, "usuarios");
 
-    useEffect(() => {
-        const getUsuarios = async () => {
-            const data = await getDocs(usuariosCollectionRef);
-            setUsuarios(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
-        };
-        getUsuarios();
-    }, []);
+ //   useEffect(() => {
+ //       const getUsuarios = async () => {
+ //           const data = await getDocs(usuariosCollectionRef);
+ //           setUsuarios(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
+ //       };
+ //       getUsuarios();
+ //   }, []);
 
     const loginUsuario = async () => {
-        let flag = false;
+        let flag = true;
         
-        for(let i in usuarios){
-            //console.log(usuarios[i]);
-            if(usuarios[i].correo == correo && usuarios[i].contraseña == contraseña && usuarios[i].eliminado == false){
-                flag = true;
-                if(usuarios[i].admin == true){
-                    console.log("Inicio de sesión Administrador exitoso");
-                    navigate('/adminMenu',{});
-                }
-                else{
-                    const id = usuarios[i].id;
-                    const carnee = usuarios[i].carnee; 
-                    const nombre= usuarios[i].nombre;
-                    const apellido = usuarios[i].apellido;
-                    console.log(nombre);
-                    console.log(apellido);
-                    console.log("Inicio de sesión Estudiante exitoso");
-                    navigate('/clientMenu',{state:{id: id, correo: correo, contraseña: contraseña, carnee: carnee, nombre: nombre, 
-                                            apellido: apellido}});
-                }
-            }
-        }
-        if(flag === false){
+    
+        if(flag === true){
             console.log("Inicio de sesión fallida. Intente de nuevo");
             alert("Inicio de sesión fallida. Intente de nuevo");
+            navigate('/adminMenu',{});
         }
 
     };
