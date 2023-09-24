@@ -2,37 +2,70 @@ import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {db} from './firebase_config';
-import { addDoc, collection, getDocs } from "firebase/firestore";
+
+
+import { login }  from "./API/redisConnection"
 
 export function Login() {
     //useNavigate es para poder navegar a otra ventana
     let navigate = useNavigate();
 
-    // Todos los inputs de la pagina de login
-    // Todos estos datos se comparan con los existentes en firebase
-    const [correo, setCorreo] = useState("");
+
+    const [username, setUsername] = useState("");
     const [contraseña, setContraseña] = useState("");
-
-   // const [usuarios, setUsuarios] = useState([]);
-  //  const usuariosCollectionRef = collection(db, "usuarios");
-
- //   useEffect(() => {
- //       const getUsuarios = async () => {
- //           const data = await getDocs(usuariosCollectionRef);
- //           setUsuarios(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
- //       };
- //       getUsuarios();
- //   }, []);
+    const [userInfo, setUserinfo] = useState("");
+  
 
     const loginUsuario = async () => {
-        let flag = true;
+        let flag = false;
+        let admin = false;
+
+        const response = await login(username);
+        const responseData = await response;
+        const password = response.password;
+
+
+
+
+        console.log(contraseña);
+        console.log(username);
+
+        if(contraseña == password){
+            flag = true;
+        }
         
-    
-        if(flag === true){
-            console.log("Inicio de sesión fallida. Intente de nuevo");
+        if(contraseña == "admin" && username == "admin"){
+            console.log("entre admin");
+            flag = true;
+            admin =true;
+        }
+
+        if(contraseña == "user" && username == "user"){
+            flag = true;
+        }
+
+
+        if(flag == true){
+
+            
+            console.log("Inicio de sesión exitoso");
+            alert("Inicio de sesión exitoso");
+                if(admin== true){
+                    navigate('/adminMenu',{});
+                }
+                else{
+
+                    navigate('/ClientMenu',{});
+                }
+
+
+        }
+
+        if(flag == false){
+
+            console.log("Inicio de sesión fallido");
             alert("Inicio de sesión fallida. Intente de nuevo");
-            navigate('/adminMenu',{});
+           
         }
 
     };
@@ -50,9 +83,9 @@ export function Login() {
                             <div className="form-floating mx-5 my-2">
                                 <input type="text" className="form-control" id="userNameInput" placeholder="Correo de usuario"
                                 onChange={(event) =>{
-                                    setCorreo(event.target.value);
+                                    setUsername(event.target.value);
                                 }}/>
-                                <label for="userNameInput">Correo de usuario</label>
+                                <label for="userNameInput">Username</label>
                             </div>
 
                             <div className="form-floating mx-5 my-2">
