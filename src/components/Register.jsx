@@ -123,7 +123,7 @@ export function Register(){
                             onChange={(event) =>{
                                 setNombre(event.target.value);
                             }}/>
-                            <label for="nombre">Nombre</label>
+                            <label for="nombre">Uusername</label>
                         </div>
 
                         <div className="form-floating mx-5 my-2">
@@ -131,7 +131,7 @@ export function Register(){
                             onChange={(event) =>{
                                 setApellido(event.target.value);
                             }}/>
-                            <label for="apellido">Apellido</label>
+                            <label for="apellido">Nombre completo</label>
                         </div>
 
                         <div className="form-floating mx-5 my-2">
