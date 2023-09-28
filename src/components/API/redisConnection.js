@@ -11,6 +11,10 @@ const login = async (username) => {
     console.log("Error al buscar el usuario", error);
   }
 }
+// http://localhost:3000/editUserField?username=armandoArce&field=dos&value=1/1/1999
+// http://localhost:3000/insertUser?username=Pedropicapiedra&password=123&full_name=Pedro Pica Piedra&dob=1999/1/1&avatar_url=link_to_imagen&es_profesor=false
+// http://localhost:3000/addFriend?username=armandoArce&friendUsername=pedroPicapiedra
+// http://localhost:3000/getFriends?username=john_doe
 
 export {
   login

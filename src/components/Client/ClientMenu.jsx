@@ -9,12 +9,8 @@ export function ClientMenu() {
     let navigate = useNavigate();
     //useLocation se usa para recibir los datos que se le pasan de la ventana anterior
     const location = useLocation();
-    const username = location.username;
-    //const correo = location.state.correo
-    //const contraseña = location.state.contraseña
-    //const carnee = location.state.carnee
-    //const nombre = location.state.nombre
-    //const apellido = location.state.apellido
+    const username = location.username; // se esta pasando como undefined, toca revisar
+
     console.log(username);
 
     const ApartarCubiculo = () => {
