@@ -9,24 +9,20 @@ export function ClientMenu() {
     let navigate = useNavigate();
     //useLocation se usa para recibir los datos que se le pasan de la ventana anterior
     const location = useLocation();
-    const id = location.state.id;
-    const correo = location.state.correo
-    const contraseña = location.state.contraseña
-    const carnee = location.state.carnee
-    const nombre = location.state.nombre
-    const apellido = location.state.apellido
-    console.log(id, correo, contraseña, carnee, nombre, apellido);
+    const username = location.username; // se esta pasando como undefined, toca revisar
+
+    console.log(username);
 
     const ApartarCubiculo = () => {
-        navigate('/reservarCubiculo',{state:{id: id, correo: correo, contraseña: contraseña, carnee: carnee, nombre: nombre, apellido: apellido}});
+    //    navigate('/reservarCubiculo',{state:{id: id, correo: correo, contraseña: contraseña, carnee: carnee, nombre: nombre, apellido: apellido}});
     };
 
     const ListaApartados = () => {
-        navigate('/clientReservations',{state:{id: id, correo: correo, contraseña: contraseña, carnee: carnee, nombre: nombre, apellido: apellido}});
+     //   navigate('/clientReservations',{state:{id: id, correo: correo, contraseña: contraseña, carnee: carnee, nombre: nombre, apellido: apellido}});
     };
 
     const Cuenta = () => {
-        navigate('/miCuenta',{state:{id: id, correo: correo, contraseña: contraseña, carnee: carnee, nombre: nombre, apellido: apellido}});
+      //  navigate('/miCuenta',{state:{id: id, correo: correo, contraseña: contraseña, carnee: carnee, nombre: nombre, apellido: apellido}});
     };
 
 
