@@ -1,7 +1,7 @@
 // GestionCursos.js
 
 import React, { Fragment, useEffect, useState } from "react";
-import CursoService from "../../services/CursoService";
+import CursoService from "../API/mongoConnection";
 
 const GestionCursos = () => {
   const [cursos, setCursos] = useState([]);
@@ -27,19 +27,16 @@ const GestionCursos = () => {
   }
 
   // Add or edit a curso
-  async function agregarOEditarCurso() {
+  async function agregarCurso() {
     try {
-      if (cursoForm._id) {
-        // Edit the curso
-        await CursoService.editarCurso(cursoForm._id, cursoForm);
-      } else {
+     
         // Add the curso
         await CursoService.agregarCurso(cursoForm);
-      }
+      
 
       // Clear the curso form
       setCursoForm({
-        id: "",
+        _id: "",
         nombre: "",
         creditos: "",
       });
@@ -51,6 +48,27 @@ const GestionCursos = () => {
     }
   }
 
+  // Add or edit a curso
+  async function EditarCurso() {
+    try {
+    
+        // Edit the curso
+        await CursoService.editarCurso(cursoForm._id, cursoForm);
+     
+
+      // Clear the curso form
+      setCursoForm({
+        _id: "",
+        nombre: "",
+        creditos: "",
+      });
+
+      // Fetch the updated list of cursos
+      getCursos();
+    } catch (error) {
+      console.error(error);
+    }
+  }
   // Delete a curso
   async function eliminarCurso(id) {
     try {
@@ -64,6 +82,7 @@ const GestionCursos = () => {
   return (
     <Fragment>
       <h1>Lista de Cursos</h1>
+    
       <table>
         <thead>
           <tr>
@@ -75,13 +94,13 @@ const GestionCursos = () => {
         </thead>
         <tbody>
           {cursos.map((curso) => (
-            <tr key={curso.id}>
+            <tr key={curso._id}>
               <td>{curso._id}</td>
               <td>{curso.nombre}</td>
               <td>{curso.creditos}</td>
               <td>
                 <button onClick={() => setCursoForm(curso)}>Editar</button>
-                <button onClick={() => eliminarCurso(curso.id)}>Eliminar</button>
+                <button onClick={() => eliminarCurso(curso._id)}>Eliminar</button>
               </td>
             </tr>
           ))}
@@ -92,8 +111,8 @@ const GestionCursos = () => {
       <input
         type="text"
         placeholder="ID"
-        value={cursoForm.id}
-        onChange={(e) => setCursoForm({ ...cursoForm, id: e.target.value })}
+        value={cursoForm._id}
+        onChange={(e) => setCursoForm({ ...cursoForm, _id: e.target.value })}
       />
       <input
         type="text"
@@ -107,7 +126,9 @@ const GestionCursos = () => {
         value={cursoForm.creditos}
         onChange={(e) => setCursoForm({ ...cursoForm, creditos: e.target.value })}
       />
-      <button onClick={agregarOEditarCurso}>Agregar/Editar Curso</button>
+      
+      <button onClick={EditarCurso}>Editar Curso</button>
+      <button onClick={() => agregarCurso()}>Agregar Nuevo</button>
     </Fragment>
   );
 };

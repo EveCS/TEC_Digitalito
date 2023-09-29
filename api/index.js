@@ -17,7 +17,7 @@ const courseSchema = new mongoose.Schema({
 });
 
 // Mi modelo usando el esquema anterior 
-const Course = mongoose.model('cursos', courseSchema);
+const Course = mongoose.model('courses', courseSchema);
 
 /////////////////////////////////////////////////////
 // Obtener todos los cursos
@@ -49,7 +49,8 @@ app.post('/cursos', async (req, res) => {
 app.get('/cursos/:id', async (req, res) => {
     try {
         const courseId = req.params.id;
-        const course = await Course.findOne({ id: courseId });
+        console.log("id " + courseId);
+        const course = await Course.findOne({ _id: courseId });
         if (!course) {
             res.status(404).send('Course not found');
             return;
@@ -65,7 +66,10 @@ app.get('/cursos/:id', async (req, res) => {
 app.put('/cursos/:id', async (req, res) => {
     try {
         const courseId = req.params.id;
-        const updatedCourse = await Course.findOneAndUpdate({ id: courseId }, req.body, { new: true });
+        console.log("id " + courseId);
+        console.log("request body " + req.body);
+        const updatedCourse = await Course.findOneAndUpdate({ _id: courseId }, req.body, { new: true });
+
         if (!updatedCourse) {
             res.status(404).send('Course not found');
             return;
@@ -81,7 +85,7 @@ app.put('/cursos/:id', async (req, res) => {
 app.delete('/cursos/:id', async (req, res) => {
     try {
         const courseId = req.params.id;
-        const deletedCourse = await Course.findOneAndDelete({ id: courseId });
+        const deletedCourse = await Course.findOneAndDelete({ _id: courseId });
         if (!deletedCourse) {
             res.status(404).send('Course not found');
             return;
@@ -100,7 +104,7 @@ const port = process.env.PORT || 3001;
 app.listen(port, async () => {
     console.log(`Servidor iniciado en el puerto ${port}`);
     try {
-        await mongoose.connect('mongodb://127.0.0.1:27017/db');
+        await mongoose.connect('mongodb://127.0.0.1:27017/proyecto');
     }
     catch (e) {
         console.log(`No pude conectar a mongodb://127.0.0.1:27017/db`);
