@@ -1,8 +1,12 @@
+// Importa las dependencias necesarias de React y otros módulos.
 import React, { Fragment, useEffect, useState } from "react";
 import Evaluacioneservice from "../API/mongoConnection";
 
 const GestionEvaluaciones = () => {
+  // arreglo vacio para cargar evaluaciones cuando se llama por primera vez
+  // SetEvaluaciones alojamiento automatico en memoria (estado de react), cambios que se reflejan en pantalla
   const [Evaluaciones, setEvaluaciones] = useState([]);
+
   const [EvaluacionForm, setEvaluacionForm] = useState({
     _id: "",
     nombre: "",
@@ -15,14 +19,19 @@ const GestionEvaluaciones = () => {
     }
   });
 
+  // Se muestran las evaluaciones en pantalla apenas carga la página
   useEffect(() => {
     getEvaluaciones();
-  }, []);
+  }, []); // es vació porque sólo se ejecutara una vez
 
+  // async se refiere a que puede contener operaciones asincronicas
   async function getEvaluaciones() {
     try {
+      // Intenta obtener datos de evaluaciones utilizando el servicio Evaluacioneservice.
       const data = await Evaluacioneservice.obtenerEvaluaciones();
+       // Una vez que se obtienen los datos exitosamente, actualiza el estado Evaluaciones con esos datos. 
       setEvaluaciones(data);
+      // En caso de que ocurra un error al obtener los datos, imprime el error en la consola.
     } catch (error) {
       console.error(error);
     }
@@ -30,7 +39,9 @@ const GestionEvaluaciones = () => {
 
   async function agregarEvaluacion() {
     try {
+      // Intenta agregar una nueva evaluación utilizando el servicio Evaluacioneservice y los datos de EvaluacionForm.
       await Evaluacioneservice.agregarEvaluacion(EvaluacionForm);
+      // limpia las evaluaciones luego de agregarlas
       setEvaluacionForm({
         _id: "",
         nombre: "",
@@ -42,6 +53,7 @@ const GestionEvaluaciones = () => {
           direccion: ""
         }
       });
+      // Llama a la función getEvaluaciones para actualizar la lista de evaluaciones.
       getEvaluaciones();
     } catch (error) {
       console.error(error);
@@ -62,6 +74,7 @@ const GestionEvaluaciones = () => {
           direccion: ""
         }
       });
+       // Llama a la función getEvaluaciones para actualizar la lista de evaluaciones.
       getEvaluaciones();
     } catch (error) {
       console.error(error);
