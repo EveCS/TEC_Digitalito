@@ -96,7 +96,7 @@ const GestionCursos = () => {
         <tbody>
           {cursos.map((curso) => (
             <tr key={curso._id}>
-              <td><a href={`/gestionCursos/${curso._id}`}>{curso._id}</a></td>
+              <td><a href={`/adminCurso/${curso._id}`}>{curso._id}</a></td>
               <td>{curso.nombre}</td>
               <td>{curso.creditos}</td>
               <td>

@@ -4,7 +4,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import GestionEvaluaciones from "./Evaluations";
 import GestionMatriculas from "./Registration";
 
-const GestionCurso = () => {
+const AdminCurso = () => {
   const [cursos, setCursos] = useState([]);
   const [cursoForm, setCursoForm] = useState({
     _id: "",
@@ -27,4 +27,4 @@ const GestionCurso = () => {
   );
 };
 
-export default GestionCurso;
+export default AdminCurso;
