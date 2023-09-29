@@ -16,8 +16,30 @@ const courseSchema = new mongoose.Schema({
     creditos: Number
 });
 
+const evaluationSchema = new mongoose.Schema({
+    _id: String,
+    nombre: String,
+    descripcion: String,
+    fechaInicio: String,
+    fechaFinal: String,
+    archivos: {
+        nombre: String,
+        direccion: String,
+    }
+});
+
+const matriculaSchema = new mongoose.Schema({
+    _id: String,
+    username: String,
+    course_id: String,
+    date: String,
+    result: String,
+});
+
 // Mi modelo usando el esquema anterior 
 const Course = mongoose.model('courses', courseSchema);
+const Evaluation = mongoose.model('evaluations', courseSchema);
+const Matricula = mongoose.model('matriculas', courseSchema);
 
 /////////////////////////////////////////////////////
 // Obtener todos los cursos
@@ -98,6 +120,142 @@ app.delete('/cursos/:id', async (req, res) => {
 });
 
 
+// Create (POST)
+app.post('/evaluaciones', async (req, res) => {
+    try {
+        const newEvaluation = await Evaluation.create(req.body);
+        res.status(201).json(newEvaluation);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
+
+// Read All (GET)
+app.get('/evaluaciones', async (req, res) => {
+    try {
+        const evaluations = await Evaluation.find({});
+        res.status(200).json(evaluations);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
+
+// Read by ID (GET)
+app.get('/evaluaciones/:id', async (req, res) => {
+    try {
+        const evaluation = await Evaluation.findById(req.params.id);
+        if (!evaluation) {
+            res.status(404).send("Evaluation not found");
+        } else {
+            res.status(200).json(evaluation);
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
+
+// Update (PUT)
+app.put('/evaluaciones/:id', async (req, res) => {
+    try {
+        const updatedEvaluation = await Evaluation.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!updatedEvaluation) {
+            res.status(404).send("Evaluation not found");
+        } else {
+            res.status(200).json(updatedEvaluation);
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
+
+// Delete (DELETE)
+app.delete('/evaluaciones/:id', async (req, res) => {
+    try {
+        const deletedEvaluation = await Evaluation.findByIdAndDelete(req.params.id);
+        if (!deletedEvaluation) {
+            res.status(404).send("Evaluation not found");
+        } else {
+            res.status(200).json(deletedEvaluation);
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
+
+// Create (POST)
+app.post('/matriculas', async (req, res) => {
+    try {
+        const newMatricula = await Matricula.create(req.body);
+        res.status(201).json(newMatricula);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
+
+// Read All (GET)
+app.get('/matriculas', async (req, res) => {
+    try {
+        const matriculas = await Matricula.find({});
+        res.status(200).json(matriculas);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
+
+// Read by ID (GET)
+app.get('/matriculas/:id', async (req, res) => {
+    try {
+        const matricula = await Matricula.findById(req.params.id);
+        if (!matricula) {
+            res.status(404).send("Matricula not found");
+        } else {
+            res.status(200).json(matricula);
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
+
+// Update (PUT)
+app.put('/matriculas/:id', async (req, res) => {
+    try {
+        const updatedMatricula = await Matricula.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!updatedMatricula) {
+            res.status(404).send("Matricula not found");
+        } else {
+            res.status(200).json(updatedMatricula);
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
+
+// Delete (DELETE)
+app.delete('/matriculas/:id', async (req, res) => {
+    try {
+        const deletedMatricula = await Matricula.findByIdAndDelete(req.params.id);
+        if (!deletedMatricula) {
+            res.status(404).send("Matricula not found");
+        } else {
+            res.status(200).json(deletedMatricula);
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
+
+
+
 
 
 const port = process.env.PORT || 3001;
@@ -111,3 +269,5 @@ app.listen(port, async () => {
     }
 }
 );
+
+

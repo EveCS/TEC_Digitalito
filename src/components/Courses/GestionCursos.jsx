@@ -2,6 +2,8 @@
 
 import React, { Fragment, useEffect, useState } from "react";
 import CursoService from "../API/mongoConnection";
+import GestionEvaluaciones from "./Evaluations";
+import GestionMatriculas from "./Registration";
 
 const GestionCursos = () => {
   const [cursos, setCursos] = useState([]);
@@ -29,10 +31,10 @@ const GestionCursos = () => {
   // Add or edit a curso
   async function agregarCurso() {
     try {
-     
-        // Add the curso
-        await CursoService.agregarCurso(cursoForm);
-      
+
+      // Add the curso
+      await CursoService.agregarCurso(cursoForm);
+
 
       // Clear the curso form
       setCursoForm({
@@ -51,10 +53,9 @@ const GestionCursos = () => {
   // Add or edit a curso
   async function EditarCurso() {
     try {
-    
-        // Edit the curso
-        await CursoService.editarCurso(cursoForm._id, cursoForm);
-     
+
+      // Edit the curso
+      let editC = await CursoService.editarCurso(cursoForm._id, cursoForm);
 
       // Clear the curso form
       setCursoForm({
@@ -66,7 +67,7 @@ const GestionCursos = () => {
       // Fetch the updated list of cursos
       getCursos();
     } catch (error) {
-      console.error(error);
+      alert(error);
     }
   }
   // Delete a curso
@@ -82,7 +83,7 @@ const GestionCursos = () => {
   return (
     <Fragment>
       <h1>Lista de Cursos</h1>
-    
+
       <table>
         <thead>
           <tr>
@@ -102,6 +103,7 @@ const GestionCursos = () => {
                 <button onClick={() => setCursoForm(curso)}>Editar</button>
                 <button onClick={() => eliminarCurso(curso._id)}>Eliminar</button>
               </td>
+
             </tr>
           ))}
         </tbody>
@@ -126,9 +128,15 @@ const GestionCursos = () => {
         value={cursoForm.creditos}
         onChange={(e) => setCursoForm({ ...cursoForm, creditos: e.target.value })}
       />
-      
+
       <button onClick={EditarCurso}>Editar Curso</button>
+
+
+
       <button onClick={() => agregarCurso()}>Agregar Nuevo</button>
+
+      <GestionEvaluaciones />
+      <GestionMatriculas />
     </Fragment>
   );
 };
