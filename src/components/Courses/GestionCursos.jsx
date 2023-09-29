@@ -135,8 +135,7 @@ const GestionCursos = () => {
 
       <button onClick={() => agregarCurso()}>Agregar Nuevo</button>
 
-      <GestionEvaluaciones />
-      <GestionMatriculas />
+
     </Fragment>
   );
 };
