@@ -1,52 +1,29 @@
-class CursoService {
-    constructor() {
-        this.apiUrl = 'http://localhost:3000/cursos'; // Cambia la URL si tu API está en otro lugar
-    }
+// CursoService.js
 
-    async obtenerCursos() {
-        const response = await fetch(this.apiUrl);
-        const data = await response.json();
-        return data;
-    }
-    
-        async obtenerCursoPorId(id) {
-            const response = await fetch(`${this.apiUrl}/${id}`);
-            const data = await response.json();
-            return data;
-        }
-    
-        async crearCurso(curso) {
-            const response = await fetch(this.apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(curso)
-            });
-            const data = await response.json();
-            return data;
-        }
-    
-        async actualizarCurso(id, curso) {
-            const response = await fetch(`${this.apiUrl}/${id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(curso)
-            });
-            const data = await response.json();
-            return data;
-        }
-    
-        async eliminarCurso(id) {
-            const response = await fetch(`${this.apiUrl}/${id}`, {
-                method: 'DELETE'
-            });
-            const data = await response.json();
-            return data;
-        }
-        
-}
+import axios from 'axios';
 
-export default new CursoService();
+const BASE_URL = 'http://localhost:3001'; // Change this to your server's URL
+
+const CursoService = {
+    obtenerCursos: async () => {
+        const response = await axios.get(`${BASE_URL}/cursos`);
+        return response.data;
+    },
+
+    agregarCurso: async (curso) => {
+        const response = await axios.post(`${BASE_URL}/cursos`, curso);
+        return response.data;
+    },
+
+    editarCurso: async (id, curso) => {
+        const response = await axios.put(`${BASE_URL}/cursos/${id}`, curso);
+        return response.data;
+    },
+
+    eliminarCurso: async (id) => {
+        const response = await axios.delete(`${BASE_URL}/cursos/${id}`);
+        return response.data;
+    }
+};
+
+export default CursoService;

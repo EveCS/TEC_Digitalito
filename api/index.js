@@ -11,7 +11,7 @@ app.use(cors());
 
 // Mi esquema con la definicion de la estructura de los cursos
 const courseSchema = new mongoose.Schema({
-    id: Number,
+    _id: String,
     nombre: String,
     creditos: Number
 });
@@ -22,6 +22,16 @@ const Course = mongoose.model('cursos', courseSchema);
 /////////////////////////////////////////////////////
 // Obtener todos los cursos
 // ...
+app.get('/cursos', async (req, res) => {
+
+    try {
+        res.status(200);
+        res.json(await Course.find({}));
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
 
 // Create a new course
 app.post('/cursos', async (req, res) => {
@@ -86,7 +96,7 @@ app.delete('/cursos/:id', async (req, res) => {
 
 
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 app.listen(port, async () => {
     console.log(`Servidor iniciado en el puerto ${port}`);
     try {

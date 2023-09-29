@@ -1,61 +1,113 @@
+// GestionCursos.js
+
 import React, { Fragment, useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import CursoService from '../../services/CursoService';
+import CursoService from "../../services/CursoService";
 
 const GestionCursos = () => {
   const [cursos, setCursos] = useState([]);
-  let navigate = useNavigate();
+  const [cursoForm, setCursoForm] = useState({
+    _id: "",
+    nombre: "",
+    creditos: "",
+  });
 
-  const getCursos = async () => {
+  // Fetch the list of cursos when the component mounts
+  useEffect(() => {
+    getCursos();
+  }, []);
+
+  // Fetch the list of cursos
+  async function getCursos() {
     try {
       const data = await CursoService.obtenerCursos();
       setCursos(data);
     } catch (error) {
       console.error(error);
     }
-  };
+  }
 
-  const deleteCurso = async (id) => {
+  // Add or edit a curso
+  async function agregarOEditarCurso() {
     try {
-      await CursoService.eliminarCurso(id);
-      const updatedCursos = cursos.filter(curso => curso.id !== id);
-      setCursos(updatedCursos);
+      if (cursoForm._id) {
+        // Edit the curso
+        await CursoService.editarCurso(cursoForm._id, cursoForm);
+      } else {
+        // Add the curso
+        await CursoService.agregarCurso(cursoForm);
+      }
+
+      // Clear the curso form
+      setCursoForm({
+        id: "",
+        nombre: "",
+        creditos: "",
+      });
+
+      // Fetch the updated list of cursos
+      getCursos();
     } catch (error) {
       console.error(error);
     }
-  };
+  }
 
-  useEffect(() => {
-    getCursos();
-  }, []);
+  // Delete a curso
+  async function eliminarCurso(id) {
+    try {
+      await CursoService.eliminarCurso(id);
+      getCursos();
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <Fragment>
-      {/* ... (resto del código) ... */}
-      <tbody>
-        {cursos.map((curso) => (
-          <tr key={curso.id}>
-            {/* ... (resto del código) ... */}
-            <td className="text-left">
-              <Link to={`/editReservacion/${curso.id}`}>
-                <i className="fa-solid fa-pen-to-square fa-2x" style={{ color: "white" }}></i>
-              </Link>
-            </td>
-            <td>
-              <button
-                onClick={() => {
-                  deleteCurso(curso.id);
-                }}
-                className="btn btn-danger"
-              >
-                Borrar
-              </button>
-            </td>
+      <h1>Lista de Cursos</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Creditos</th>
+            <th>Acciones</th>
           </tr>
-        ))}
-      </tbody>
-      {/* ... (resto del código) ... */}
+        </thead>
+        <tbody>
+          {cursos.map((curso) => (
+            <tr key={curso.id}>
+              <td>{curso._id}</td>
+              <td>{curso.nombre}</td>
+              <td>{curso.creditos}</td>
+              <td>
+                <button onClick={() => setCursoForm(curso)}>Editar</button>
+                <button onClick={() => eliminarCurso(curso.id)}>Eliminar</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <h2>Agregar/Editar Curso</h2>
+      <input
+        type="text"
+        placeholder="ID"
+        value={cursoForm.id}
+        onChange={(e) => setCursoForm({ ...cursoForm, id: e.target.value })}
+      />
+      <input
+        type="text"
+        placeholder="Nombre"
+        value={cursoForm.nombre}
+        onChange={(e) => setCursoForm({ ...cursoForm, nombre: e.target.value })}
+      />
+      <input
+        type="text"
+        placeholder="Creditos"
+        value={cursoForm.creditos}
+        onChange={(e) => setCursoForm({ ...cursoForm, creditos: e.target.value })}
+      />
+      <button onClick={agregarOEditarCurso}>Agregar/Editar Curso</button>
     </Fragment>
   );
 };
