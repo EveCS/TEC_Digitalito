@@ -103,7 +103,14 @@ const GestionCursos = () => {
         <tbody>
           {cursos.map((curso) => (
             <tr key={curso._id}>
-              <td><a href={`/adminCurso/${curso._id}`}>{curso._id}</a></td>
+              <td>
+                <a href={`/adminCurso/${curso._id}`} target="_blank" rel="noopener noreferrer">
+                  <i className="fa fa-external-link"></i> {/* Add your icon class here */}
+
+                  {curso._id}
+                </a>
+              </td>
+
               <td>{curso.codigo}</td>
               <td>{curso.nombre}</td>
               <td>{curso.descripcion}</td>
