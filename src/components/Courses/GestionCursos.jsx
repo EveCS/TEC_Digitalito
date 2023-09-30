@@ -83,6 +83,18 @@ const GestionCursos = () => {
     }
   }
 
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const base64String = reader.result.split(',')[1];
+      setCursoForm({ ...cursoForm, foto: base64String });
+    };
+
+    reader.readAsDataURL(file);
+  };
+
   return (
     <Fragment>
       <h2>Lista de Cursos</h2>
@@ -116,7 +128,8 @@ const GestionCursos = () => {
               <td>{curso.descripcion}</td>
               <td>{curso.fechaInicio}</td>
               <td>{curso.fechaFin}</td>
-              <td><img src={curso.foto} alt={`Foto de ${curso.nombre}`} /></td>
+              <td><img src={`data:image/png;base64,${curso.foto}`}
+                alt={`Foto de ${curso.nombre}`} className="img-resize" /></td>
               <td>
                 <button onClick={() => setCursoForm(curso)}>Editar</button>
                 <button onClick={() => eliminarCurso(curso._id)}>Eliminar</button>
@@ -186,21 +199,25 @@ const GestionCursos = () => {
           />
         </div>
 
+
         <div className="input-group">
-          <label>URL de la Foto</label>
+          <label>Subir Foto</label>
           <input
-            type="text"
-            placeholder="URL de la Foto"
-            value={cursoForm.foto}
-            onChange={(e) => setCursoForm({ ...cursoForm, foto: e.target.value })}
+            type="file"
+            accept="image/*"
+            onChange={handleFileUpload}
           />
+          {cursoForm.foto && (
+            <img src={`data:image/png;base64,${cursoForm.foto}`} alt="Uploaded" />
+          )}
         </div>
       </div>
 
 
-
-      <button onClick={EditarCurso}>Editar Curso</button>
-      <button onClick={() => agregarCurso()}>Agregar Nuevo</button>
+      <div className="button-links">
+        <button onClick={EditarCurso}>Editar Curso</button>
+        <button onClick={() => agregarCurso()}>Agregar Nuevo</button>
+      </div>
     </Fragment>
 
   );

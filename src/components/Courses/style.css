@@ -5,6 +5,18 @@
     margin: 0 40px;
 }
 
+.img-resize {
+    width: 100px;
+    /* Set the desired width */
+    height: auto;
+    /* Maintain aspect ratio */
+}
+
+.button-links {
+
+    padding: 40px 40px;
+}
+
 .input-group {
     display: flex;
     flex-direction: column;
