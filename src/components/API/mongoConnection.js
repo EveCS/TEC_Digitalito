@@ -25,4 +25,31 @@ const CursoService = {
     }
 };
 
-export default CursoService;
+
+
+const Evaluacioneservice = {
+    obtenerEvaluaciones: async () => {
+        const response = await axios.get(`${BASE_URL}/Evaluaciones`);
+        return response.data;
+    },
+
+    agregarEvaluaciones: async (evaluacion) => {
+        const response = await axios.post(`${BASE_URL}/Evaluaciones`, evaluacion);
+        return response.data;
+    },
+
+    editarEvaluaciones: async (id, evaluacion) => {
+        const response = await axios.put(`${BASE_URL}/Evaluaciones/${id}`, evaluacion);
+        return response.data;
+    },
+
+    eliminarEvaluaciones: async (id) => {
+        const response = await axios.delete(`${BASE_URL}/Evaluaciones/${id}`);
+        return response.data;
+    }
+};
+
+export default 
+{Evaluacioneservice,
+
+ CursoService}
