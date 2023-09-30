@@ -25,12 +25,12 @@ export function Register(){
         const crearUsuario = async () =>{
         let profesorFlag = false;
 
-        if(!passwordRegex.test(newContrasenna)){
+        //validacion password, comentada por facilidad
+        /*if(!passwordRegex.test(newContrasenna)){
             alert('La constraseña no cumple con el formato solicitado, debe tener un mínimo de 8 carácteres, una mayúscula y minúscula y un carácter especial #?!@$%^&*-_');
-        } else{
-            if(newTipoUsuario === "true") {
+        } else{*/
+            if(newTipoUsuario === "Profesor") {
                 profesorFlag = true;
-                console.log(profesorFlag);
             }
             const data = {
                 //Cambiar campos y espacios variables reactivas
@@ -48,33 +48,7 @@ export function Register(){
                 alert("Error al registrarse");
             }
             
-            /*const name = `${newNombre} ${newApellido} ${newSegundoApellido}`;
-            const msg = `Bienvenido al servicio de reservacion de cubículos de la biblioteca Jose Figueres Ferrer\nA continuación se le va a dar un resumen de los datos que ingresó\nCorreo: ${newCorreo}\nNombre Completo: ${newNombre} ${newApellido} ${newSegundoApellido}\nCarnee: ${newCarnee}\nCedula: ${newCedula}\nFecha de nacimiento: ${newFechaNacimiento}`;
-            const emailParams = {
-                to_name: name,
-                cliente: newCorreo,
-                message: msg
-            };
-            emailjs.send("service_719vdkn","template_7eaotzc",emailParams, "NUDhBCc5PbaQ9mPz3")
-            .then(function(response) {
-            console.log("SUCCESS", response);
-            }, function(error) {
-            console.log("FAILED", error);
-            });
-            await addDoc(usuariosCollectionRef, data);*/
-            
-        }
     }
-
-    /*
-    useEffect(() => {
-        const getUsuarios = async () => {
-            const data = await getDocs(usuariosCollectionRef);
-            setUsuarios(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
-        };
-        getUsuarios();
-    }, []);*/
-
     
     const handleCancelar = () => {
         navigate('/',{});
@@ -130,8 +104,8 @@ export function Register(){
                             return (
                             <label  for="tipoUsuario">
                                     <select class="form-control" id="tipoUsuario" newTipoUsuario={newTipoUsuario} onChange={(event) => setTipoUsuario(event.target.value)}>
-                                        <option newTipoUsuario="false">Estudiante</option>
-                                        <option newTipoUsuario="true">Profesor</option>
+                                        <option newTipoUsuario="Estudiante">Estudiante</option>
+                                        <option newTipoUsuario="Profesor">Profesor</option>
                                     </select>
                             </label>
                             console.log(setValue);
