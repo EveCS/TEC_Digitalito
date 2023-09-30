@@ -101,15 +101,13 @@ export function Register(){
                         </div>
 
                         <div class="form-group mx-5 my-2">
-                            return (
+                            
                             <label  for="tipoUsuario">
                                     <select id="tipoUsuario" newTipoUsuario={newTipoUsuario} onChange={(event) => setTipoUsuario(event.target.value)}>
                                         <option newTipoUsuario="Estudiante">Estudiante</option>
                                         <option newTipoUsuario="Profesor">Profesor</option>
                                     </select>
                             </label>
-                            console.log(setValue);
-                            );
                         </div>
 
                         <div className="row g-3 my-2 mb-5">

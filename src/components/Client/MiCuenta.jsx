@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { getUser } from "../API/redisConnection";
+import { editUserField, getUser } from "../API/redisConnection";
 
 export function MiCuenta() {
     //useNavigate es para poder navegar a otra ventana
@@ -10,36 +10,67 @@ export function MiCuenta() {
     //useLocation se usa para recibir los datos que se le pasan de la ventana anterior
     const location = useLocation();
     const username = location.state.usuario;
-    console.log(username);
     
-    const [contraseñaActual, setContraseñaActual] = useState("");
-    const [contraseñaNueva, setContraseñaNueva] = useState("");
-    const [confirmarContraseña, setConfirmarContraseña] = useState("");
+    const [newField, setField] = useState("");
+    const [newValue, setValue] = useState("");
 
     const cambiarValor = async () => {
 
-        const usuarioRef = await getUser(username);
-
-        /*if(contraseña == contraseñaActual){
-            console.log("Contraseña Actual correcta");
-            if(contraseñaNueva == confirmarContraseña){
-                console.log("Contraseña confirmada correctamente");
-                await updateDoc(usuarioRef,{
-                    contraseña : confirmarContraseña
-                  });
-                  navigate('/clientMenu',{state:{usuario: username}});
-            }
-            else{
-                console.log("Confirmación de contraseña incorrecta");
-            }
+        //Validar no esta vacio el espacio
+        if(newValue != ""){
+            let editarInfo;
+            switch (newField) {
+                case "Contraseña":
+                    editarInfo = await editUserField(username, "password", newValue);
+                    if(editarInfo) {
+                        console.log("Éxito al actualizar contraseña");
+                        alert("Éxito al actualizar contraseña");
+                    } else {
+                        console.log("Fallo actualizar contraseña");
+                        alert("Fallo actualizar contraseña");
+                    }
+                  break;
+                case "Nombre Completo":
+                    editarInfo = await editUserField(username, "full_name", newValue);
+                    if(editarInfo) {
+                        console.log("Éxito al actualizar Nombre completo");
+                        alert("Éxito al actualizar Nombre completo");
+                    } else {
+                        console.log("Fallo actualizar Nombre completo");
+                        alert("Fallo actualizar Nombre completo");
+                    }
+                  break;
+                case "Fecha Nacimiento":
+                    editarInfo = await editUserField(username, "bod", newValue);
+                    if(editarInfo) {
+                        console.log("Éxito al actualizar Fecha Nacimiento");
+                        alert("Éxito al actualizar Fecha Nacimiento");
+                    } else {
+                        console.log("Fallo actualizar Fecha Nacimiento");
+                        alert("Fallo actualizar Fecha Nacimiento");
+                    }
+                  break;
+                case "Url Avatar":
+                    editarInfo = await editUserField(username, "avatar_url", newValue);
+                    if(editarInfo) {
+                        console.log("Éxito al actualizar Url");
+                        alert("Éxito al actualizar Url");
+                    } else {
+                        console.log("Fallo actualizar Url");
+                        alert("Fallo actualizar Url");
+                    }
+                  break;
+                default:
+                  console.log("Lo lamentamos, opción inválida " + newField + ".");
+            } //Fin switch
+        } else {
+            console.log("Input vacío");
+            alert("Debe llenar el espacio");
         }
-        else{
-            console.log("Contraseña Actual Incorrecta");
-        }*/
     };
 
     const Cancelar = () => {
-        navigate('/clientMenu',{state:{usuario: username}});
+        navigate(`/ClientMenu?username=${username}`);
     };
 
     return (
@@ -48,28 +79,24 @@ export function MiCuenta() {
             <div className="jumbotron justify-content-center w-25 mx-auto my-2">
 
                 <h1 className="fw-bold mb-5 text-center text-white">Mi Cuenta</h1>
-                            <div className="form-floating mx-5 my-2">
-                                <input type="text" className="form-control" id="currentPswrdInput" placeholder="Contraseña Actual"
-                                onChange={(event) =>{
-                                    setContraseñaActual(event.target.value);
-                                }}/>
-                                <label for="contraseñaActualInput">Contraseña Actual</label>
+
+                            <div class="form-group mx-5 my-2">
+                            <label  for="campoModificar">
+                                    <select id="campoModificar" newField={newField} onChange={(event) => setField(event.target.value)}>
+                                        <option newField="password">Contraseña</option>
+                                        <option newField="full_name">Nombre Completo</option>
+                                        <option newField="dob">Fecha Nacimiento</option>
+                                        <option newField="avatar_url">Url Avatar</option>
+                                    </select>
+                            </label>                            
                             </div>
 
                             <div className="form-floating mx-5 my-2">
-                                <input type="password" class="form-control" id="newPswrdInput" placeholder="Contraseña Nueva"
+                                <input type="text" class="form-control" id="newValue" placeholder="Nuevo dato"
                                 onChange={(event) =>{
-                                    setContraseñaNueva(event.target.value);
+                                    setValue(event.target.value);
                                 }}/>
-                                <label for="newPswrdInput">Contraseña Nueva</label>
-                            </div>
-
-                            <div className="form-floating mx-5 my-2">
-                                <input type="password" class="form-control" id="confirmPswrdInput" placeholder="Confirmar Contraseña"
-                                onChange={(event) =>{
-                                    setConfirmarContraseña(event.target.value);
-                                }}/>
-                                <label for="confirmPswrdInput">Confirmar Contraseña</label>
+                                <label for="newValue">Nuevo Dato</label>
                             </div>
 
                             <div className="my-5 mb-5">
