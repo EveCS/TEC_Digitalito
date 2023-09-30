@@ -22,17 +22,17 @@ export function Login() {
 
         const response = await login(username);
         const responseData = await response;
-        const password = response.password;
+        //const password = response.password;
 
 
 
 
-        console.log(contraseña);
-        console.log(username);
+        //console.log(contraseña);
+        //console.log(username);
 
-        if(contraseña == password){
-            flag = true;
-        }
+        //if(contraseña == password){
+        //    flag = true;
+        //}
         
         if(contraseña == "admin" && username == "admin"){
             console.log("entre admin");
