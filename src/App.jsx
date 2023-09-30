@@ -20,59 +20,62 @@ import { Reservas } from "./components/Client/Reservas";
 import VerHistorial from "./components/Admin/VerHistorial";
 import GestionTiempo from "./components/Admin/GestionTiempo";
 import EditarTiempoUso from "./components/Admin/EditarTiempoUso";
+import Layout from "./components/Layout";
 export function App() {
   return (
     <Router>
-      <div className="App">
-        <Routes>
-          <Route exact path="/" element={<Login />} />
-          <Route exact path="/register" element={<Register />} />
-          <Route exact path="/clientMenu" element={<ClientMenu />} />
-          <Route
-            exact
-            path="/clientReservations"
-            element={<ClientReservations />}
-          />
-          <Route exact path="/adminMenu" element={<AdminMenu />} />
-          <Route
-            exact
-            path="/gestionEstudiantes"
-            element={<GestionEstudiantes />}
-          />
-          <Route exact path="/edit/:id" element={<EditUsuario />} />
-          <Route exact path="/editCubiculo/:idAndNumCubiculo" element={<EditCubiculo />} />
-          <Route exact path="/miCuenta" element={<MiCuenta />} />
-          <Route exact path="/reservarCubiculo" element={<Reservas />} />
-          <Route exact path="/gestionTiempo" element={<GestionTiempo />} />
-          <Route exact path="/editarTiempoUso/:id" element={<EditarTiempoUso />} />
+      <Layout>
+        <div className="App">
+          <Routes>
+            <Route exact path="/" element={<Login />} />
+            <Route exact path="/register" element={<Register />} />
+            <Route exact path="/clientMenu" element={<ClientMenu />} />
+            <Route
+              exact
+              path="/clientReservations"
+              element={<ClientReservations />}
+            />
+            <Route exact path="/adminMenu" element={<AdminMenu />} />
+            <Route
+              exact
+              path="/gestionEstudiantes"
+              element={<GestionEstudiantes />}
+            />
+            <Route exact path="/edit/:id" element={<EditUsuario />} />
+            <Route exact path="/editCubiculo/:idAndNumCubiculo" element={<EditCubiculo />} />
+            <Route exact path="/miCuenta" element={<MiCuenta />} />
+            <Route exact path="/reservarCubiculo" element={<Reservas />} />
+            <Route exact path="/gestionTiempo" element={<GestionTiempo />} />
+            <Route exact path="/editarTiempoUso/:id" element={<EditarTiempoUso />} />
 
 
-          <Route
-            exact
-            path="/gestionCubiculos"
-            element={<GestionCubiculos />}
-          />
-          <Route exact path="/crearCubiculos" element={<CrearCubiculos />} />
-          <Route exact path="/gestionCursos" element={<GestionCursos />} />
-          <Route exact path="/adminCurso/:id" element={<AdminCurso />} />
+            <Route
+              exact
+              path="/gestionCubiculos"
+              element={<GestionCubiculos />}
+            />
+            <Route exact path="/crearCubiculos" element={<CrearCubiculos />} />
+            <Route exact path="/gestionCursos" element={<GestionCursos />} />
+            <Route exact path="/adminCurso/:id" element={<AdminCurso />} />
 
-          <Route
-            exact
-            path="/gestionReservaciones"
-            element={<GestionReservaciones />}
-          />
-          <Route
-            exact
-            path="/editReservacion/:id"
-            element={<EditReservacion />}
-          />
-          <Route
-            exact
-            path="/verHistorial/:carnee"
-            element={<VerHistorial />}
-          />
-        </Routes>
-      </div>
+            <Route
+              exact
+              path="/gestionReservaciones"
+              element={<GestionReservaciones />}
+            />
+            <Route
+              exact
+              path="/editReservacion/:id"
+              element={<EditReservacion />}
+            />
+            <Route
+              exact
+              path="/verHistorial/:carnee"
+              element={<VerHistorial />}
+            />
+          </Routes>
+        </div>
+      </Layout>
     </Router>
   );
 }

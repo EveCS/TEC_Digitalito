@@ -3,9 +3,11 @@
 import React, { Fragment, useEffect, useState } from "react";
 import GestionEvaluaciones from "./Evaluations";
 import GestionMatriculas from "./Registration";
+import { useParams } from 'react-router-dom';
 
 const AdminCurso = () => {
   const [cursos, setCursos] = useState([]);
+  let { id } = useParams();
   const [cursoForm, setCursoForm] = useState({
     _id: "",
     nombre: "",
@@ -20,7 +22,8 @@ const AdminCurso = () => {
 
   return (
     <Fragment>
-      <h1>Admin Curso</h1>
+      <a href={`/gestionCursos`}>/Gestion de Cursos</a>
+      <h1> Admin Curso  {id}</h1>
       <GestionEvaluaciones />
       <GestionMatriculas />
     </Fragment>
