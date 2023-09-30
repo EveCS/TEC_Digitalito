@@ -11,9 +11,14 @@ app.use(cors());
 
 // Mi esquema con la definicion de la estructura de los cursos
 const courseSchema = new mongoose.Schema({
+
     _id: String,
+    codigo: String,
     nombre: String,
-    creditos: Number
+    descripcion: String,
+    fechaInicio: String,
+    fechaFin: String,
+    foto: String,
 });
 
 const evaluationSchema = new mongoose.Schema({

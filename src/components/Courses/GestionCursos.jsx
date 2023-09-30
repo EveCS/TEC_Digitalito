@@ -121,6 +121,16 @@ const GestionCursos = () => {
       <h2>Editar / Agregar Cursos </h2>
       <div className="form-grid">
         <div className="input-group">
+          <label>ID</label>
+          <input
+            type="text"
+            placeholder="ID"
+            value={cursoForm._id}
+            onChange={(e) => setCursoForm({ ...cursoForm, _id: e.target.value })}
+          />
+        </div>
+
+        <div className="input-group">
           <label>Código</label>
           <input
             type="text"
