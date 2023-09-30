@@ -1,0 +1,5 @@
+select {
+    height: calc(3.5rem + 2px);
+    min-width: 380px;
+    line-height: 1.25;
+}

@@ -2,8 +2,8 @@ import React, { Fragment, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import emailjs from 'emailjs-com';
 import { registerUser } from "./API/redisConnection";
+import "../styles.css";
 
 export function Register(){
     //useNavigate es para poder navegar a otra ventana
@@ -103,7 +103,7 @@ export function Register(){
                         <div class="form-group mx-5 my-2">
                             return (
                             <label  for="tipoUsuario">
-                                    <select class="form-control" id="tipoUsuario" newTipoUsuario={newTipoUsuario} onChange={(event) => setTipoUsuario(event.target.value)}>
+                                    <select id="tipoUsuario" newTipoUsuario={newTipoUsuario} onChange={(event) => setTipoUsuario(event.target.value)}>
                                         <option newTipoUsuario="Estudiante">Estudiante</option>
                                         <option newTipoUsuario="Profesor">Profesor</option>
                                     </select>

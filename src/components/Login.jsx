@@ -19,22 +19,26 @@ export function Login() {
         const tipoUsuario = response.es_profesor;
 
         //Validar no venga info vacia
-        if (response !== "") {
-            if (contraseña === password) {
-                console.log("Inicio de sesión exitoso");
-                alert("Inicio de sesión exitoso");
-                //Validar tipo usuario para redirigir menu
-                if (tipoUsuario === "true") {
-                    navigate(`/adminMenu?username=${username}`);
+        if (username === "" || contraseña ==="") return alert("Debes llenar todos los campos");
+        else {
+            if (response !== "") {
+                if (contraseña === password) {
+                    console.log("Inicio de sesión exitoso");
+                    alert("Inicio de sesión exitoso");
+                    //Validar tipo usuario para redirigir menu
+                    if (tipoUsuario === "true") {
+                        navigate(`/adminMenu?username=${username}`);
+                    } else {
+    
+                        navigate(`/ClientMenu?username=${username}`);
+                    }
                 } else {
-
-                    navigate(`/ClientMenu?username=${username}`);
+                    console.log("Inicio de sesión fallido");
+                    alert("Inicio de sesión fallida. Intente de nuevo");
                 }
-            } else {
-                console.log("Inicio de sesión fallido");
-                alert("Inicio de sesión fallida. Intente de nuevo");
             }
         }
+        
     };
     
     const handleRegistrarse = () => {
