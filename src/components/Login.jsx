@@ -11,7 +11,7 @@ export function Login() {
     let navigate = useNavigate();
 
 
-    const [username, setUsername] = useState("");
+    const [username, setUsername] = useState(""); //Variable reactiva 
     const [contraseña, setContraseña] = useState("");
     const [userInfo, setUserinfo] = useState("");
   
