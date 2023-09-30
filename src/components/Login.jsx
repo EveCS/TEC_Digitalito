@@ -1,6 +1,5 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useForm } from 'react-hook-form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -11,63 +10,35 @@ export function Login() {
     let navigate = useNavigate();
 
 
-    const [username, setUsername] = useState("");
+    const [username, setUsername] = useState(""); //Variable reactiva 
     const [contraseña, setContraseña] = useState("");
-    const [userInfo, setUserinfo] = useState("");
-  
 
     const loginUsuario = async () => {
-        let flag = false;
-        let admin = false;
-
         const response = await login(username);
-        const responseData = await response;
-        //const password = response.password;
+        const password = response.password;
+        const tipoUsuario = response.es_profesor;
 
-
-
-
-        //console.log(contraseña);
-        //console.log(username);
-
-        //if(contraseña == password){
-        //    flag = true;
-        //}
+        //Validar no venga info vacia
+        if (username === "" || contraseña ==="") return alert("Debes llenar todos los campos");
+        else {
+            if (response !== "") {
+                if (contraseña === password) {
+                    console.log("Inicio de sesión exitoso");
+                    alert("Inicio de sesión exitoso");
+                    //Validar tipo usuario para redirigir menu
+                    if (tipoUsuario === "true") {
+                        navigate(`/adminMenu?username=${username}`);
+                    } else {
+    
+                        navigate(`/ClientMenu?username=${username}`);
+                    }
+                } else {
+                    console.log("Inicio de sesión fallido");
+                    alert("Inicio de sesión fallida. Intente de nuevo");
+                }
+            }
+        }
         
-        if(contraseña == "admin" && username == "admin"){
-            console.log("entre admin");
-            flag = true;
-            admin =true;
-        }
-
-        if(contraseña == "user" && username == "user"){
-            flag = true;
-        }
-
-
-        if(flag == true){
-
-            
-            console.log("Inicio de sesión exitoso");
-            alert("Inicio de sesión exitoso");
-                if(admin== true){
-                    navigate('/adminMenu',{});
-                }
-                else{
-
-                    navigate('/ClientMenu',{});
-                }
-
-
-        }
-
-        if(flag == false){
-
-            console.log("Inicio de sesión fallido");
-            alert("Inicio de sesión fallida. Intente de nuevo");
-           
-        }
-
     };
     
     const handleRegistrarse = () => {
@@ -81,11 +52,11 @@ export function Login() {
 
                 <h1 className="fw-bold mb-5 text-center text-white">Inicio de sesión</h1>
                             <div className="form-floating mx-5 my-2">
-                                <input type="text" className="form-control" id="userNameInput" placeholder="Correo de usuario"
+                                <input type="text" className="form-control" id="userNameInput" placeholder="Cuenta usuario"
                                 onChange={(event) =>{
                                     setUsername(event.target.value);
                                 }}/>
-                                <label for="userNameInput">Username</label>
+                                <label for="userNameInput">Usuario</label>
                             </div>
 
                             <div className="form-floating mx-5 my-2">
