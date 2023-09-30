@@ -1,0 +1,30 @@
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 0 40px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    margin-bottom: 5px;
+}
+
+/* CSS */
+.table-bordered {
+    border-collapse: collapse;
+    gap: 15px;
+    margin: 0 40px;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid black;
+    /* Define the border style */
+    padding: 8px;
+    /* Add some padding for better spacing */
+}
