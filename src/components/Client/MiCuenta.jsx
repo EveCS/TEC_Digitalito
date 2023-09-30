@@ -2,39 +2,32 @@ import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { db } from '../firebase_config';
-import { doc, updateDoc} from "firebase/firestore";
+import { getUser } from "../API/redisConnection";
 
 export function MiCuenta() {
     //useNavigate es para poder navegar a otra ventana
     let navigate = useNavigate();
     //useLocation se usa para recibir los datos que se le pasan de la ventana anterior
     const location = useLocation();
-    const id = location.state.id;
-    const correo = location.state.correo
-    const contraseña = location.state.contraseña
-    const carnee = location.state.carnee
-    const nombre = location.state.nombre
-    const apellido = location.state.apellido
-    console.log('AQUI');
-    console.log(id, correo, contraseña);
+    const username = location.state.usuario;
+    console.log(username);
     
     const [contraseñaActual, setContraseñaActual] = useState("");
     const [contraseñaNueva, setContraseñaNueva] = useState("");
     const [confirmarContraseña, setConfirmarContraseña] = useState("");
 
-    const usuarioRef = doc(db, "usuarios", id);
+    const cambiarValor = async () => {
 
-    const CambiarContraseña = async () => {
+        const usuarioRef = await getUser(username);
 
-        if(contraseña == contraseñaActual){
+        /*if(contraseña == contraseñaActual){
             console.log("Contraseña Actual correcta");
             if(contraseñaNueva == confirmarContraseña){
                 console.log("Contraseña confirmada correctamente");
                 await updateDoc(usuarioRef,{
                     contraseña : confirmarContraseña
                   });
-                  navigate('/clientMenu',{state:{id: id, correo: correo, contraseña: contraseña, carnee: carnee, nombre: nombre, apellido: apellido}});
+                  navigate('/clientMenu',{state:{usuario: username}});
             }
             else{
                 console.log("Confirmación de contraseña incorrecta");
@@ -42,11 +35,11 @@ export function MiCuenta() {
         }
         else{
             console.log("Contraseña Actual Incorrecta");
-        }
+        }*/
     };
 
     const Cancelar = () => {
-        navigate('/clientMenu',{state:{id: id, correo: correo, contraseña: contraseña, carnee: carnee, nombre: nombre, apellido: apellido}});
+        navigate('/clientMenu',{state:{usuario: username}});
     };
 
     return (
@@ -81,7 +74,7 @@ export function MiCuenta() {
 
                             <div className="my-5 mb-5">
                                 <div className="col">
-                                    <button onClick={CambiarContraseña} className="w-100 btn btn-lg btn-primary">Cambiar Contraseña</button>
+                                    <button onClick={cambiarValor} className="w-100 btn btn-lg btn-primary">Cambiar</button>
                                 </div>
                                 <div className="col">
                                     <button onClick={Cancelar} className="w-100 btn btn-lg btn-secondary my-3">Cancelar</button>

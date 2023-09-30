@@ -1,6 +1,5 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useForm } from 'react-hook-form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -12,37 +11,30 @@ export function Login() {
 
 
     const [username, setUsername] = useState(""); //Variable reactiva 
-    const [contraseña, setContraseña] = useState(""); 
+    const [contraseña, setContraseña] = useState("");
 
     const loginUsuario = async () => {
-
         const response = await login(username);
-        const responseData = await response;
         const password = response.password;
         const tipoUsuario = response.es_profesor;
 
-        console.log(password);
-        console.log(tipoUsuario);
-
         //Validar no venga info vacia
-        if(response != "") {
-            if(contraseña == password) {
+        if (response !== "") {
+            if (contraseña === password) {
                 console.log("Inicio de sesión exitoso");
                 alert("Inicio de sesión exitoso");
                 //Validar tipo usuario para redirigir menu
-                if(tipoUsuario == "true"){
-                    navigate('/adminMenu',{});
-                }
-                else{
+                if (tipoUsuario === "true") {
+                    navigate(`/adminMenu?username=${username}`);
+                } else {
 
-                    navigate('/ClientMenu',{});
+                    navigate(`/ClientMenu?username=${username}`);
                 }
             } else {
                 console.log("Inicio de sesión fallido");
                 alert("Inicio de sesión fallida. Intente de nuevo");
             }
         }
-
     };
     
     const handleRegistrarse = () => {
