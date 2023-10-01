@@ -4,23 +4,21 @@
 
 
 const addMyEndPointstoApp = (app, mongoose) => {
-    const evaluationSchema = new mongoose.Schema(
+    const evaluationSchema = new mongoose.Schema({
+        _id: String,
+        id_curso: String,
+    nombre: String,
+    fechaInicio: Date,
+    fechaFinal: Date,
+    preguntas: [
         {
-
-            _id: String,
-            id_curso: String,
-            codigo: String,
-            nombre: String,
-            descripcion: String,
-            fechaInicio: Date,
-            fechaFinal: Date,
-            archivos: {
-                nombre: String,
-                direccion: String,
-            }
-
+            pregunta: String,
+            opciones: [String]
         }
-    )
+    ],
+    opcionesCorrectas: [String]
+
+    });
 
     const Evaluation = mongoose.model('evaluations', evaluationSchema);
     // Read All (GET)

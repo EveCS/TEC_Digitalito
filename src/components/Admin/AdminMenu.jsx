@@ -29,6 +29,13 @@ export function AdminMenu() {
               Ver estudiantes en un curso
             </button>
             <button
+              onClick={() => {navigate('/EvaluationFormJhonn',{})}}
+              className="btn btn-primary mb-3 btn-lg"
+              type="button"
+              >
+              Crear evaluaciones
+            </button>
+            <button
               onClick={() => {navigate('/..',{})}}
               className="btn btn-primary mb-3 btn-lg"
               type="button"
