@@ -1,27 +1,9 @@
-// GestionCursos.js
-
-import React, { Fragment, useEffect, useState } from "react";
-
+import React, { Fragment } from "react";
 import '../style.css'
-
-
-
-const CoursesTable = ({ cursos, getCursos, setCursoForm, connect }) => {
-
-    // Delete a curso
-    async function eliminarCurso(id) {
-        try {
-            await connect.CursoService.eliminarCurso(id);
-            getCursos();
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
+const CoursesTable = ({ cursos, setCursoForm, eliminarCurso, publicarCurso }) => {
     return (
         <Fragment>
             <h2 className="button-links">Lista de Cursos</h2>
-
             <table className="table-bordered">
                 <thead>
                     <tr>
@@ -32,6 +14,7 @@ const CoursesTable = ({ cursos, getCursos, setCursoForm, connect }) => {
                         <th>Fecha Inicio</th>
                         <th>Fecha Fin</th>
                         <th>Foto</th>
+                        <th>Publicado</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -40,12 +23,10 @@ const CoursesTable = ({ cursos, getCursos, setCursoForm, connect }) => {
                         <tr key={curso._id}>
                             <td>
                                 <a href={`/adminCurso/${curso._id}`} rel="noopener noreferrer">
-                                    <i className="fa fa-external-link"></i> {/* Add your icon class here */}
-
+                                    <i className="fa fa-external-link"></i>
                                     {curso._id}
                                 </a>
                             </td>
-
                             <td>{curso.codigo}</td>
                             <td>{curso.nombre}</td>
                             <td>{curso.descripcion}</td>
@@ -53,10 +34,13 @@ const CoursesTable = ({ cursos, getCursos, setCursoForm, connect }) => {
                             <td>{curso.fechaFin}</td>
                             <td><img src={`data:image/png;base64,${curso.foto}`}
                                 alt={`Foto de ${curso.nombre}`} className="img-resize" /></td>
+                            <td>{curso.publicado ? 'Yes' : 'No'}</td>
                             <td>
-                                <button onClick={() => setCursoForm(curso)}>Editar</button>
-                                <button onClick={() => eliminarCurso(curso._id)}>Eliminar</button>
+                                <button onClick={() => setCursoForm(curso)}>Editar</button><br></br>
+                                <button onClick={() => eliminarCurso(curso._id)}>Eliminar</button><br></br>
+                                <button onClick={() => publicarCurso(curso._id, curso.publicado)}>{curso.publicado ? 'DesPublicar' : 'Publicar'}</button>
                             </td>
+
                         </tr>
                     ))}
                 </tbody>

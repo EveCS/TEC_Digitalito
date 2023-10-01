@@ -1,19 +1,9 @@
-// GestionCursos.js
-
 import React, { Fragment } from "react";
-
 import '../style.css'
-
-
-
 const SectionsTable = ({ Secciones, setSeccionForm, eliminarSeccion }) => {
-
-
-
     return (
         <Fragment>
             <h1>Lista de Secciones  </h1>
-
             <table className="table-bordered">
                 <thead>
                     <tr>
@@ -51,14 +41,9 @@ const SectionsTable = ({ Secciones, setSeccionForm, eliminarSeccion }) => {
                         </tr>
                     )}
                 </tbody>
-
             </table>
             <hr></hr>
-
-
         </Fragment>
-
     );
 };
-
 export default SectionsTable;

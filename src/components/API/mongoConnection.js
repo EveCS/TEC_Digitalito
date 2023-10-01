@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:3001'; // Change this to your server's URL
 
-let CursoService = {
+const CursoService = {
     obtenerCursos: async () => {
         const response = await axios.get(`${BASE_URL}/cursos`);
         return response.data;
@@ -22,7 +22,17 @@ let CursoService = {
     eliminarCurso: async (id) => {
         const response = await axios.delete(`${BASE_URL}/cursos/${id}`);
         return response.data;
-    }
+    },
+
+    publicarCurso: async (id) => {
+        const response = await axios.put(`${BASE_URL}/publicarCurso/${id}`);
+        return response.data;
+    },
+    despublicarCurso: async (id) => {
+        const response = await axios.put(`${BASE_URL}/despublicarCurso/${id}`);
+        return response.data;
+    },
+
 };
 
 
@@ -108,11 +118,11 @@ const PreguntaService = {
     }
 };
 
-
-
-export default {
+const services = {
     EvaluacionService,
     CursoService,
     SeccionService,
     PreguntaService
 };
+
+export default services;

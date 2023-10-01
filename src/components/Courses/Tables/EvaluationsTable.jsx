@@ -1,19 +1,10 @@
-// GestionCursos.js
 
 import React, { Fragment } from "react";
-
 import '../style.css'
-
-
-
 const EvaluationsTable = ({ Evaluaciones, setEvaluacionForm, eliminarEvaluacion }) => {
-
-
-
     return (
         <Fragment>
             <h1>Lista de Evaluaciones  </h1>
-
             <table className="table-bordered">
                 <thead>
                     <tr>
@@ -51,13 +42,9 @@ const EvaluationsTable = ({ Evaluaciones, setEvaluacionForm, eliminarEvaluacion 
                         </tr>
                     )}
                 </tbody>
-
             </table>
             <hr></hr>
-
-
         </Fragment>
-
     );
 };
 

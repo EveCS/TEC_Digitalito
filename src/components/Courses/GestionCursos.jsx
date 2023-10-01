@@ -16,6 +16,7 @@ const GestionCursos = () => {
     fechaInicio: "",
     fechaFin: "",
     foto: "",
+    publicado: false
   });
 
   // Fetch the list of cursos when the component mounts
@@ -23,7 +24,7 @@ const GestionCursos = () => {
     getCursos();
   }, []);
 
-  // Fetch the list of cursos
+
   async function getCursos() {
     try {
       const data = await connect.CursoService.obtenerCursos();
@@ -32,10 +33,33 @@ const GestionCursos = () => {
       console.error(error);
     }
   }
+  async function eliminarCurso(id) {
+    try {
+      await connect.CursoService.eliminarCurso(id);
+      getCursos();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  async function publicarCurso(_id, publicado) {
+    try {
+      if (publicado) {
+        await connect.CursoService.despublicarCurso(_id);
+      } else {
+        await connect.CursoService.publicarCurso(_id);
+      }
+
+      getCursos();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
   return (
     <Fragment>
-      <CoursesTable {...{ cursos, getCursos, setCursoForm, connect }} />
-      <CursosForm {...{ cursoForm, getCursos, setCursoForm, connect }} />
+      <CoursesTable {...{ cursos, getCursos, setCursoForm, eliminarCurso, publicarCurso }} />
+      <CursosForm {...{ cursoForm, getCursos, setCursoForm }} />
     </Fragment>
   );
 };

@@ -1,13 +1,7 @@
 
-
-
-
-
 const addMyEndPointstoApp = (app, mongoose) => {
-
     const sectionSchema = new mongoose.Schema(
         {
-
             _id: String,
             id_curso: String,
             codigo: String,
@@ -19,10 +13,8 @@ const addMyEndPointstoApp = (app, mongoose) => {
                 nombre: String,
                 direccion: String,
             }
-
         }
     )
-
     const Section = mongoose.model('sections', sectionSchema);
     app.post('/seccionesByCurso/:id', async (req, res) => {
         try {
