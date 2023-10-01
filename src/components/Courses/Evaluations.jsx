@@ -71,7 +71,7 @@ const GestionEvaluaciones = ({ id }) => {
     try {
 
       // Intenta obtener datos de evaluaciones utilizando el servicio Evaluacioneservice.
-      const data = await connect.EvaluacionService.obtenerEvaluacionesByID(id2, idCurso);
+      const data = await connect.EvaluacionService.obtenerEvaluacionesByID(idCurso, id2);
 
       // Una vez que se obtienen los datos exitosamente, actualiza el estado Evaluaciones con esos datos. 
       setEvaluacion(data);
@@ -81,9 +81,9 @@ const GestionEvaluaciones = ({ id }) => {
     }
   }
 
-  async function eliminarEvaluacion(id) {
+  async function eliminarEvaluacion(idCurso2, id2) {
     try {
-      await connect.EvaluacionService.eliminarEvaluacion(id);
+      await connect.EvaluacionService.eliminarEvaluacion(idCurso2, id2);
       getEvaluaciones();
     } catch (error) {
       console.error(error);
@@ -123,7 +123,7 @@ const GestionEvaluaciones = ({ id }) => {
                 <td>{Evaluacion.fechaInicio}</td>
                 <td>{Evaluacion.fechaFinal}</td>
                 <td>
-                  <button onClick={() => eliminarEvaluacion(Evaluacion._id)}>Eliminar</button>
+                  <button onClick={() => eliminarEvaluacion(Evaluacion._id, id)}>Eliminar</button>
                 </td>
               </tr>
             ))

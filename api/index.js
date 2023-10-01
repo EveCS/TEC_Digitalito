@@ -183,6 +183,32 @@ app.get('/evaluacionesByID/:idEval/curso/:idCurso', async (req, res) => {
     }
 });
 
+app.delete('/evaluacionesByID/:idEval/curso/:idCurso', async (req, res) => {
+    try {
+        const curso = await Course.findOne({ _id: req.params.idCurso });
+        console.log(req.params.idCurso);
+        if (!curso) {
+            return res.status(404).json({ message: 'Curso not found' });
+        }
+
+        const evaluacionIndex = curso.evaluaciones.findIndex(e => e._id.toString() === req.params.idEval);
+
+        if (evaluacionIndex === -1) {
+            return res.status(404).json({ message: 'Evaluacion not found for this curso' });
+        }
+
+        curso.evaluaciones.splice(evaluacionIndex, 1);
+
+        await curso.save();
+
+        res.status(200).json({ message: 'Evaluacion deleted successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
+
+
 
 
 // Obtener Secciones  de Un Curso 
