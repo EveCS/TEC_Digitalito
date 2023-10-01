@@ -10,8 +10,7 @@ const SectionsTable = ({ Secciones, setSeccionForm, eliminarSeccion }) => {
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Descripción</th>
-                        <th>Fecha de Inicio</th>
-                        <th>Fecha Final</th>
+
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -27,8 +26,7 @@ const SectionsTable = ({ Secciones, setSeccionForm, eliminarSeccion }) => {
                                 </td>
                                 <td>{Seccion.nombre}</td>
                                 <td>{Seccion.descripcion}</td>
-                                <td>{Seccion.fechaInicio}</td>
-                                <td>{Seccion.fechaFinal}</td>
+
                                 <td>
                                     <button onClick={() => setSeccionForm(Seccion)}>Editar</button>
                                     <button onClick={() => eliminarSeccion(Seccion._id)}>Eliminar</button>

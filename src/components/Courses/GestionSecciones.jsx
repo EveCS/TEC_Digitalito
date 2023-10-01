@@ -16,8 +16,6 @@ const GestionSecciones = ({ id }) => {
     codigo: "",
     nombre: "",
     descripcion: "",
-    fechaInicio: "",
-    fechaFinal: "",
     archivos: {
       nombre: "",
       direccion: ""
