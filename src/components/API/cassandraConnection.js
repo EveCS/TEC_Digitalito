@@ -20,8 +20,19 @@ const matricularCurso = async (username,curso) => {
     }
   }
 
+  //http://localhost:3001/getPorCurso?curso_id=curso2
 
+  const getPorCurso = async (curso) => {
+    try {
+      const response = await axios.get(`http://localhost:3002/getPorCurso?curso_id=${curso}`)
+      console.log(curso+"<---");
+      return (response.data)
+    } catch (error) {
+      console.log("Error al buscar el usuario", error);
+    }
+  }
 export {
   getCursosbyUser,
-  matricularCurso
+  matricularCurso,
+  getPorCurso
 };

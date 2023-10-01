@@ -11,6 +11,7 @@ import { MatricularCurso } from "./components/Client/MatricularCurso";
 import GestionCursos from "./components/Courses/Courses";
 import GestionEvaluaciones from "./components/Courses/Evaluations";
 import AdminCurso from "./components/Courses/AdminCurso";
+import { EstudiantesEnCurso } from "./components/Admin/EstudiantesPorCurso";
 export function App() {
   return (
     <Router>
@@ -28,7 +29,7 @@ export function App() {
           <Route exact path="/gestionCursos" element={<GestionCursos />} />
             <Route exact path="/adminCurso/:id" element={<AdminCurso />} />
             <Route exact path="/adminEvaluacion/:id" element={<GestionEvaluaciones />} />
-
+            <Route exact path="/estudiantesEnCurso" element={<EstudiantesEnCurso />} />
           <Route exact path="/miCuenta" element={<MiCuenta />} />
 
           <Route exact path="/matricularcurso" element={<MatricularCurso />} />
