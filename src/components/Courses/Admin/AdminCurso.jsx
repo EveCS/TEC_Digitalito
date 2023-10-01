@@ -1,7 +1,8 @@
 // GestionCursos.js
 
 import React, { Fragment, useEffect, useState } from "react";
-import GestionEvaluaciones from "./GestionEvaluaciones";
+import GestionEvaluaciones from "../GestionEvaluaciones";
+import GestionSecciones from "../GestionSecciones";
 import { useParams } from 'react-router-dom';
 
 const AdminCurso = () => {
@@ -17,6 +18,7 @@ const AdminCurso = () => {
     <Fragment>
       <h1> Admin Curso  {id}</h1>
       <GestionEvaluaciones id={id} />
+      <GestionSecciones id={id} />
     </Fragment>
   );
 };

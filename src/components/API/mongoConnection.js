@@ -61,12 +61,12 @@ const SeccionService = {
     },
 
     obtenerSeccionesByCurso: async (id) => {
-        const response = await axios.get(`${BASE_URL}/cursos/${id}`);
-        return response.data.secciones;
+        const response = await axios.get(`${BASE_URL}/seccionesByCurso/${id}`);
+        return response.data;
     },
 
-    agregarSeccion: async (cursoId, seccion) => {
-        const response = await axios.post(`${BASE_URL}/cursos/${cursoId}/secciones`, seccion);
+    agregarSeccion: async (seccion) => {
+        const response = await axios.post(`${BASE_URL}/secciones`, seccion);
         return response.data;
     },
 

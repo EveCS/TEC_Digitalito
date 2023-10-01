@@ -9,10 +9,11 @@ import { MiCuenta } from "./components/Client/MiCuenta";
 import { MisCursos } from "./components/Client/MisCursos";
 import { MatricularCurso } from "./components/Client/MatricularCurso";
 import GestionCursos from "./components/Courses/GestionCursos";
-import AdminCurso from "./components/Courses/AdminCurso";
+import AdminCurso from "./components/Courses/Admin/AdminCurso";
+import AdminSeccion from "./components/Courses/Admin/AdminSeccion";
 import { EstudiantesEnCurso } from "./components/Admin/EstudiantesPorCurso";
 import { AddFriends } from "./components/Client/AddFriends";
-import AdminEvaluacion from "./components/Courses/AdminEvaluacion";
+import AdminEvaluacion from "./components/Courses/Admin/AdminEvaluacion";
 export function App() {
   return (
     <Router>
@@ -31,6 +32,7 @@ export function App() {
           <Route exact path="/gestionCursos" element={<GestionCursos />} />
           <Route exact path="/adminCurso/:id" element={<AdminCurso />} />
           <Route exact path="/adminEvaluacion/:id" element={<AdminEvaluacion />} />
+          <Route exact path="/adminSeccion/:id" element={<AdminSeccion />} />
           <Route exact path="/estudiantesEnCurso" element={<EstudiantesEnCurso />} />
           <Route exact path="/miCuenta" element={<MiCuenta />} />
 

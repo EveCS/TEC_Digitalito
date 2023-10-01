@@ -40,12 +40,30 @@ const evaluationSchema = new mongoose.Schema(
     }
 )
 
+const sectionSchema = new mongoose.Schema(
+    {
+
+        _id: String,
+        id_curso: String,
+        codigo: String,
+        nombre: String,
+        descripcion: String,
+        fechaInicio: Date,
+        fechaFinal: Date,
+        archivos: {
+            nombre: String,
+            direccion: String,
+        }
+
+    }
+)
+
 
 
 // Mi modelo usando el esquema anterior 
 const Course = mongoose.model('courses', courseSchema);
 const Evaluation = mongoose.model('evaluations', evaluationSchema);
-
+const Section = mongoose.model('sections', sectionSchema);
 
 /////////////////////////////////////////////////////
 // Obtener todos los cursos
@@ -165,17 +183,8 @@ app.get('/evaluacionesByCurso/:id', async (req, res) => {
 
 app.get('/seccionesByCurso/:id', async (req, res) => {
     try {
-        const curso = await Course.findOne({ _id: req.params.id });
-
-        if (!curso) {
-            return res.status(404).json({ message: 'Curso not found' });
-        }
-
-        if (!curso.secciones || curso.secciones.length === 0) {
-            return res.status(404).json({ message: 'No secciones available for this curso' });
-        }
-
-        res.status(200).json(curso.secciones);
+        const sections = await Section.find({ id_curso: req.params.id });
+        res.status(200).json(sections);
     } catch (error) {
         console.error(error);
         res.status(500).send(error.message);
@@ -234,7 +243,18 @@ app.post('/seccionesByCurso/:id', async (req, res) => {
     }
 });
 
-
+// Create a new ev
+app.post('/secciones', async (req, res) => {
+    try {
+        console.log(req.body);
+        const newEv = new Section(req.body);
+        await newEv.save();
+        res.status(201).json(newEv);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
 
 
 // Read by ID (GET)
