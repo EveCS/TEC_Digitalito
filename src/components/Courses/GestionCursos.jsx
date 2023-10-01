@@ -1,12 +1,17 @@
 // GestionCursos.js
 
 import React, { Fragment, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import connect from "../API/mongoConnection";
 import './style.css'
 import CursosForm from "./Forms/CoursesForm";
 import CoursesTable from "./Tables/CoursesTable";
 
 const GestionCursos = () => {
+
+  const location = useLocation();
+  const username = location.state.usuario;
+
   const [cursos, setCursos] = useState([]);
   const [cursoForm, setCursoForm] = useState({
     _id: "",
@@ -16,7 +21,8 @@ const GestionCursos = () => {
     fechaInicio: "",
     fechaFin: "",
     foto: "",
-    publicado: false
+    publicado: false,
+    username: username
   });
 
   // Fetch the list of cursos when the component mounts
@@ -58,6 +64,7 @@ const GestionCursos = () => {
 
   return (
     <Fragment>
+      <h1>{username}</h1>
       <CoursesTable {...{ cursos, getCursos, setCursoForm, eliminarCurso, publicarCurso }} />
       <CursosForm {...{ cursoForm, getCursos, setCursoForm }} />
     </Fragment>

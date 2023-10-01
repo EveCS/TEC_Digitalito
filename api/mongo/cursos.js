@@ -11,7 +11,8 @@ const addMyEndPointstoApp = (app, mongoose) => {
         fechaInicio: Date,
         fechaFin: Date,
         foto: String,
-        publicado: Boolean
+        publicado: Boolean,
+        username: String
 
     });
     const Course = mongoose.model('courses', courseSchema);

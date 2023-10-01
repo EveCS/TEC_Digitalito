@@ -15,6 +15,7 @@ const CoursesTable = ({ cursos, setCursoForm, eliminarCurso, publicarCurso }) =>
                         <th>Fecha Fin</th>
                         <th>Foto</th>
                         <th>Publicado</th>
+                        <th>Creado Por: </th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -34,7 +35,9 @@ const CoursesTable = ({ cursos, setCursoForm, eliminarCurso, publicarCurso }) =>
                             <td>{curso.fechaFin}</td>
                             <td><img src={`data:image/png;base64,${curso.foto}`}
                                 alt={`Foto de ${curso.nombre}`} className="img-resize" /></td>
+
                             <td>{curso.publicado ? 'Yes' : 'No'}</td>
+                            <td>{curso.username}</td>
                             <td>
                                 <button onClick={() => setCursoForm(curso)}>Editar</button><br></br>
                                 <button onClick={() => eliminarCurso(curso._id)}>Eliminar</button><br></br>
