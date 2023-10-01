@@ -40,7 +40,7 @@ const EvaluacionService = {
         return response.data.evaluaciones;
     },
 
-    obtenerEvaluacionesByID: async (idEvaluacion, idCurso) => {
+    obtenerEvaluacionesByID: async (idCurso, idEvaluacion) => {
         const response = await axios.get(`${BASE_URL}/evaluacionesByID/${idEvaluacion}/curso/${idCurso}`);
 
         return response.data;

@@ -186,7 +186,7 @@ app.get('/evaluacionesByID/:idEval/curso/:idCurso', async (req, res) => {
 app.delete('/evaluacionesByID/:idEval/curso/:idCurso', async (req, res) => {
     try {
         const curso = await Course.findOne({ _id: req.params.idCurso });
-        console.log(req.params.idCurso);
+
         if (!curso) {
             return res.status(404).json({ message: 'Curso not found' });
         }

@@ -92,52 +92,55 @@ const GestionEvaluaciones = ({ id }) => {
 
   return (
     <Fragment>
-      {Evaluacion ? (
-        <h1>Lista de Evaluaciones  </h1>
+      {!Evaluacion ? (
+        <div>
+          <h1>Lista de Evaluaciones  </h1>
+          <table className="table-bordered">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Fecha de Inicio</th>
+                <th>Fecha Final</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Evaluaciones ? (
+                Evaluaciones.map((Evaluacion) => (
+                  <tr key={Evaluacion._id}>
+                    <td>
+                      <a href={`/adminEvaluacion/${Evaluacion._id}/Curso/${id}`} target="_blank" rel="noopener noreferrer">
+                        <i className="fa fa-external-link"></i>
+                        {Evaluacion._id}
+                      </a>
+                    </td>
+                    <td>{Evaluacion.nombre}</td>
+                    <td>{Evaluacion.descripcion}</td>
+                    <td>{Evaluacion.fechaInicio}</td>
+                    <td>{Evaluacion.fechaFinal}</td>
+                    <td>
+                      <button onClick={() => eliminarEvaluacion(Evaluacion._id, id)}>Eliminar</button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="6">No hay evaluaciones disponibles</td>
+                </tr>
+              )}
+
+
+            </tbody>
+
+          </table>
+          <hr></hr>
+        </div>
       ) : (<h1>Evaluacion  {idEval}</h1>)}
 
 
-      <table className="table-bordered">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Fecha de Inicio</th>
-            <th>Fecha Final</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Evaluaciones ? (
-            Evaluaciones.map((Evaluacion) => (
-              <tr key={Evaluacion._id}>
-                <td>
-                  <a href={`/adminEvaluacion/${Evaluacion._id}/Curso/${id}`} target="_blank" rel="noopener noreferrer">
-                    <i className="fa fa-external-link"></i>
-                    {Evaluacion._id}
-                  </a>
-                </td>
-                <td>{Evaluacion.nombre}</td>
-                <td>{Evaluacion.descripcion}</td>
-                <td>{Evaluacion.fechaInicio}</td>
-                <td>{Evaluacion.fechaFinal}</td>
-                <td>
-                  <button onClick={() => eliminarEvaluacion(Evaluacion._id, id)}>Eliminar</button>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="6">No hay evaluaciones disponibles</td>
-            </tr>
-          )}
 
-
-        </tbody>
-
-      </table>
-      <hr></hr>
 
       {Evaluacion &&
         <div>
