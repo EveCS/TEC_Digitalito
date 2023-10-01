@@ -10,7 +10,7 @@ export function ClientMenu() {
     const username = queryParams.get('username');
 
     const gestionarAmigos = () => {
-    //    navigate('/reservarCubiculo',{state:{id: id, correo: correo, contraseña: contraseña, carnee: carnee, nombre: nombre, apellido: apellido}});
+        navigate('/AddFriends',{state:{usuario:username}});
     };
 
     const matriculaCursos = () => {

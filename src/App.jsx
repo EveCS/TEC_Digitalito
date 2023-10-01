@@ -18,19 +18,21 @@ import { Reservas } from "./components/Client/Reservas";
 import VerHistorial from "./components/Admin/VerHistorial";
 import GestionTiempo from "./components/Admin/GestionTiempo";
 import EditarTiempoUso from "./components/Admin/EditarTiempoUso";
+import { AddFriends } from "./components/Client/AddFriends";
 export function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="App">MiCuenta
         <Routes>
           <Route exact path="/" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/clientMenu" element={<ClientMenu />} />
-          <Route
+          <Route 
             exact
             path="/clientReservations"
             element={<ClientReservations />}
           />
+          <Route exact path="/addFriends" element={<AddFriends />} />
           <Route exact path="/adminMenu" element={<AdminMenu />} />
           <Route
             exact
