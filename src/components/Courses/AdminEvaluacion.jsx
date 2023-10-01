@@ -1,24 +1,27 @@
 // GestionCursos.js
 
 import React, { Fragment, useEffect, useState } from "react";
-import GestionEvaluaciones from "./GestionEvaluaciones";
 import { useParams } from 'react-router-dom';
 
-const AdminCurso = () => {
+const AdminEvaluacion = () => {
 
   let { id } = useParams();
+
 
   // Fetch the list of cursos when the component mounts
   useEffect(() => {
     //getCursoEvals();
   }, []);
 
+
   return (
     <Fragment>
-      <h1> Admin Curso  {id}</h1>
-      <GestionEvaluaciones id={id} />
+
+      <h1> Admin Evaluacion  {id}</h1>
+
+
     </Fragment>
   );
 };
 
-export default AdminCurso;
+export default AdminEvaluacion;

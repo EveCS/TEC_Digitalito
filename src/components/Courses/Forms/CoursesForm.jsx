@@ -1,10 +1,9 @@
 // GestionCursos.js
 
 import React, { Fragment, useEffect, useState } from "react";
-import connect from "../../API/mongoConnection";
 import '../style.css';
 
-const CursosForm = ({ cursoForm, getCursos, setCursoForm }) => {
+const CursosForm = ({ cursoForm, getCursos, setCursoForm, connect }) => {
 
 
   // Add or edit a curso

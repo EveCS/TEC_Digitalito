@@ -34,12 +34,12 @@ const EvaluacionService = {
     },
 
     obtenerEvaluacionesByCurso: async (id) => {
-        const response = await axios.get(`${BASE_URL}/cursos/${id}`);
-        return response.data.evaluaciones;
+        const response = await axios.get(`${BASE_URL}/evaluacionesByCurso/${id}`);
+        return response.data;
     },
 
-    agregarEvaluacion: async (cursoId, evaluacion) => {
-        const response = await axios.post(`${BASE_URL}/evaluacionesByCurso/${cursoId}`, [evaluacion]);
+    agregarEvaluacion: async (evaluacion) => {
+        const response = await axios.post(`${BASE_URL}/evaluaciones`, evaluacion);
         return response.data;
     },
 
@@ -48,7 +48,7 @@ const EvaluacionService = {
         return response.data;
     },
 
-    eliminarEvaluaciones: async (id) => {
+    eliminarEvaluacion: async (id) => {
         const response = await axios.delete(`${BASE_URL}/Evaluaciones/${id}`);
         return response.data;
     }

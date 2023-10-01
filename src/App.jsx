@@ -8,11 +8,11 @@ import { AdminMenu } from "./components/Admin/AdminMenu";
 import { MiCuenta } from "./components/Client/MiCuenta";
 import { MisCursos } from "./components/Client/MisCursos";
 import { MatricularCurso } from "./components/Client/MatricularCurso";
-import GestionCursos from "./components/Courses/Courses";
-import GestionEvaluaciones from "./components/Courses/Evaluations";
+import GestionCursos from "./components/Courses/GestionCursos";
 import AdminCurso from "./components/Courses/AdminCurso";
 import { EstudiantesEnCurso } from "./components/Admin/EstudiantesPorCurso";
 import { AddFriends } from "./components/Client/AddFriends";
+import AdminEvaluacion from "./components/Courses/AdminEvaluacion";
 export function App() {
   return (
     <Router>
@@ -21,7 +21,7 @@ export function App() {
           <Route exact path="/" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/clientMenu" element={<ClientMenu />} />
-          <Route 
+          <Route
             exact
             path="/misCursos"
             element={<MisCursos />}
@@ -29,14 +29,14 @@ export function App() {
           <Route exact path="/addFriends" element={<AddFriends />} />
           <Route exact path="/adminMenu" element={<AdminMenu />} />
           <Route exact path="/gestionCursos" element={<GestionCursos />} />
-            <Route exact path="/adminCurso/:id" element={<AdminCurso />} />
-            <Route exact path="/adminEvaluacion/:id" element={<GestionEvaluaciones />} />
-            <Route exact path="/estudiantesEnCurso" element={<EstudiantesEnCurso />} />
+          <Route exact path="/adminCurso/:id" element={<AdminCurso />} />
+          <Route exact path="/adminEvaluacion/:id" element={<AdminEvaluacion />} />
+          <Route exact path="/estudiantesEnCurso" element={<EstudiantesEnCurso />} />
           <Route exact path="/miCuenta" element={<MiCuenta />} />
 
           <Route exact path="/matricularcurso" element={<MatricularCurso />} />
 
-          
+
         </Routes>
       </div>
     </Router>

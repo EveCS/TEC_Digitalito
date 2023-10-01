@@ -19,27 +19,32 @@ const courseSchema = new mongoose.Schema({
     fechaInicio: Date,
     fechaFin: Date,
     foto: String,
-    evaluaciones: [
-        {
-            _id: String,
-            codigo: String,
-            nombre: String,
-            descripcion: String,
-            fechaInicio: Date,
-            fechaFinal: Date,
-            archivos: {
-                nombre: String,
-                direccion: String,
-            }
-        }
-    ]
+
 });
+
+const evaluationSchema = new mongoose.Schema(
+    {
+
+        _id: String,
+        id_curso: String,
+        codigo: String,
+        nombre: String,
+        descripcion: String,
+        fechaInicio: Date,
+        fechaFinal: Date,
+        archivos: {
+            nombre: String,
+            direccion: String,
+        }
+
+    }
+)
 
 
 
 // Mi modelo usando el esquema anterior 
 const Course = mongoose.model('courses', courseSchema);
-const Evaluation = mongoose.model('evaluations', courseSchema);
+const Evaluation = mongoose.model('evaluations', evaluationSchema);
 
 
 /////////////////////////////////////////////////////
@@ -133,19 +138,25 @@ app.get('/evaluaciones', async (req, res) => {
     }
 });
 
+
+// Create a new ev
+app.post('/evaluaciones', async (req, res) => {
+    try {
+        console.log(req.body);
+        const newEv = new Evaluation(req.body);
+        await newEv.save();
+        res.status(201).json(newEv);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
+
+// Read All (GET)
 app.get('/evaluacionesByCurso/:id', async (req, res) => {
     try {
-        const curso = await Course.findOne({ _id: req.params.id });
-
-        if (!curso) {
-            return res.status(404).json({ message: 'Curso not found' });
-        }
-
-        if (!curso.evaluaciones || curso.evaluaciones.length === 0) {
-            return res.status(404).json({ message: 'No evaluaciones available for this curso' });
-        }
-
-        res.status(200).json(curso.evaluaciones);
+        const evaluations = await Evaluation.find({ id_curso: req.params.id });
+        res.status(200).json(evaluations);
     } catch (error) {
         console.error(error);
         res.status(500).send(error.message);
