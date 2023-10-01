@@ -10,7 +10,8 @@ import CoursesTable from "./Tables/CoursesTable";
 const GestionCursos = () => {
 
   const location = useLocation();
-  const username = location.state.usuario;
+  const username = location.state && location.state.usuario ? location.state.usuario : "DefaultUsername";
+
 
   const [cursos, setCursos] = useState([]);
   const [cursoForm, setCursoForm] = useState({
@@ -64,7 +65,7 @@ const GestionCursos = () => {
 
   return (
     <Fragment>
-      <h1>{username}</h1>
+
       <CoursesTable {...{ cursos, getCursos, setCursoForm, eliminarCurso, publicarCurso }} />
       <CursosForm {...{ cursoForm, getCursos, setCursoForm }} />
     </Fragment>

@@ -10,7 +10,7 @@ const EvaluationForm = () => {
     fechaInicio: '',
     fechaFinal: '',
     preguntas: [],
-    opcionesCorrectas: [] 
+    opcionesCorrectas: []
   });
 
   const handleInputChange = (e) => {
@@ -50,18 +50,18 @@ const EvaluationForm = () => {
     setEvaluation({ ...evaluation, preguntas: updatedQuestions });
   };
 
- 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    evaluation.id_curso="curso1"; // ESTO <------------------------------------ Toca hacer que un boton de cursos lleve a esta pagina, esta pagina ocupa saber el cursoID para guardar la evaluacion y saber que pertenece a ese curso
-    evaluation._id=evaluation.nombre; // ACA dejo el _id unico igual al nombre de la evaluacion, asi no hay 2 iguales.
+    evaluation.id_curso = "curso1"; // ESTO <------------------------------------ Toca hacer que un boton de cursos lleve a esta pagina, esta pagina ocupa saber el cursoID para guardar la evaluacion y saber que pertenece a ese curso
+    evaluation._id = evaluation.nombre; // ACA dejo el _id unico igual al nombre de la evaluacion, asi no hay 2 iguales.
     // Enviar el estado actual a tu servidor
     console.log(evaluation)
     try {
-      
+
       const nuevaEvaluacion = await connect.EvaluacionService.agregarEvaluacion(evaluation);
-      
-     
+
+
       console.log('Evaluación agregada:', nuevaEvaluacion);
     } catch (error) {
       console.error('Error al agregar la evaluación:', error);
@@ -72,7 +72,7 @@ const EvaluationForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="nombre">Nombre:</label>
+        <label htmlFor="nombre">Nombre 2:</label>
         <input
           type="text"
           id="nombre"

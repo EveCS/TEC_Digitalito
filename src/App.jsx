@@ -36,7 +36,7 @@ export function App() {
           <Route exact path="/adminMenu" element={<AdminMenu />} />
           <Route exact path="/gestionCursos" element={<GestionCursos />} />
           <Route exact path="/adminCurso/:id" element={<AdminCurso />} />
-          <Route exact path="/adminEvaluacion/:id" element={<GestionEvaluaciones />} />
+          <Route exact path="/adminEvaluacion/:id" element={<AdminEvaluacion />} />
           <Route exact path="/adminSeccion/:id" element={<AdminSeccion />} />
           <Route exact path="/adminTema/:id" element={<AdminTema />} />
           <Route exact path="/estudiantesEnCurso" element={<EstudiantesEnCurso />} />

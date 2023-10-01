@@ -9,6 +9,7 @@ const AdminEvaluacion = () => {
   return (
     <Fragment>
       <h1> Admin Evaluacion  {id}</h1>
+
     </Fragment>
   );
 };

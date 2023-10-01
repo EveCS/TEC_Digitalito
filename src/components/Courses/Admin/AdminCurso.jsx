@@ -9,8 +9,10 @@ const AdminCurso = () => {
   return (
     <Fragment>
       <h1> Admin Curso  {id}</h1>
-      <GestionSecciones id={id} />
+
       <GestionEvaluaciones id={id} />
+      <hr></hr>
+      <GestionSecciones id={id} />
     </Fragment>
   );
 };
