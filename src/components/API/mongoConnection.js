@@ -71,12 +71,12 @@ const SeccionService = {
     },
 
     editarSeccion: async (cursoId, seccionId, seccion) => {
-        const response = await axios.put(`${BASE_URL}/cursos/${cursoId}/secciones/${seccionId}`, seccion);
+        const response = await axios.put(`${BASE_URL}/secciones/${seccionId}`, seccion);
         return response.data;
     },
 
-    eliminarSeccion: async (cursoId, seccionId) => {
-        const response = await axios.delete(`${BASE_URL}/cursos/${cursoId}/secciones/${seccionId}`);
+    eliminarSeccion: async (id) => {
+        const response = await axios.delete(`${BASE_URL}/secciones/${id}`);
         return response.data;
     }
 };

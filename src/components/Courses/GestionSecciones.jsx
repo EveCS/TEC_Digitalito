@@ -59,8 +59,8 @@ const GestionSecciones = ({ id }) => {
   return (
     <Fragment>
 
-      <SectionsTable Secciones={Secciones} setSeccionForm={setSeccionForm} eliminarSeccion={eliminarSeccion} />
-      <SectionForm id2={id} SeccionForm={SeccionForm} getSeccionesByCurso={getSeccionesByCurso} setSeccionForm={setSeccionForm} />
+      <SectionsTable {...{ Secciones, setSeccionForm, eliminarSeccion }} />
+      <SectionForm {...{ id2: id, SeccionForm, getSeccionesByCurso, setSeccionForm }} />
 
     </Fragment>
   );

@@ -303,6 +303,22 @@ app.delete('/evaluaciones/:id', async (req, res) => {
 });
 
 
+// Delete (DELETE)
+app.delete('/secciones/:id', async (req, res) => {
+    try {
+        const deletedEvaluation = await Section.findByIdAndDelete(req.params.id);
+        if (!deletedEvaluation) {
+            res.status(404).send("Section not found");
+        } else {
+            res.status(200).json(deletedEvaluation);
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
+
+
 
 const port = process.env.PORT || 3001;
 app.listen(port, async () => {
