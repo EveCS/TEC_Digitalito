@@ -14,37 +14,44 @@ export function AdminMenu() {
             Pagina de Administrador
           </h1>
           <div className="d-grid gap-2 col-6 mx-auto">
-          <button
-              onClick={() => {navigate('/gestionCubiculos',{})}}
+            <button
+              onClick={() => { navigate('/gestionCubiculos', {}) }}
               className="btn btn-primary mb-3 btn-lg"
               type="button"
-              >
+            >
               Gestión de cubículos
             </button>
             <button
-              onClick={() => {navigate('/gestionEstudiantes',{})}}
+              onClick={() => { navigate('/gestionCursos', {}) }}
+              className="btn btn-primary mb-3 btn-lg"
+              type="button"
+            >
+              Gestión de Cursos
+            </button>
+            <button
+              onClick={() => { navigate('/gestionEstudiantes', {}) }}
               className="btn btn-primary mb-3 btn-lg"
               type="button"
             >
               Gestión de estudiantes
             </button>
-            <button 
-              onClick={() => {navigate('/gestionTiempo',{})}}
-            className="btn btn-primary mb-3 btn-lg" type="button">
+            <button
+              onClick={() => { navigate('/gestionTiempo', {}) }}
+              className="btn btn-primary mb-3 btn-lg" type="button">
               Gestión de tiempos de uso
             </button>
             <button
-              onClick={() => {navigate('/gestionReservaciones',{})}}
+              onClick={() => { navigate('/gestionReservaciones', {}) }}
               className="btn btn-primary mb-3 btn-lg"
               type="button"
-              >
+            >
               Gestión de reservaciones
             </button>
             <button
-              onClick={() => {navigate('/..',{})}}
+              onClick={() => { navigate('/..', {}) }}
               className="btn btn-primary mb-3 btn-lg"
               type="button"
-              >
+            >
               Cerrar Sesión
             </button>
           </div>

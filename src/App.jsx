@@ -22,7 +22,9 @@ export function App() {
             element={<MisCursos />}
           />
           <Route exact path="/adminMenu" element={<AdminMenu />} />
-        
+          <Route exact path="/gestionCursos" element={<GestionCursos />} />
+            <Route exact path="/adminCurso/:id" element={<AdminCurso />} />
+            <Route exact path="/adminEvaluacion/:id" element={<GestionEvaluaciones />} />
 
           <Route exact path="/miCuenta" element={<MiCuenta />} />
 
