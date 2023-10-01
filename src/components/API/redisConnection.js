@@ -63,9 +63,9 @@ const addFriend = async (username, frienduser) => {
   try {
     const response = await axios.post(`http://localhost:3000/addFriend?username=${username}&friendUsername=${frienduser}`);
 
-    return (response.data)
+    return true;
   } catch (error) {
-    console.log("Error al buscar el usuario", error);
+    return false;
   }
 }
 
