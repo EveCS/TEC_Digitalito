@@ -7,17 +7,14 @@ const addMyEndPointstoApp = (app, mongoose) => {
     const evaluationSchema = new mongoose.Schema({
         _id: String,
         id_curso: String,
-    nombre: String,
-    fechaInicio: Date,
-    fechaFinal: Date,
-    preguntas: [
-        {
-            pregunta: String,
-            opciones: [String]
-        }
-    ],
-    opcionesCorrectas: [String]
-
+        nombre: String,
+        fechaInicio: Date,
+        fechaFinal: Date,
+        opcionesCorrectas: Array,
+        preguntas: [{
+            pregunta: Array,
+            opciones: Array
+        }]
     });
 
     const Evaluation = mongoose.model('evaluations', evaluationSchema);

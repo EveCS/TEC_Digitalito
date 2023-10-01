@@ -4,6 +4,7 @@ import connect from '../API/mongoConnection';
 
 const EvaluationForm = () => {
   const [evaluation, setEvaluation] = useState({
+    _id: '',
     id_curso: '',
     nombre: '',
     fechaInicio: '',
@@ -52,13 +53,15 @@ const EvaluationForm = () => {
  
   const handleSubmit = async (e) => {
     e.preventDefault();
-    evaluation.id_curso="curso1";
+    evaluation.id_curso="curso1"; // ESTO <------------------------------------ Toca hacer que un boton de cursos lleve a esta pagina, esta pagina ocupa saber el cursoID para guardar la evaluacion y saber que pertenece a ese curso
+    evaluation._id=evaluation.nombre; // ACA dejo el _id unico igual al nombre de la evaluacion, asi no hay 2 iguales.
     // Enviar el estado actual a tu servidor
+    console.log(evaluation)
     try {
-      // Primero, agregamos la evaluación
+      
       const nuevaEvaluacion = await connect.EvaluacionService.agregarEvaluacion(evaluation);
       
-      // Si se agrega correctamente, puedes realizar cualquier otra acción que necesites aquí
+     
       console.log('Evaluación agregada:', nuevaEvaluacion);
     } catch (error) {
       console.error('Error al agregar la evaluación:', error);
