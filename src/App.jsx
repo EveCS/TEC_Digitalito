@@ -8,6 +8,9 @@ import { AdminMenu } from "./components/Admin/AdminMenu";
 import { MiCuenta } from "./components/Client/MiCuenta";
 import { MisCursos } from "./components/Client/MisCursos";
 import { MatricularCurso } from "./components/Client/MatricularCurso";
+import GestionCursos from "./components/Courses/Courses";
+import GestionEvaluaciones from "./components/Courses/Evaluations";
+import AdminCurso from "./components/Courses/AdminCurso";
 export function App() {
   return (
     <Router>
