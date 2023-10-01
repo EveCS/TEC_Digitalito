@@ -4,7 +4,6 @@ import { v4 as uuid } from "uuid";
 import { Login } from "./components/Login";
 import { Register } from "./components/Register";
 import { ClientMenu } from "./components/Client/ClientMenu";
-import { ClientReservations } from "./components/Client/ClientReservations";
 import { AdminMenu } from "./components/Admin/AdminMenu";
 import GestionEstudiantes from "./components/Admin/GestionEstudiantes";
 import EditUsuario from "./components/Admin/EditUsuario";
@@ -14,10 +13,11 @@ import CrearCubiculos from "./components/Admin/CrearCubiculos";
 import GestionReservaciones from "./components/Admin/GestionReservaciones";
 import EditReservacion from "./components/Admin/EditReservacion";
 import { MiCuenta } from "./components/Client/MiCuenta";
-import { Reservas } from "./components/Client/Reservas";
 import VerHistorial from "./components/Admin/VerHistorial";
 import GestionTiempo from "./components/Admin/GestionTiempo";
 import EditarTiempoUso from "./components/Admin/EditarTiempoUso";
+import { MisCursos } from "./components/Client/MisCursos";
+import { MatricularCurso } from "./components/Client/MatricularCurso";
 export function App() {
   return (
     <Router>
@@ -28,8 +28,8 @@ export function App() {
           <Route exact path="/clientMenu" element={<ClientMenu />} />
           <Route
             exact
-            path="/clientReservations"
-            element={<ClientReservations />}
+            path="/misCursos"
+            element={<MisCursos />}
           />
           <Route exact path="/adminMenu" element={<AdminMenu />} />
           <Route
@@ -40,10 +40,9 @@ export function App() {
           <Route exact path="/edit/:id" element={<EditUsuario />} />
           <Route exact path="/editCubiculo/:idAndNumCubiculo" element={<EditCubiculo />} />
           <Route exact path="/miCuenta" element={<MiCuenta />} />
-          <Route exact path="/reservarCubiculo" element={<Reservas />} />
           <Route exact path="/gestionTiempo" element={<GestionTiempo />} />
           <Route exact path="/editarTiempoUso/:id" element={<EditarTiempoUso />} />
-
+          <Route exact path="/matricularcurso" element={<MatricularCurso />} />
 
           <Route
             exact
