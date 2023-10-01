@@ -36,7 +36,6 @@ const GestionSecciones = ({ id }) => {
     try {
       // Intenta obtener datos de Secciones utilizando el servicio Seccioneservice.
       const data = await connect.SeccionService.obtenerSeccionesByCurso(id);
-      console.log(data);
       // Una vez que se obtienen los datos exitosamente, actualiza el estado Secciones con esos datos. 
       setSecciones(data);
       // En caso de que ocurra un error al obtener los datos, imprime el error en la consola.
