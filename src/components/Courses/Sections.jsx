@@ -3,7 +3,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import connect from "../API/mongoConnection";
 import SectionForm from "./Forms/SectionForm"
 import './style.css'
-const GestionSecciones = (id) => {
+const GestionSecciones = ({ id }) => {
   // arreglo vacio para cargar Secciones cuando se llama por primera vez
   // SetSecciones alojamiento automatico en memoria (estado de react), cambios que se reflejan en pantalla
   const [Secciones, setSecciones] = useState([]);
@@ -13,12 +13,7 @@ const GestionSecciones = (id) => {
     codigo: "",
     nombre: "",
     descripcion: "",
-    fechaInicio: "",
-    fechaFinal: "",
-    archivos: {
-      nombre: "",
-      direccion: ""
-    }
+
   });
 
   // Se muestran las Secciones en pantalla apenas carga la página
@@ -40,11 +35,11 @@ const GestionSecciones = (id) => {
   }
 
   // async se refiere a que puede contener operaciones asincronicas
-  async function getSeccionesByCurso(id) {
+  async function getSeccionesByCurso(id2) {
 
     try {
       // Intenta obtener datos de Secciones utilizando el servicio Seccioneservice.
-      const data = await connect.SeccionService.obtenerSeccionesByCurso(id.id);
+      const data = await connect.SeccionService.obtenerSeccionesByCurso(id2);
 
       // Una vez que se obtienen los datos exitosamente, actualiza el estado Secciones con esos datos. 
       setSecciones(data);
@@ -108,7 +103,7 @@ const GestionSecciones = (id) => {
 
       </table>
       <hr></hr>
-      <SectionForm SeccionForm={SeccionForm} getSeccionesByCurso={getSeccionesByCurso} setSeccionForm={setSeccionForm} />
+      <SectionForm id={id} SeccionForm={SeccionForm} getSeccionesByCurso={getSeccionesByCurso} setSeccionForm={setSeccionForm} />
     </Fragment>
   );
 };

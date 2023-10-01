@@ -31,7 +31,15 @@ const courseSchema = new mongoose.Schema({
                 direccion: String,
             }
         }
-    ]
+    ],
+    secciones: [
+        {
+            _id: String,
+            codigo: String,
+            nombre: String,
+            descripcion: String,
+        }
+    ],
 });
 
 
@@ -132,6 +140,8 @@ app.get('/evaluaciones', async (req, res) => {
     }
 });
 
+
+// Obtener Evaluaciones de Un Curso 
 app.get('/evaluacionesByCurso/:id', async (req, res) => {
     try {
         const curso = await Course.findOne({ _id: req.params.id });
@@ -150,7 +160,7 @@ app.get('/evaluacionesByCurso/:id', async (req, res) => {
         res.status(500).send(error.message);
     }
 });
-
+// Obtener Secciones  de Un Curso 
 app.get('/seccionesByCurso/:id', async (req, res) => {
     try {
         const curso = await Course.findOne({ _id: req.params.id });
@@ -170,7 +180,7 @@ app.get('/seccionesByCurso/:id', async (req, res) => {
     }
 });
 
-
+// Incluir Evaluaciones a un Curso
 app.post('/evaluacionesByCurso/:id', async (req, res) => {
     try {
         const evaluaciones2 = req.body;
@@ -196,6 +206,7 @@ app.post('/evaluacionesByCurso/:id', async (req, res) => {
     }
 });
 
+//Incluir secciones a un curso
 app.post('/seccionesByCurso/:id', async (req, res) => {
     try {
         const secciones2 = req.body;
@@ -221,8 +232,6 @@ app.post('/seccionesByCurso/:id', async (req, res) => {
         res.status(500).send(error.message);
     }
 });
-
-
 
 
 // Read by ID (GET)

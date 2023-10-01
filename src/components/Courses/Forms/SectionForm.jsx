@@ -10,19 +10,16 @@ const SectionForm = ({ id, getSeccionesByCurso, SeccionForm, setSeccionForm }) =
   async function agregarSeccion() {
     try {
       // Intenta agregar una nueva evaluación utilizando el servicio Seccioneservice y los datos de SeccionForm.
-      await connect.SeccionService.agregarSeccion(id.id, SeccionForm);
+      await connect.SeccionService.agregarSeccion(id, SeccionForm);
       // limpia las Secciones luego de agregarlas
       setSeccionForm({
         _id: "",
+        codigo: "",
         nombre: "",
-        descripcion: "",
-        fechaInicio: "",
-        fechaFinal: "",
-        archivos: {
-          nombre: "",
-          direccion: ""
-        }
+        descripcion: ""
+
       });
+      console.log(id);
       // Llama a la función getSecciones para actualizar la lista de Secciones.
       getSeccionesByCurso(id);
     } catch (error) {
@@ -99,55 +96,7 @@ const SectionForm = ({ id, getSeccionesByCurso, SeccionForm, setSeccionForm }) =
           />
         </div>
 
-        <div className="input-group">
-          <label>Fecha de Inicio</label>
-          <input
-            type="date"
-            placeholder="Fecha de Inicio"
-            value={SeccionForm.fechaInicio}
-            onChange={(e) => setSeccionForm({ ...SeccionForm, fechaInicio: e.target.value })}
-          />
-        </div>
 
-        <div className="input-group">
-          <label>Fecha de Fin (opcional)</label>
-          <input
-            type="date"
-            placeholder="Fecha de Fin (opcional)"
-            value={SeccionForm.fechaFinal}
-            onChange={(e) => setSeccionForm({ ...SeccionForm, fechaFinal: e.target.value })}
-          />
-        </div>
-
-        <div className="input-group">
-          <label>Nombre del Archivo</label>
-          <input
-            type="text"
-            placeholder="Nombre del Archivo"
-            value={SeccionForm.archivos.nombre}
-            onChange={(e) =>
-              setSeccionForm({
-                ...SeccionForm,
-                archivos: { ...SeccionForm.archivos, nombre: e.target.value }
-              })
-            }
-          />
-        </div>
-
-        <div className="input-group">
-          <label>Dirección del Archivo</label>
-          <input
-            type="text"
-            placeholder="Dirección del Archivo"
-            value={SeccionForm.archivos.direccion}
-            onChange={(e) =>
-              setSeccionForm({
-                ...SeccionForm,
-                archivos: { ...SeccionForm.archivos, direccion: e.target.value }
-              })
-            }
-          />
-        </div>
       </div>
       <div className="button-links">
         <button onClick={editarSeccion}>Editar Seccion</button>

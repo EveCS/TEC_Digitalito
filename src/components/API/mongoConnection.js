@@ -66,7 +66,8 @@ const SeccionService = {
     },
 
     agregarSeccion: async (cursoId, seccion) => {
-        const response = await axios.post(`${BASE_URL}/cursos/${cursoId}/secciones`, seccion);
+        console.log(seccion);
+        const response = await axios.post(`${BASE_URL}/seccionesByCurso/${cursoId}`, [seccion]);
         return response.data;
     },
 
