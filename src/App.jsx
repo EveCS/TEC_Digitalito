@@ -4,82 +4,41 @@ import { v4 as uuid } from "uuid";
 import { Login } from "./components/Login";
 import { Register } from "./components/Register";
 import { ClientMenu } from "./components/Client/ClientMenu";
-import { ClientReservations } from "./components/Client/ClientReservations";
 import { AdminMenu } from "./components/Admin/AdminMenu";
-import GestionEstudiantes from "./components/Admin/GestionEstudiantes";
-import EditUsuario from "./components/Admin/EditUsuario";
-import EditCubiculo from "./components/Admin/EditCubiculo";
-import GestionCubiculos from "./components/Admin/GestionCubiculos";
-import CrearCubiculos from "./components/Admin/CrearCubiculos";
-import GestionReservaciones from "./components/Admin/GestionReservaciones";
+import { MiCuenta } from "./components/Client/MiCuenta";
+import { MisCursos } from "./components/Client/MisCursos";
+import { MatricularCurso } from "./components/Client/MatricularCurso";
 import GestionCursos from "./components/Courses/Courses";
 import GestionEvaluaciones from "./components/Courses/Evaluations";
 import AdminCurso from "./components/Courses/AdminCurso";
-import EditReservacion from "./components/Admin/EditReservacion";
-import { MiCuenta } from "./components/Client/MiCuenta";
-import { Reservas } from "./components/Client/Reservas";
-import VerHistorial from "./components/Admin/VerHistorial";
-import GestionTiempo from "./components/Admin/GestionTiempo";
-import EditarTiempoUso from "./components/Admin/EditarTiempoUso";
-import Layout from "./components/Layout";
-import GestionSecciones from "./components/Courses/Sections";
+import { EstudiantesEnCurso } from "./components/Admin/EstudiantesPorCurso";
+import { AddFriends } from "./components/Client/AddFriends";
 export function App() {
   return (
     <Router>
-      <Layout>
-        <div className="App">
-          <Routes>
-            <Route exact path="/" element={<Login />} />
-            <Route exact path="/register" element={<Register />} />
-            <Route exact path="/clientMenu" element={<ClientMenu />} />
-            <Route
-              exact
-              path="/clientReservations"
-              element={<ClientReservations />}
-            />
-            <Route exact path="/adminMenu" element={<AdminMenu />} />
-            <Route
-              exact
-              path="/gestionEstudiantes"
-              element={<GestionEstudiantes />}
-            />
-            <Route exact path="/edit/:id" element={<EditUsuario />} />
-            <Route exact path="/editCubiculo/:idAndNumCubiculo" element={<EditCubiculo />} />
-            <Route exact path="/miCuenta" element={<MiCuenta />} />
-            <Route exact path="/reservarCubiculo" element={<Reservas />} />
-            <Route exact path="/gestionTiempo" element={<GestionTiempo />} />
-            <Route exact path="/editarTiempoUso/:id" element={<EditarTiempoUso />} />
+      <div className="App">MiCuenta
+        <Routes>
+          <Route exact path="/" element={<Login />} />
+          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/clientMenu" element={<ClientMenu />} />
+          <Route
+            exact
+            path="/misCursos"
+            element={<MisCursos />}
+          />
+          <Route exact path="/addFriends" element={<AddFriends />} />
+          <Route exact path="/adminMenu" element={<AdminMenu />} />
+          <Route exact path="/gestionCursos" element={<GestionCursos />} />
+          <Route exact path="/adminCurso/:id" element={<AdminCurso />} />
+          <Route exact path="/adminEvaluacion/:id" element={<GestionEvaluaciones />} />
+          <Route exact path="/estudiantesEnCurso" element={<EstudiantesEnCurso />} />
+          <Route exact path="/miCuenta" element={<MiCuenta />} />
+
+          <Route exact path="/matricularcurso" element={<MatricularCurso />} />
 
 
-            <Route
-              exact
-              path="/gestionCubiculos"
-              element={<GestionCubiculos />}
-            />
-            <Route exact path="/crearCubiculos" element={<CrearCubiculos />} />
-            <Route exact path="/gestionCursos" element={<GestionCursos />} />
-            <Route exact path="/adminCurso/:id" element={<AdminCurso />} />
-            <Route exact path="/adminEvaluacion/:id" element={<GestionEvaluaciones />} />
-            <Route exact path="/adminEvaluacion/:idEval/Curso/:idCurso" element={<GestionEvaluaciones />} />
-            <Route exact path="/adminSeccion/:id" element={<GestionSecciones />} />
-            <Route
-              exact
-              path="/gestionReservaciones"
-              element={<GestionReservaciones />}
-            />
-            <Route
-              exact
-              path="/editReservacion/:id"
-              element={<EditReservacion />}
-            />
-            <Route
-              exact
-              path="/verHistorial/:carnee"
-              element={<VerHistorial />}
-            />
-          </Routes>
-        </div>
-      </Layout>
+        </Routes>
+      </div>
     </Router>
   );
 }

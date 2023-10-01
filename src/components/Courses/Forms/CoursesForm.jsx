@@ -2,7 +2,7 @@
 
 import React, { Fragment, useEffect, useState } from "react";
 import connect from "../../API/mongoConnection";
-import '../style.css'
+import '../style.css';
 
 const CursosForm = ({ cursoForm, getCursos, setCursoForm }) => {
 

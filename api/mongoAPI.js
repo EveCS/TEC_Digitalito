@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require('mongoose');
 
 app.use(express.json());
+
 app.use(cors());
 
 
