@@ -22,6 +22,7 @@ import VerHistorial from "./components/Admin/VerHistorial";
 import GestionTiempo from "./components/Admin/GestionTiempo";
 import EditarTiempoUso from "./components/Admin/EditarTiempoUso";
 import Layout from "./components/Layout";
+import GestionSecciones from "./components/Courses/Sections";
 export function App() {
   return (
     <Router>
@@ -59,6 +60,8 @@ export function App() {
             <Route exact path="/gestionCursos" element={<GestionCursos />} />
             <Route exact path="/adminCurso/:id" element={<AdminCurso />} />
             <Route exact path="/adminEvaluacion/:id" element={<GestionEvaluaciones />} />
+            <Route exact path="/adminEvaluacion/:idEval/Curso/:idCurso" element={<GestionEvaluaciones />} />
+            <Route exact path="/adminSeccion/:id" element={<GestionSecciones />} />
             <Route
               exact
               path="/gestionReservaciones"

@@ -18,8 +18,13 @@ const GestionSecciones = ({ id }) => {
 
   // Se muestran las Secciones en pantalla apenas carga la página
   useEffect(() => {
-    getSeccionesByCurso(id);
-  }, []); // es vació porque sólo se ejecutara una vez
+    if (id) {
+      getSeccionesByCurso(id);
+    } else {
+      alert("No id");
+    }
+
+  }, [id]); // es vació porque sólo se ejecutara una vez
 
   // async se refiere a que puede contener operaciones asincronicas
   async function getSecciones() {

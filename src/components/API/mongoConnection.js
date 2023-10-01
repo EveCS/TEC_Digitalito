@@ -34,8 +34,16 @@ const EvaluacionService = {
     },
 
     obtenerEvaluacionesByCurso: async (id) => {
+
         const response = await axios.get(`${BASE_URL}/cursos/${id}`);
+
         return response.data.evaluaciones;
+    },
+
+    obtenerEvaluacionesByID: async (idEvaluacion, idCurso) => {
+        const response = await axios.get(`${BASE_URL}/evaluacionesByID/${idEvaluacion}/curso/${idCurso}`);
+
+        return response.data;
     },
 
     agregarEvaluacion: async (cursoId, evaluacion) => {

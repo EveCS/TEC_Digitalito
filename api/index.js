@@ -85,6 +85,7 @@ app.get('/cursos/:id', async (req, res) => {
             res.status(404).send('Course not found');
             return;
         }
+
         res.status(200).json(course);
     } catch (error) {
         console.error(error);
@@ -96,8 +97,7 @@ app.get('/cursos/:id', async (req, res) => {
 app.put('/cursos/:id', async (req, res) => {
     try {
         const courseId = req.params.id;
-        console.log("id " + courseId);
-        console.log("request body " + req.body);
+
         const updatedCourse = await Course.findOneAndUpdate({ _id: courseId }, req.body, { new: true });
 
         if (!updatedCourse) {
@@ -160,6 +160,31 @@ app.get('/evaluacionesByCurso/:id', async (req, res) => {
         res.status(500).send(error.message);
     }
 });
+
+app.get('/evaluacionesByID/:idEval/curso/:idCurso', async (req, res) => {
+    try {
+        const curso = await Course.findOne({ _id: req.params.idCurso });
+
+
+        if (!curso) {
+            return res.status(404).json({ message: 'Curso not found' });
+        }
+
+        const evaluacion = curso.evaluaciones.find(e => e._id.toString() === req.params.idEval);
+
+        if (!evaluacion) {
+            return res.status(404).json({ message: 'Evaluacion not found for this curso' });
+        }
+
+        res.status(200).json(evaluacion);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
+
+
+
 // Obtener Secciones  de Un Curso 
 app.get('/seccionesByCurso/:id', async (req, res) => {
     try {
