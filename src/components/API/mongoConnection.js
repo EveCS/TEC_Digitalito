@@ -36,7 +36,6 @@ const CursoService = {
 };
 
 
-
 const EvaluacionService = {
     obtenerEvaluaciones: async () => {
         const response = await axios.get(`${BASE_URL}/Evaluaciones`);
@@ -96,38 +95,45 @@ const SeccionService = {
     }
 };
 
-const PreguntaService = {
-    obtenerPreguntas: async () => {
-        const response = await axios.get(`${BASE_URL}/preguntas`);
+const TemaService = {
+    obtenerTemas: async () => {
+        const response = await axios.get(`${BASE_URL}/temas`);
         return response.data;
     },
 
-    obtenerPreguntasByEvaluacion: async (evaluacionId) => {
-        const response = await axios.get(`${BASE_URL}/evaluaciones/${evaluacionId}/preguntas`);
+    obtenerTemaBySeccion: async (id) => {
+        console.log(id);
+        const response = await axios.get(`${BASE_URL}/temasBySeccion/${id}`);
         return response.data;
     },
 
-    agregarPregunta: async (evaluacionId, pregunta) => {
-        const response = await axios.post(`${BASE_URL}/evaluaciones/${evaluacionId}/preguntas`, pregunta);
+    obtenerTemaById: async (temaId) => {
+        const response = await axios.get(`${BASE_URL}/temas/${temaId}`);
         return response.data;
     },
 
-    editarPregunta: async (evaluacionId, preguntaId, pregunta) => {
-        const response = await axios.put(`${BASE_URL}/evaluaciones/${evaluacionId}/preguntas/${preguntaId}`, pregunta);
+    agregarTema: async (tema) => {
+        const response = await axios.post(`${BASE_URL}/temas`, tema);
         return response.data;
     },
 
-    eliminarPregunta: async (evaluacionId, preguntaId) => {
-        const response = await axios.delete(`${BASE_URL}/evaluaciones/${evaluacionId}/preguntas/${preguntaId}`);
+    editarTema: async (temaId, tema) => {
+        const response = await axios.put(`${BASE_URL}/temas/${temaId}`, tema);
+        return response.data;
+    },
+
+    eliminarTema: async (temaId) => {
+        const response = await axios.delete(`${BASE_URL}/temas/${temaId}`);
         return response.data;
     }
 };
+
 
 const services = {
     EvaluacionService,
     CursoService,
     SeccionService,
-    PreguntaService
+    TemaService
 };
 
 export default services;

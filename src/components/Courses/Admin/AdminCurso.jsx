@@ -10,6 +10,7 @@ const AdminCurso = () => {
     <Fragment>
       <h1> Admin Curso  {id}</h1>
       <GestionSecciones id={id} />
+      <GestionEvaluaciones id={id} />
     </Fragment>
   );
 };
