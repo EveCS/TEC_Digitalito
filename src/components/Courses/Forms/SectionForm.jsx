@@ -21,13 +21,8 @@ const SectionForm = ({ id2, SeccionForm, getSeccionesByCurso, setSeccionForm }) 
         id_curso: id2,
         codigo: "",
         nombre: "",
-        descripcion: "",
-        fechaInicio: "",
-        fechaFinal: "",
-        archivos: {
-          nombre: "",
-          direccion: ""
-        }
+        descripcion: ""
+
       });
 
       // Fetch the updated list of cursos
@@ -111,55 +106,7 @@ const SectionForm = ({ id2, SeccionForm, getSeccionesByCurso, setSeccionForm }) 
           />
         </div>
 
-        <div className="input-group">
-          <label>Fecha de Inicio</label>
-          <input
-            type="date"
-            placeholder="Fecha de Inicio"
-            value={SeccionForm.fechaInicio}
-            onChange={(e) => setSeccionForm({ ...SeccionForm, fechaInicio: e.target.value })}
-          />
-        </div>
 
-        <div className="input-group">
-          <label>Fecha de Fin (opcional)</label>
-          <input
-            type="date"
-            placeholder="Fecha de Fin (opcional)"
-            value={SeccionForm.fechaFinal}
-            onChange={(e) => setSeccionForm({ ...SeccionForm, fechaFinal: e.target.value })}
-          />
-        </div>
-
-        <div className="input-group">
-          <label>Nombre del Archivo</label>
-          <input
-            type="text"
-            placeholder="Nombre del Archivo"
-            value={SeccionForm.archivos.nombre}
-            onChange={(e) =>
-              setSeccionForm({
-                ...SeccionForm,
-                archivos: { ...SeccionForm.archivos, nombre: e.target.value }
-              })
-            }
-          />
-        </div>
-
-        <div className="input-group">
-          <label>Dirección del Archivo</label>
-          <input
-            type="text"
-            placeholder="Dirección del Archivo"
-            value={SeccionForm.archivos.direccion}
-            onChange={(e) =>
-              setSeccionForm({
-                ...SeccionForm,
-                archivos: { ...SeccionForm.archivos, direccion: e.target.value }
-              })
-            }
-          />
-        </div>
       </div>
       <div className="button-links">
         <button onClick={EditarSeccion}>Editar Seccion</button>

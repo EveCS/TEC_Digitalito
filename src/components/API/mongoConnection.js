@@ -61,7 +61,12 @@ const EvaluacionService = {
     eliminarEvaluacion: async (id) => {
         const response = await axios.delete(`${BASE_URL}/Evaluaciones/${id}`);
         return response.data;
-    }
+    },
+    eliminarEvaluacion: async (idEvaluacion, idCurso) => {
+        const response = await axios.delete(`${BASE_URL}/evaluacionesByID/${idEvaluacion}/curso/${idCurso}`);
+
+        return response.data;
+    },
 };
 
 const SeccionService = {
