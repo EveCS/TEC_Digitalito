@@ -11,40 +11,35 @@ app.use(cors());
 
 // Mi esquema con la definicion de la estructura de los cursos
 const courseSchema = new mongoose.Schema({
-
     _id: String,
     codigo: String,
     nombre: String,
     descripcion: String,
-    fechaInicio: String,
-    fechaFin: String,
+    fechaInicio: Date,
+    fechaFin: Date,
     foto: String,
+    evaluaciones: [
+        {
+            _id: String,
+            codigo: String,
+            nombre: String,
+            descripcion: String,
+            fechaInicio: Date,
+            fechaFinal: Date,
+            archivos: {
+                nombre: String,
+                direccion: String,
+            }
+        }
+    ]
 });
 
-const evaluationSchema = new mongoose.Schema({
-    _id: String,
-    nombre: String,
-    descripcion: String,
-    fechaInicio: String,
-    fechaFinal: String,
-    archivos: {
-        nombre: String,
-        direccion: String,
-    }
-});
 
-const matriculaSchema = new mongoose.Schema({
-    _id: String,
-    username: String,
-    course_id: String,
-    date: String,
-    result: String,
-});
 
 // Mi modelo usando el esquema anterior 
 const Course = mongoose.model('courses', courseSchema);
 const Evaluation = mongoose.model('evaluations', courseSchema);
-const Matricula = mongoose.model('matriculas', courseSchema);
+
 
 /////////////////////////////////////////////////////
 // Obtener todos los cursos
@@ -76,7 +71,7 @@ app.post('/cursos', async (req, res) => {
 app.get('/cursos/:id', async (req, res) => {
     try {
         const courseId = req.params.id;
-        console.log("id " + courseId);
+
         const course = await Course.findOne({ _id: courseId });
         if (!course) {
             res.status(404).send('Course not found');
@@ -125,16 +120,6 @@ app.delete('/cursos/:id', async (req, res) => {
 });
 
 
-// Create (POST)
-app.post('/evaluaciones', async (req, res) => {
-    try {
-        const newEvaluation = await Evaluation.create(req.body);
-        res.status(201).json(newEvaluation);
-    } catch (error) {
-        console.error(error);
-        res.status(500).send(error.message);
-    }
-});
 
 // Read All (GET)
 app.get('/evaluaciones', async (req, res) => {
@@ -146,6 +131,99 @@ app.get('/evaluaciones', async (req, res) => {
         res.status(500).send(error.message);
     }
 });
+
+app.get('/evaluacionesByCurso/:id', async (req, res) => {
+    try {
+        const curso = await Course.findOne({ _id: req.params.id });
+
+        if (!curso) {
+            return res.status(404).json({ message: 'Curso not found' });
+        }
+
+        if (!curso.evaluaciones || curso.evaluaciones.length === 0) {
+            return res.status(404).json({ message: 'No evaluaciones available for this curso' });
+        }
+
+        res.status(200).json(curso.evaluaciones);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
+
+app.get('/seccionesByCurso/:id', async (req, res) => {
+    try {
+        const curso = await Course.findOne({ _id: req.params.id });
+
+        if (!curso) {
+            return res.status(404).json({ message: 'Curso not found' });
+        }
+
+        if (!curso.secciones || curso.secciones.length === 0) {
+            return res.status(404).json({ message: 'No secciones available for this curso' });
+        }
+
+        res.status(200).json(curso.secciones);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
+
+
+app.post('/evaluacionesByCurso/:id', async (req, res) => {
+    try {
+        const evaluaciones2 = req.body;
+
+        if (!Array.isArray(evaluaciones2)) {
+            throw new Error('Evaluaciones2 should be an array');
+        }
+
+        const curso = await Course.findOne({ _id: req.params.id });
+
+        // Check if curso.evaluaciones exists, if not, create it as an empty array
+        if (!curso.evaluaciones) {
+            curso.evaluaciones = [];
+        }
+
+        curso.evaluaciones.push(...evaluaciones2);
+
+        await curso.save();
+        res.status(200).json(curso.evaluaciones);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
+
+app.post('/seccionesByCurso/:id', async (req, res) => {
+    try {
+        const secciones2 = req.body;
+
+        if (!Array.isArray(secciones2)) {
+            throw new Error('secciones2 should be an array');
+        }
+
+        const curso = await Course.findOne({ _id: req.params.id });
+
+        // Check if curso.secciones exists, if not, create it as an empty array
+        if (!curso.secciones) {
+            curso.secciones = [];
+        }
+
+        curso.secciones.push(...secciones2);
+
+        await curso.save();
+
+        res.status(200).json(curso.secciones);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
+
+
+
 
 // Read by ID (GET)
 app.get('/evaluaciones/:id', async (req, res) => {
@@ -191,75 +269,6 @@ app.delete('/evaluaciones/:id', async (req, res) => {
         res.status(500).send(error.message);
     }
 });
-
-// Create (POST)
-app.post('/matriculas', async (req, res) => {
-    try {
-        const newMatricula = await Matricula.create(req.body);
-        res.status(201).json(newMatricula);
-    } catch (error) {
-        console.error(error);
-        res.status(500).send(error.message);
-    }
-});
-
-// Read All (GET)
-app.get('/matriculas', async (req, res) => {
-    try {
-        const matriculas = await Matricula.find({});
-        res.status(200).json(matriculas);
-    } catch (error) {
-        console.error(error);
-        res.status(500).send(error.message);
-    }
-});
-
-// Read by ID (GET)
-app.get('/matriculas/:id', async (req, res) => {
-    try {
-        const matricula = await Matricula.findById(req.params.id);
-        if (!matricula) {
-            res.status(404).send("Matricula not found");
-        } else {
-            res.status(200).json(matricula);
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).send(error.message);
-    }
-});
-
-// Update (PUT)
-app.put('/matriculas/:id', async (req, res) => {
-    try {
-        const updatedMatricula = await Matricula.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if (!updatedMatricula) {
-            res.status(404).send("Matricula not found");
-        } else {
-            res.status(200).json(updatedMatricula);
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).send(error.message);
-    }
-});
-
-// Delete (DELETE)
-app.delete('/matriculas/:id', async (req, res) => {
-    try {
-        const deletedMatricula = await Matricula.findByIdAndDelete(req.params.id);
-        if (!deletedMatricula) {
-            res.status(404).send("Matricula not found");
-        } else {
-            res.status(200).json(deletedMatricula);
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).send(error.message);
-    }
-});
-
-
 
 
 

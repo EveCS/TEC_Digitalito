@@ -12,7 +12,8 @@ import EditCubiculo from "./components/Admin/EditCubiculo";
 import GestionCubiculos from "./components/Admin/GestionCubiculos";
 import CrearCubiculos from "./components/Admin/CrearCubiculos";
 import GestionReservaciones from "./components/Admin/GestionReservaciones";
-import GestionCursos from "./components/Courses/GestionCursos";
+import GestionCursos from "./components/Courses/Courses";
+import GestionEvaluaciones from "./components/Courses/Evaluations";
 import AdminCurso from "./components/Courses/AdminCurso";
 import EditReservacion from "./components/Admin/EditReservacion";
 import { MiCuenta } from "./components/Client/MiCuenta";
@@ -57,7 +58,7 @@ export function App() {
             <Route exact path="/crearCubiculos" element={<CrearCubiculos />} />
             <Route exact path="/gestionCursos" element={<GestionCursos />} />
             <Route exact path="/adminCurso/:id" element={<AdminCurso />} />
-
+            <Route exact path="/adminEvaluacion/:id" element={<GestionEvaluaciones />} />
             <Route
               exact
               path="/gestionReservaciones"

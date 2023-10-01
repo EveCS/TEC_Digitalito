@@ -2,30 +2,26 @@
 
 import React, { Fragment, useEffect, useState } from "react";
 import GestionEvaluaciones from "./Evaluations";
-import GestionMatriculas from "./Registration";
+import GestionSecciones from "./Sections";
 import { useParams } from 'react-router-dom';
 
 const AdminCurso = () => {
-  const [cursos, setCursos] = useState([]);
+
   let { id } = useParams();
-  const [cursoForm, setCursoForm] = useState({
-    _id: "",
-    nombre: "",
-    creditos: "",
-  });
+
 
   // Fetch the list of cursos when the component mounts
   useEffect(() => {
-    //getCurso();
+    //getCursoEvals();
   }, []);
 
 
   return (
     <Fragment>
-      <a href={`/gestionCursos`}>/Gestion de Cursos</a>
+
       <h1> Admin Curso  {id}</h1>
-      <GestionEvaluaciones />
-      <GestionMatriculas />
+      <GestionEvaluaciones id={id} />
+      <GestionSecciones id={id} />
     </Fragment>
   );
 };
