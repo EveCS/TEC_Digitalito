@@ -18,7 +18,7 @@ import EvaluationFormJhonn from "./components/Admin/EvaluationJhonnForm";
 import GestionEvaluaciones from "./components/Courses/GestionEvaluaciones";
 import GestionSecciones from "./components/Courses/GestionSecciones";
 import AdminTema from "./components/Courses/Admin/AdminTema";
-import HacerEvaluacion from "./components/Admin/HacerEvaluacion";
+import HacerEvaluacion from "./components/Client/HacerEvaluacion";
 
 export function App() {
   return (
