@@ -5,6 +5,8 @@ import connect from "../../API/mongoConnection";
 import '../style.css';
 
 const CursosForm = ({ cursoForm, getCursos, setCursoForm, username }) => {
+  // dar estilo al texto en la tabla
+  const estiloDeTexto = { align:"center", color: "White", };
 
 
   // Add or edit a curso
@@ -77,14 +79,15 @@ const CursosForm = ({ cursoForm, getCursos, setCursoForm, username }) => {
 
   return (
     <Fragment>
+      <div class="p-3 mb-2 bg-dark vh-100">
+      <div className="jumbotron justify-content-center w-25 mx-auto my-2"></div>
 
 
-
-      <h2 className="button-links">Editar / Agregar Cursos </h2>
+      <h2 style={estiloDeTexto} className="button-links">Editar / Agregar Cursos </h2>
       <div className="form-container">
         <div className="form-grid">
           <div className="input-group">
-            <label>ID</label>
+            <label style={estiloDeTexto} >ID</label>
             <input
               type="text"
               placeholder="ID"
@@ -94,7 +97,7 @@ const CursosForm = ({ cursoForm, getCursos, setCursoForm, username }) => {
           </div>
 
           <div className="input-group">
-            <label>Código</label>
+            <label style={estiloDeTexto} >Código</label>
             <input
               type="text"
               placeholder="Código"
@@ -144,7 +147,7 @@ const CursosForm = ({ cursoForm, getCursos, setCursoForm, username }) => {
 
           <div className="input-group">
             <label>Subir Foto</label>
-            <input
+            <input 
               type="file"
               accept="image/*"
               onChange={handleFileUpload}
@@ -157,9 +160,10 @@ const CursosForm = ({ cursoForm, getCursos, setCursoForm, username }) => {
       </div>
 
       <div className="button-links">
-        <button onClick={EditarCurso}>Editar Curso</button>
-        <button onClick={() => agregarCurso()}>Agregar Nuevo</button>
+        <button onClick={EditarCurso} className="btn btn-lg btn-primary">Editar Curso</button>
+        <button onClick={() => agregarCurso()} className="btn btn-lg btn-primary">Agregar Nuevo</button>
       </div>
+            </div>
     </Fragment>
 
   );

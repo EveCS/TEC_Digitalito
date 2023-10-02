@@ -35,7 +35,7 @@
 
 .table-bordered th,
 .table-bordered td {
-    border: 1px solid black;
+    border: 1px solid rgb(255, 255, 255);
     /* Define the border style */
     padding: 8px;
     /* Add some padding for better spacing */
@@ -60,4 +60,8 @@
 .input-group select {
     width: 100%;
     /* Set the width of the inputs to 100% of their container */
+}
+
+label, h1, h2, th, td {
+    color:white;
 }

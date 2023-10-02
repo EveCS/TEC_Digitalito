@@ -3,6 +3,8 @@ import '../style.css'
 const CoursesTable = ({ cursos, setCursoForm, eliminarCurso, publicarCurso }) => {
     return (
         <Fragment>
+            <div class="bg-dark">
+            <div className="jumbotron justify-content-center w-25 mx-auto my-2"></div>
             <h2 className="button-links">Lista de Cursos</h2>
             <table className="table-bordered">
                 <thead>
@@ -49,7 +51,7 @@ const CoursesTable = ({ cursos, setCursoForm, eliminarCurso, publicarCurso }) =>
                 </tbody>
             </table>
 
-
+            </div>
         </Fragment>
 
     );
