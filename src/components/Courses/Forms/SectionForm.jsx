@@ -17,7 +17,7 @@ const SectionForm = ({ id2, SeccionForm, getSeccionesByCurso, setSeccionForm }) 
 
       // Clear the curso form
       setSeccionForm({
-        _id: "",
+
         id_curso: id2,
         codigo: "",
         nombre: "",
@@ -41,7 +41,7 @@ const SectionForm = ({ id2, SeccionForm, getSeccionesByCurso, setSeccionForm }) 
 
       // Clear the curso form
       setSeccionForm({
-        _id: "",
+
         codigo: "",
         nombre: "",
         descripcion: "",
@@ -62,15 +62,7 @@ const SectionForm = ({ id2, SeccionForm, getSeccionesByCurso, setSeccionForm }) 
 
 
       <div className="form-grid">
-        <div className="input-group">
-          <label>ID</label>
-          <input
-            type="text"
-            placeholder="ID"
-            value={SeccionForm._id}
-            onChange={(e) => setSeccionForm({ ...SeccionForm, _id: e.target.value })}
-          />
-        </div>
+
 
         <div className="input-group">
           <label>Código</label>

@@ -15,7 +15,7 @@ const GestionCursos = () => {
 
   const [cursos, setCursos] = useState([]);
   const [cursoForm, setCursoForm] = useState({
-    _id: "",
+
     codigo: "",
     nombre: "",
     descripcion: "",

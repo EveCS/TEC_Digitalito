@@ -17,7 +17,7 @@ const CursosForm = ({ cursoForm, getCursos, setCursoForm, username }) => {
 
       // Clear the curso form
       setCursoForm({
-        _id: "",
+
         codigo: "",
         nombre: "",
         descripcion: "",
@@ -44,7 +44,7 @@ const CursosForm = ({ cursoForm, getCursos, setCursoForm, username }) => {
 
       // Clear the curso form
       setCursoForm({
-        _id: "",
+
         codigo: "",
         nombre: "",
         descripcion: "",
@@ -86,7 +86,7 @@ const CursosForm = ({ cursoForm, getCursos, setCursoForm, username }) => {
 
     <div>
       <button onClick={toggleVisibility}>
-        {isVisible ? 'Cerrar' : 'Agregar Curso'}
+        {isVisible ? 'Cerrar' : 'Editar / Agregar Curso'}
       </button>
       {isVisible && (
         <Fragment>
@@ -96,15 +96,7 @@ const CursosForm = ({ cursoForm, getCursos, setCursoForm, username }) => {
           <h2 className="button-links">Editar / Agregar Cursos </h2>
           <div className="form-container">
             <div className="form-grid">
-              <div className="input-group">
-                <label>ID</label>
-                <input
-                  type="text"
-                  placeholder="ID"
-                  value={cursoForm._id}
-                  onChange={(e) => setCursoForm({ ...cursoForm, _id: e.target.value })}
-                />
-              </div>
+
 
               <div className="input-group">
                 <label>Código</label>

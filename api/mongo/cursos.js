@@ -4,7 +4,7 @@
 const addMyEndPointstoApp = (app, mongoose) => {
     // Mi esquema con la definicion de la estructura de los cursos
     const courseSchema = new mongoose.Schema({
-        _id: String,
+
         codigo: String,
         nombre: String,
         descripcion: String,

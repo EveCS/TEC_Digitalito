@@ -5,7 +5,7 @@
 
 const addMyEndPointstoApp = (app, mongoose) => {
     const evaluationSchema = new mongoose.Schema({
-        _id: String,
+
         id_curso: String,
         nombre: String,
         fechaInicio: Date,

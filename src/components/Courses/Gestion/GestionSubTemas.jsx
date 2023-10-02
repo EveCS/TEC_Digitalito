@@ -11,7 +11,7 @@ const GestionSubTemas = ({ id }) => {
   const [SubTemas, setSubTemas] = useState([]);
 
   const [SubTemasForm, setSubTemasForm] = useState({
-    _id: "",
+
     id_tema: id,
     codigo: "",
     nombre: "",

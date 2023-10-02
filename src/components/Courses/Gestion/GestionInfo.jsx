@@ -11,7 +11,7 @@ const GestionInfos = ({ id }) => {
   const [Infos, setInfos] = useState([]);
 
   const [InfosForm, setInfosForm] = useState({
-    _id: "",
+
     id_seccion: id,
     codigo: "",
     nombre: "",

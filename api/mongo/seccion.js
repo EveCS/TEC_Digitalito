@@ -2,7 +2,7 @@
 const addMyEndPointstoApp = (app, mongoose) => {
     const sectionSchema = new mongoose.Schema(
         {
-            _id: String,
+
             id_curso: String,
             codigo: String,
             nombre: String,

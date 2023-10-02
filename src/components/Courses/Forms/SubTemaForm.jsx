@@ -9,7 +9,7 @@ const TemasForm = ({ id, SubTemasForm, getSubTemasbyTema, setSubTemasForm }) => 
       await connect.SubTemaService.agregarSubTema(SubTemasForm);
 
       setSubTemasForm({
-        _id: "",
+
         id_tema: id,
         codigo: "",
         nombre: "",
@@ -27,7 +27,7 @@ const TemasForm = ({ id, SubTemasForm, getSubTemasbyTema, setSubTemasForm }) => 
       await connect.SubTemaService.editarSubTema(SubTemasForm._id, SubTemasForm);
 
       setSubTemasForm({
-        _id: "",
+
         id_tema: id,
         codigo: "",
         nombre: "",
@@ -44,15 +44,7 @@ const TemasForm = ({ id, SubTemasForm, getSubTemasbyTema, setSubTemasForm }) => 
     <Fragment>
       <h2>Agregar SubTema</h2>
       <div className="form-grid">
-        <div className="input-group">
-          <label>ID</label>
-          <input
-            type="text"
-            placeholder="ID"
-            value={SubTemasForm._id}
-            onChange={(e) => setSubTemasForm({ ...SubTemasForm, _id: e.target.value })}
-          />
-        </div>
+
 
         <div className="input-group">
           <label>Código</label>

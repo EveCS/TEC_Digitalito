@@ -9,7 +9,7 @@ const TemasForm = ({ id, TemasForm, getTemasbySeccion, setTemasForm }) => {
       await connect.TemaService.agregarTema(TemasForm);
 
       setTemasForm({
-        _id: "",
+
         id_seccion: id,
         codigo: "",
         nombre: "",
@@ -27,7 +27,7 @@ const TemasForm = ({ id, TemasForm, getTemasbySeccion, setTemasForm }) => {
       await connect.TemaService.editarTema(TemasForm._id, TemasForm);
 
       setTemasForm({
-        _id: "",
+
         id_seccion: id,
         codigo: "",
         nombre: "",
@@ -43,15 +43,7 @@ const TemasForm = ({ id, TemasForm, getTemasbySeccion, setTemasForm }) => {
     <Fragment>
       <h2>Agregar Tema</h2>
       <div className="form-grid">
-        <div className="input-group">
-          <label>ID</label>
-          <input
-            type="text"
-            placeholder="ID"
-            value={TemasForm._id}
-            onChange={(e) => setTemasForm({ ...TemasForm, _id: e.target.value })}
-          />
-        </div>
+
 
         <div className="input-group">
           <label>Código</label>

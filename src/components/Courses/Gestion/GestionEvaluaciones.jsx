@@ -12,7 +12,7 @@ const GestionEvaluaciones = ({ id }) => {
   const [Evaluaciones, setEvaluaciones] = useState([]);
 
   const [EvaluacionForm, setEvaluacionForm] = useState({
-    _id: "",
+
     id_curso: id,
     codigo: "",
     nombre: "",

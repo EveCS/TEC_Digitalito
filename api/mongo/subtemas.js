@@ -2,7 +2,7 @@
 const addMyEndPointstoApp = (app, mongoose) => {
     const subtemaschema = new mongoose.Schema(
         {
-            _id: String,
+
             id_tema: String,
             codigo: String,
             nombre: String,
