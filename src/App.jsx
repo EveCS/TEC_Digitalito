@@ -24,7 +24,8 @@ import HacerEvaluacion from "./components/Client/HacerEvaluacion";
 export function App() {
   return (
     <Router>
-      <div className="App">MiCuenta
+      <div className="App">
+        MiCuenta
         <Routes>
           <Route exact path="/" element={<Login />} />
           <Route exact path="/register" element={<Register />} />

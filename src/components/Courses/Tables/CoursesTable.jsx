@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import '../style.css'
-const CoursesTable = ({ cursos, setCursoForm, eliminarCurso, publicarCurso }) => {
+const CoursesTable = ({ cursos, setCursoForm, eliminarCurso, publicarCurso, duplicarCurso }) => {
     return (
         <Fragment>
             <h2 className="button-links">Lista de Cursos</h2>
@@ -40,6 +40,7 @@ const CoursesTable = ({ cursos, setCursoForm, eliminarCurso, publicarCurso }) =>
                             <td>{curso.username}</td>
                             <td>
                                 <button onClick={() => setCursoForm(curso)}>Editar</button><br></br>
+                                <button onClick={() => duplicarCurso(curso)}>Duplicar</button><br></br>
                                 <button onClick={() => eliminarCurso(curso._id)}>Eliminar</button><br></br>
                                 <button onClick={() => publicarCurso(curso._id, curso.publicado)}>{curso.publicado ? 'DesPublicar' : 'Publicar'}</button>
                             </td>

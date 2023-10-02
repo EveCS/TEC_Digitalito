@@ -1,57 +1,26 @@
-const multer = require('multer');
-const addMyEndPointstoApp = (app, mongoose) => {
-    const infoSchema = new mongoose.Schema(
-        {
 
-            id_ref: String,
-            codigo: String,
-            nombre: String,
-            descripcion: String,
-            file: String,
-            filename: String
-        }
-    )
-    const info = mongoose.model('infos', infoSchema);
-    app.post('/infosByRef/:id', async (req, res) => {
+const addMyEndPointstoApp = (app, Info) => {
+
+    app.post('/InfosByRef/:id', async (req, res) => {
         try {
-            const infos2 = req.body;
+            const Infos2 = req.body;
 
-            if (!Array.isArray(infos2)) {
-                throw new Error('infos2 should be an array');
+            if (!Array.isArray(Infos2)) {
+                throw new Error('Infos2 should be an array');
             }
 
             const curso = await Course.findOne({ id_ref: req.params.id });
 
-            // Check if curso.infos exists, if not, create it as an empty array
-            if (!curso.infos) {
-                curso.infos = [];
+            // Check if curso.Infos exists, if not, create it as an empty array
+            if (!curso.Infos) {
+                curso.Infos = [];
             }
 
-            curso.infos.push(...infos2);
+            curso.Infos.push(...Infos2);
 
             await curso.save();
 
-            res.status(200).json(curso.infos);
-        } catch (error) {
-            console.error(error);
-            res.status(500).send(error.message);
-        }
-    });
-
-
-    const upload = multer({ dest: 'uploads/' });
-
-    // Create a new ev
-    app.post('/infoFileUpload', upload.single('file'), async (req, res) => {
-        try {
-
-
-            const newInfo = new info({
-                descripcion: req.body.descripcion,
-                file: req.file.filename
-            });
-            await newInfo.save();
-            res.status(201).json(newInfo);
+            res.status(200).json(curso.Infos);
         } catch (error) {
             console.error(error);
             res.status(500).send(error.message);
@@ -59,9 +28,9 @@ const addMyEndPointstoApp = (app, mongoose) => {
     });
 
     // Create a new ev
-    app.post('/info', async (req, res) => {
+    app.post('/Info', async (req, res) => {
         try {
-            const newEv = new info(req.body);
+            const newEv = new Info(req.body);
             await newEv.save();
             res.status(201).json(newEv);
         } catch (error) {
@@ -70,21 +39,21 @@ const addMyEndPointstoApp = (app, mongoose) => {
         }
     });
 
-    app.get('/infoByRef/:id', async (req, res) => {
+    app.get('/InfoByRef/:id', async (req, res) => {
         try {
-            const infos = await info.find({ id_ref: req.params.id });
-            res.status(200).json(infos);
+            const Infos = await Info.find({ id_ref: req.params.id });
+            res.status(200).json(Infos);
         } catch (error) {
             console.error(error);
             res.status(500).send(error.message);
         }
     });
     // Delete (DELETE)
-    app.delete('/infos/:id', async (req, res) => {
+    app.delete('/Infos/:id', async (req, res) => {
         try {
-            const deletedEvaluation = await info.findByIdAndDelete(req.params.id);
+            const deletedEvaluation = await Info.findByIdAndDelete(req.params.id);
             if (!deletedEvaluation) {
-                res.status(404).send("info not found");
+                res.status(404).send("Info not found");
             } else {
                 res.status(200).json(deletedEvaluation);
             }

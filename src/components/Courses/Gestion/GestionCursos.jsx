@@ -62,6 +62,18 @@ const GestionCursos = () => {
     }
   }
 
+  async function duplicarCurso(curso) {
+    try {
+
+      await connect.CursoService.duplicarCurso(curso);
+
+
+      getCursos();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
 
   return (
     <Fragment>
@@ -69,7 +81,7 @@ const GestionCursos = () => {
 
       <CursosForm {...{ cursoForm, getCursos, setCursoForm }} />
       <hr></hr>
-      <CoursesTable {...{ cursos, getCursos, setCursoForm, eliminarCurso, publicarCurso }} />
+      <CoursesTable {...{ cursos, getCursos, setCursoForm, eliminarCurso, publicarCurso, duplicarCurso }} />
     </Fragment>
   );
 };

@@ -32,6 +32,14 @@ const CursoService = {
         const response = await axios.put(`${BASE_URL}/despublicarCurso/${id}`);
         return response.data;
     },
+    duplicarCurso: async (curso) => {
+        let setID = curso._id;
+        delete curso._id;
+        curso.fechaInicio = ""
+        curso.fechaFin = ""
+        const response = await axios.post(`${BASE_URL}/duplicarCurso/${setID}`, curso);
+        return response.data;
+    },
 
 };
 

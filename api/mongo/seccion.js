@@ -1,21 +1,6 @@
 
-const addMyEndPointstoApp = (app, mongoose) => {
-    const sectionSchema = new mongoose.Schema(
-        {
+const addMyEndPointstoApp = (app, Section) => {
 
-            id_curso: String,
-            codigo: String,
-            nombre: String,
-            descripcion: String,
-            fechaInicio: Date,
-            fechaFinal: Date,
-            archivos: {
-                nombre: String,
-                direccion: String,
-            }
-        }
-    )
-    const Section = mongoose.model('sections', sectionSchema);
     app.post('/seccionesByCurso/:id', async (req, res) => {
         try {
             const secciones2 = req.body;

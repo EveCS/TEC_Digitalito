@@ -10,6 +10,10 @@ const AdminSeccion = () => {
 
   return (
     <Fragment>
+      <a href={`/gestionCursos`} >
+        <i className="fa fa-arrow-left"></i>
+        Gestión de Cursos
+      </a>
       <h1> Admin Seccion  {id}</h1>
       <GestionTemas id={id} />
       <GestionInfo id={id} tipo="Seccion" />

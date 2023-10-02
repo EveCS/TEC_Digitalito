@@ -1,16 +1,6 @@
 
-const addMyEndPointstoApp = (app, mongoose) => {
-    const temaschema = new mongoose.Schema(
-        {
+const addMyEndPointstoApp = (app, Tema) => {
 
-            id_seccion: String,
-            codigo: String,
-            nombre: String,
-            descripcion: String,
-
-        }
-    )
-    const Tema = mongoose.model('temas', temaschema);
     app.post('/temasbySeccion/:id', async (req, res) => {
         try {
             const temas2 = req.body;

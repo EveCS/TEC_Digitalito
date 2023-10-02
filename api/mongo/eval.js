@@ -2,22 +2,8 @@
 
 
 
+const addMyEndPointstoApp = (app, Evaluation) => {
 
-const addMyEndPointstoApp = (app, mongoose) => {
-    const evaluationSchema = new mongoose.Schema({
-
-        id_curso: String,
-        nombre: String,
-        fechaInicio: Date,
-        fechaFinal: Date,
-        opcionesCorrectas: Array,
-        preguntas: [{
-            pregunta: Array,
-            opciones: Array
-        }]
-    });
-
-    const Evaluation = mongoose.model('evaluations', evaluationSchema);
     // Read All (GET)
     app.get('/evaluaciones', async (req, res) => {
         try {
