@@ -30,11 +30,11 @@ export function AdminMenu() {
               Ver estudiantes en un curso
             </button>
             <button
-              onClick={() => {navigate('/EvaluationFormJhonn',{})}}
+              onClick={() => {navigate('/hacerEvaluacion',{})}}
               className="btn btn-primary mb-3 btn-lg"
               type="button"
               >
-              Crear evaluaciones
+              Hacer evaluaciones
             </button>
             <button
               onClick={() => {navigate('/..',{})}}
