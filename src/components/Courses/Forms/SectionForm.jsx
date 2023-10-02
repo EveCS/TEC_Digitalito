@@ -4,37 +4,45 @@ import React, { Fragment, useEffect, useState } from "react";
 import connect from "../../API/mongoConnection";
 import '../style.css'
 
-const SectionForm = ({ id, getSeccionesByCurso, SeccionForm, setSeccionForm }) => {
+const SectionForm = ({ id2, SeccionForm, getSeccionesByCurso, setSeccionForm }) => {
 
 
+  // Add or edit a curso
   async function agregarSeccion() {
     try {
-      // Intenta agregar una nueva evaluación utilizando el servicio Seccioneservice y los datos de SeccionForm.
-      await connect.SeccionService.agregarSeccion(id.id, SeccionForm);
-      // limpia las Secciones luego de agregarlas
+
+      // Add the curso
+      await connect.SeccionService.agregarSeccion(SeccionForm);
+
+
+      // Clear the curso form
       setSeccionForm({
         _id: "",
+        id_curso: id2,
+        codigo: "",
         nombre: "",
-        descripcion: "",
-        fechaInicio: "",
-        fechaFinal: "",
-        archivos: {
-          nombre: "",
-          direccion: ""
-        }
+        descripcion: ""
+
       });
-      // Llama a la función getSecciones para actualizar la lista de Secciones.
-      getSeccionesByCurso(id);
+
+      // Fetch the updated list of cursos
+      getSeccionesByCurso(id2);
     } catch (error) {
       console.error(error);
     }
   }
 
-  async function editarSeccion() {
+  // Add or edit a curso
+  async function EditarSeccion() {
     try {
-      await connect.SeccionService.editarSeccion(SeccionForm._id, SeccionForm);
+
+      // Edit the curso
+      let editC = await connect.SeccionService.editarSecciones(SeccionForm._id, SeccionForm);
+
+      // Clear the curso form
       setSeccionForm({
         _id: "",
+        codigo: "",
         nombre: "",
         descripcion: "",
         fechaInicio: "",
@@ -44,20 +52,19 @@ const SectionForm = ({ id, getSeccionesByCurso, SeccionForm, setSeccionForm }) =
           direccion: ""
         }
       });
-      // Llama a la función getSecciones para actualizar la lista de Secciones.
-      getSeccionesByCurso(id);
+
+      // Fetch the updated list of cursos
+      getSeccionesByCurso(id2);
     } catch (error) {
-      console.error(error);
+      alert(error);
     }
   }
 
   return (
     <Fragment>
 
+      <h2>Agregar Sección</h2>
 
-
-
-      <h2>Agregar Seccion</h2>
 
       <div className="form-grid">
         <div className="input-group">
@@ -99,58 +106,10 @@ const SectionForm = ({ id, getSeccionesByCurso, SeccionForm, setSeccionForm }) =
           />
         </div>
 
-        <div className="input-group">
-          <label>Fecha de Inicio</label>
-          <input
-            type="date"
-            placeholder="Fecha de Inicio"
-            value={SeccionForm.fechaInicio}
-            onChange={(e) => setSeccionForm({ ...SeccionForm, fechaInicio: e.target.value })}
-          />
-        </div>
 
-        <div className="input-group">
-          <label>Fecha de Fin (opcional)</label>
-          <input
-            type="date"
-            placeholder="Fecha de Fin (opcional)"
-            value={SeccionForm.fechaFinal}
-            onChange={(e) => setSeccionForm({ ...SeccionForm, fechaFinal: e.target.value })}
-          />
-        </div>
-
-        <div className="input-group">
-          <label>Nombre del Archivo</label>
-          <input
-            type="text"
-            placeholder="Nombre del Archivo"
-            value={SeccionForm.archivos.nombre}
-            onChange={(e) =>
-              setSeccionForm({
-                ...SeccionForm,
-                archivos: { ...SeccionForm.archivos, nombre: e.target.value }
-              })
-            }
-          />
-        </div>
-
-        <div className="input-group">
-          <label>Dirección del Archivo</label>
-          <input
-            type="text"
-            placeholder="Dirección del Archivo"
-            value={SeccionForm.archivos.direccion}
-            onChange={(e) =>
-              setSeccionForm({
-                ...SeccionForm,
-                archivos: { ...SeccionForm.archivos, direccion: e.target.value }
-              })
-            }
-          />
-        </div>
       </div>
       <div className="button-links">
-        <button onClick={editarSeccion}>Editar Seccion</button>
+        <button onClick={EditarSeccion}>Editar Seccion</button>
         <button onClick={agregarSeccion}>Agregar Nuevo</button>
       </div>
     </Fragment>

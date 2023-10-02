@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:3001'; // Change this to your server's URL
 
-let CursoService = {
+const CursoService = {
     obtenerCursos: async () => {
         const response = await axios.get(`${BASE_URL}/cursos`);
         return response.data;
@@ -22,7 +22,17 @@ let CursoService = {
     eliminarCurso: async (id) => {
         const response = await axios.delete(`${BASE_URL}/cursos/${id}`);
         return response.data;
-    }
+    },
+
+    publicarCurso: async (id) => {
+        const response = await axios.put(`${BASE_URL}/publicarCurso/${id}`);
+        return response.data;
+    },
+    despublicarCurso: async (id) => {
+        const response = await axios.put(`${BASE_URL}/despublicarCurso/${id}`);
+        return response.data;
+    },
+
 };
 
 
@@ -34,12 +44,12 @@ const EvaluacionService = {
     },
 
     obtenerEvaluacionesByCurso: async (id) => {
-        const response = await axios.get(`${BASE_URL}/cursos/${id}`);
-        return response.data.evaluaciones;
+        const response = await axios.get(`${BASE_URL}/evaluacionesByCurso/${id}`);
+        return response.data;
     },
 
-    agregarEvaluacion: async (cursoId, evaluacion) => {
-        const response = await axios.post(`${BASE_URL}/evaluacionesByCurso/${cursoId}`, [evaluacion]);
+    agregarEvaluacion: async (evaluacion) => {
+        const response = await axios.post(`${BASE_URL}/evaluaciones`, evaluacion);
         return response.data;
     },
 
@@ -48,10 +58,15 @@ const EvaluacionService = {
         return response.data;
     },
 
-    eliminarEvaluaciones: async (id) => {
+    eliminarEvaluacion: async (id) => {
         const response = await axios.delete(`${BASE_URL}/Evaluaciones/${id}`);
         return response.data;
-    }
+    },
+    eliminarEvaluacion: async (idEvaluacion, idCurso) => {
+        const response = await axios.delete(`${BASE_URL}/evaluacionesByID/${idEvaluacion}/curso/${idCurso}`);
+
+        return response.data;
+    },
 };
 
 const SeccionService = {
@@ -61,22 +76,22 @@ const SeccionService = {
     },
 
     obtenerSeccionesByCurso: async (id) => {
-        const response = await axios.get(`${BASE_URL}/cursos/${id}`);
-        return response.data.secciones;
+        const response = await axios.get(`${BASE_URL}/seccionesByCurso/${id}`);
+        return response.data;
     },
 
-    agregarSeccion: async (cursoId, seccion) => {
-        const response = await axios.post(`${BASE_URL}/cursos/${cursoId}/secciones`, seccion);
+    agregarSeccion: async (seccion) => {
+        const response = await axios.post(`${BASE_URL}/secciones`, seccion);
         return response.data;
     },
 
     editarSeccion: async (cursoId, seccionId, seccion) => {
-        const response = await axios.put(`${BASE_URL}/cursos/${cursoId}/secciones/${seccionId}`, seccion);
+        const response = await axios.put(`${BASE_URL}/secciones/${seccionId}`, seccion);
         return response.data;
     },
 
-    eliminarSeccion: async (cursoId, seccionId) => {
-        const response = await axios.delete(`${BASE_URL}/cursos/${cursoId}/secciones/${seccionId}`);
+    eliminarSeccion: async (id) => {
+        const response = await axios.delete(`${BASE_URL}/secciones/${id}`);
         return response.data;
     }
 };
@@ -108,11 +123,11 @@ const PreguntaService = {
     }
 };
 
-
-
-export default {
+const services = {
     EvaluacionService,
     CursoService,
     SeccionService,
     PreguntaService
 };
+
+export default services;

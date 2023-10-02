@@ -5,7 +5,6 @@ import connect from "../API/mongoConnection";
 
 import './style.css'
 import CursosForm from "./Forms/CoursesForm";
-import { set } from "mongoose";
 
 const GestionCursos = () => {
   const [cursos, setCursos] = useState([]);
@@ -35,7 +34,6 @@ const GestionCursos = () => {
     }
   }
 
-
   // Delete a curso
   async function eliminarCurso(id) {
     try {
@@ -45,7 +43,6 @@ const GestionCursos = () => {
       console.error(error);
     }
   }
-
 
   return (
     <Fragment>

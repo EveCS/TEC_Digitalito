@@ -12,12 +12,13 @@ const EvaluationForm = ({ id2, EvaluacionForm, getEvaluacionesByCurso, setEvalua
     try {
 
       // Add the curso
-      await connect.EvaluacionService.agregarEvaluacion(id2, EvaluacionForm);
+      await connect.EvaluacionService.agregarEvaluacion(EvaluacionForm);
 
 
       // Clear the curso form
       setEvaluacionForm({
         _id: "",
+        id_curso: id2,
         codigo: "",
         nombre: "",
         descripcion: "",
