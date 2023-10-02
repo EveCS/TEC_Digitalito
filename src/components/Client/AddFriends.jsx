@@ -12,12 +12,16 @@ export function AddFriends() {
 
     const [newFriend, setFriend] = useState("");
     const [amigos, setAmigos] = useState([]);
-    
+    const [mostrarTabla, setMostrarTabla] = useState(false);   
+    const [userFriend, setUserFriend] = useState("");
+    const [nameFriend, setNameFriend] = useState("");
+    const [bodFriend, setBodFriend] = useState("");
 
     // dar estilo al texto en la tabla
     const estiloDeTexto = { align:"center", color: "White", };
 
     const AgregarAmigo = async () => {
+        ocultarInformacion();
         const response = await getUser(newFriend);
         const userFriend = response.username;
 
@@ -49,13 +53,6 @@ export function AddFriends() {
         }
     };
 
-    /*const VerAmigos = async () => {
-        let varColor = "Black";
-        //Sacar la data de amigos de la lista y mostrar en pantalla
-        const listaAmigos = await getFriends(username);
-        
-    };*/
-
     useEffect(() => {
         const obtenerAmigos = async () => {
           const listaAmigos = await getFriends(username);
@@ -66,8 +63,32 @@ export function AddFriends() {
      }, [username]);
     
     const BuscarAmigo = async () => {
-        if (newFriend) return alert("Debes llenar el campo requerido");
+        if (newFriend == "") return alert("Debes llenar el campo requerido");
+        
+        const response = await getUser(newFriend);
+
+        if(response.username == newFriend){
+            setUserFriend(response.username);
+            setNameFriend(response.full_name);
+            setBodFriend(response.dob);
+
+            mostrarInformacion();
+        } 
+        else {
+            return alert("Usuario no registrado");
+        }
+        
+
+        
     };
+
+    const mostrarInformacion = () => {
+        setMostrarTabla(true);
+      };
+    
+      const ocultarInformacion = () => {
+        setMostrarTabla(false);
+      };
 
     const Cancelar = () => {
         navigate(`/ClientMenu?username=${username}`);
@@ -100,6 +121,32 @@ export function AddFriends() {
                                     </div>
                                 );                                
                             </div>
+
+                            return (
+                                <div className="App">
+                                <h2 style={estiloDeTexto}>Información del Usuario</h2>
+                                <button onClick={mostrarInformacion} className="w-50 btn btn-lg btn-primary">Mostrar</button>
+                                <button onClick={ocultarInformacion} className="w-50 btn btn-lg btn-primary">Ocultar</button>
+                                {mostrarTabla && username && (
+                                    <table>
+                                    <tbody>
+                                        <tr>
+                                        <th style={estiloDeTexto}>Usuario: </th>
+                                        <td style={estiloDeTexto}>{userFriend}</td>
+                                        </tr>
+                                        <tr>
+                                        <th style={estiloDeTexto} >Nombre Completo: </th>
+                                        <td style={estiloDeTexto}>{nameFriend}</td>
+                                        </tr>
+                                        <tr>
+                                        <th style={estiloDeTexto} >Fecha Nacimiento: </th>
+                                        <td style={estiloDeTexto}>{bodFriend}</td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                )}
+                                </div>
+                            );
 
                             <div className="my-5 mb-5">
                                 <div className="col">
