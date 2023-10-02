@@ -111,6 +111,22 @@ const addMyEndPointstoApp = (app, mongoose, Course, Section, Tema, SubTema) => {
         }
     });
 
+      // Get a specific course by name
+      app.get('/cursosNombre/:nombre', async (req, res) => {
+        try {
+            const courseNombre = req.params.nombre;
+    
+            const course = await Course.findOne({ nombre: courseNombre });
+            if (!course) {
+                res.status(404).send('Course not found');
+                return;
+            }
+            res.status(200).json(course);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send(error.message);
+        }
+    });
     // Update a course by ID
     app.put('/cursos/:id', async (req, res) => {
         try {

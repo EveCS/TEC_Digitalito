@@ -18,12 +18,15 @@ import AdminTema from "./components/Courses/Admin/AdminTema";
 import AdminSubTema from "./components/Courses/Admin/AdminSubTema";
 import HacerEvaluacion from "./components/Client/HacerEvaluacion";
 import VerNotas from "./components/Client/VerMisNotas";
+import { BuscarCursos } from "./components/Client/BuscarCursos";
+
 export function App() {
   return (
     <Router>
       <div className="App">
         <Routes>
           <Route exact path="/" element={<Login />} />
+          <Route exact path="/buscarCurso" element={<BuscarCursos />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/clientMenu" element={<ClientMenu />} />
           <Route exact path="/misCursos" element={<MisCursos />} />

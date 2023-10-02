@@ -9,6 +9,12 @@ const CursoService = {
         return response.data;
     },
 
+    obtenerCursosPorID: async (id) => {
+        const response = await axios.get(`${BASE_URL}/cursosNombre/${id}`);
+        return response.data;
+    },
+
+
     agregarCurso: async (curso) => {
         const response = await axios.post(`${BASE_URL}/cursos`, curso);
         return response.data;
