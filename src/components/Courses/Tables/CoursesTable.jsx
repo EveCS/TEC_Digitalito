@@ -24,8 +24,7 @@ const CoursesTable = ({ cursos, setCursoForm, eliminarCurso, publicarCurso, dupl
                         <tr key={curso._id}>
                             <td>
                                 <a href={`/adminCurso/${curso._id}`} rel="noopener noreferrer">
-
-                                    {curso._id}
+                                    Ver
                                 </a>
                             </td>
                             <td>{curso.codigo}</td>

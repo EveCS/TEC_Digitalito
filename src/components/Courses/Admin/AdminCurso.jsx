@@ -1,5 +1,7 @@
-// GestionCursos.js
+// Admin Curso
+/*
 
+*/
 import React, { Fragment } from "react";
 import GestionEvaluaciones from "../Gestion/GestionEvaluaciones";
 import GestionSecciones from "../Gestion/GestionSecciones";
@@ -8,11 +10,10 @@ const AdminCurso = () => {
   let { id } = useParams();
   return (
     <Fragment>
-      <h1>  ID Curso = [{id}]</h1>
-      <a href={`/gestionCursos`} >
+      <h1 className="text-center"> <a className="text-center" href={`/gestionCursos`} >
         <i className="fa fa-arrow-left"></i>
         Gestión de Cursos
-      </a>
+      </a> ID Curso = [{id}]</h1>
 
       <GestionEvaluaciones id={id} />
       <hr></hr>

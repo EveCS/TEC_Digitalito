@@ -8,9 +8,9 @@ const SectionsTable = ({ Secciones, setSeccionForm, eliminarSeccion }) => {
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Codigo</th>
                         <th>Nombre</th>
-                        <th>Descripción</th>
-
+                        <th>Descripcion</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -24,6 +24,7 @@ const SectionsTable = ({ Secciones, setSeccionForm, eliminarSeccion }) => {
                                         {Seccion._id}
                                     </a>
                                 </td>
+                                <td>{Seccion.codigo}</td>
                                 <td>{Seccion.nombre}</td>
                                 <td>{Seccion.descripcion}</td>
 

@@ -11,11 +11,8 @@ const GestionCursos = () => {
 
   const location = useLocation();
   const username = location.state && location.state.usuario ? location.state.usuario : "DefaultUsername";
-
-
   const [cursos, setCursos] = useState([]);
   const [cursoForm, setCursoForm] = useState({
-
     codigo: "",
     nombre: "",
     descripcion: "",
@@ -61,13 +58,10 @@ const GestionCursos = () => {
       console.error(error);
     }
   }
-
   async function duplicarCurso(curso) {
     try {
 
       await connect.CursoService.duplicarCurso(curso);
-
-
       getCursos();
     } catch (error) {
       console.error(error);
@@ -77,8 +71,6 @@ const GestionCursos = () => {
 
   return (
     <Fragment>
-
-
       <CursosForm {...{ cursoForm, getCursos, setCursoForm }} />
       <hr></hr>
       <CoursesTable {...{ cursos, getCursos, setCursoForm, eliminarCurso, publicarCurso, duplicarCurso }} />
