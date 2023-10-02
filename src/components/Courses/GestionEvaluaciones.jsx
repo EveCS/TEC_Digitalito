@@ -2,8 +2,9 @@
 import React, { Fragment, useEffect, useState } from "react";
 import connect from "../API/mongoConnection";
 import './style.css'
-import EvaluationForm from "./Forms/EvaluationForm"
+
 import EvaluationsTable from "./Tables/EvaluationsTable";
+import EvaluationForm from '../Admin/EvaluationJhonnForm'
 
 const GestionEvaluaciones = ({ id }) => {
   // arreglo vacio para cargar evaluaciones cuando se llama por primera vez

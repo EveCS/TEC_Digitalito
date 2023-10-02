@@ -45,12 +45,7 @@ const SectionForm = ({ id2, SeccionForm, getSeccionesByCurso, setSeccionForm }) 
         codigo: "",
         nombre: "",
         descripcion: "",
-        fechaInicio: "",
-        fechaFinal: "",
-        archivos: {
-          nombre: "",
-          direccion: ""
-        }
+
       });
 
       // Fetch the updated list of cursos

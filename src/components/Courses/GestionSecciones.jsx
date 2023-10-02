@@ -16,8 +16,6 @@ const GestionSecciones = ({ id }) => {
     codigo: "",
     nombre: "",
     descripcion: "",
-    fechaInicio: "",
-    fechaFinal: "",
     archivos: {
       nombre: "",
       direccion: ""
@@ -29,7 +27,7 @@ const GestionSecciones = ({ id }) => {
     if (id) {
       getSeccionesByCurso();
     }
-  }, []); // es vació porque sólo se ejecutara una vez
+  }, [id]); // es vació porque sólo se ejecutara una vez
 
 
   // async se refiere a que puede contener operaciones asincronicas
@@ -38,7 +36,6 @@ const GestionSecciones = ({ id }) => {
     try {
       // Intenta obtener datos de Secciones utilizando el servicio Seccioneservice.
       const data = await connect.SeccionService.obtenerSeccionesByCurso(id);
-
       // Una vez que se obtienen los datos exitosamente, actualiza el estado Secciones con esos datos. 
       setSecciones(data);
       // En caso de que ocurra un error al obtener los datos, imprime el error en la consola.

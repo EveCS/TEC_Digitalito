@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import '../style.css'
-const SectionsTable = ({ Secciones, setSeccionForm, eliminarSeccion }) => {
+const TemasTable = ({ Temas, setTemaForm, eliminarTema }) => {
     return (
         <Fragment>
-            <h1>Lista de Secciones  </h1>
+            <h1>Lista de Temas  </h1>
             <table className="table-bordered">
                 <thead>
                     <tr>
@@ -15,27 +15,27 @@ const SectionsTable = ({ Secciones, setSeccionForm, eliminarSeccion }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {Secciones ? (
-                        Secciones.map((Seccion) => (
-                            <tr key={Seccion._id}>
+                    {Temas ? (
+                        Temas.map((Tema) => (
+                            <tr key={Tema._id}>
                                 <td>
-                                    <a href={`/adminSeccion/${Seccion._id}`} target="_blank" rel="noopener noreferrer">
+                                    <a href={`/adminTema/${Tema._id}`} target="_blank" rel="noopener noreferrer">
                                         <i className="fa fa-external-link"></i>
-                                        {Seccion._id}
+                                        {Tema._id}
                                     </a>
                                 </td>
-                                <td>{Seccion.nombre}</td>
-                                <td>{Seccion.descripcion}</td>
+                                <td>{Tema.nombre}</td>
+                                <td>{Tema.descripcion}</td>
 
                                 <td>
-                                    <button onClick={() => setSeccionForm(Seccion)}>Editar</button>
-                                    <button onClick={() => eliminarSeccion(Seccion._id)}>Eliminar</button>
+                                    <button onClick={() => setTemaForm(Tema)}>Editar</button>
+                                    <button onClick={() => eliminarTema(Tema._id)}>Eliminar</button>
                                 </td>
                             </tr>
                         ))
                     ) : (
                         <tr>
-                            <td colSpan="6">No hay Secciones disponibles</td>
+                            <td colSpan="6">No hay Temas disponibles</td>
                         </tr>
                     )}
                 </tbody>
@@ -44,4 +44,4 @@ const SectionsTable = ({ Secciones, setSeccionForm, eliminarSeccion }) => {
         </Fragment>
     );
 };
-export default SectionsTable;
+export default TemasTable;
