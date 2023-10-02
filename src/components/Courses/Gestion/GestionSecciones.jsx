@@ -1,9 +1,9 @@
 // Importa las dependencias necesarias de React y otros módulos.
 import React, { Fragment, useEffect, useState } from "react";
-import connect from "../API/mongoConnection";
-import './style.css'
-import SectionForm from "./Forms/SectionForm"
-import SectionsTable from "./Tables/SectionsTable";
+import connect from "../../API/mongoConnection";
+
+import SectionForm from "../Forms/SectionForm"
+import SectionsTable from "../Tables/SectionsTable";
 
 const GestionSecciones = ({ id }) => {
   // arreglo vacio para cargar Secciones cuando se llama por primera vez

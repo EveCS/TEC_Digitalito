@@ -1,9 +1,9 @@
 // Importa las dependencias necesarias de React y otros módulos.
 import React, { Fragment, useEffect, useState } from "react";
-import connect from "../API/mongoConnection";
-import './style.css'
-import InfoForm from "./Forms/InfoForm"
-import InfosTable from "./Tables/InfosTable";
+import connect from "../../API/mongoConnection";
+import '../style.css'
+import InfoForm from "../Forms/InfoForm"
+import InfosTable from "../Tables/InfosTable";
 
 const GestionInfos = ({ id }) => {
   // arreglo vacio para cargar Infos cuando se llama por primera vez

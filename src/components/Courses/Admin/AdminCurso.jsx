@@ -1,8 +1,8 @@
 // GestionCursos.js
 
 import React, { Fragment } from "react";
-import GestionEvaluaciones from "../GestionEvaluaciones";
-import GestionSecciones from "../GestionSecciones";
+import GestionEvaluaciones from "../Gestion/GestionEvaluaciones";
+import GestionSecciones from "../Gestion/GestionSecciones";
 import { useParams } from 'react-router-dom';
 const AdminCurso = () => {
   let { id } = useParams();

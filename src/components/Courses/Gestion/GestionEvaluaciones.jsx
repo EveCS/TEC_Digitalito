@@ -1,10 +1,10 @@
 // Importa las dependencias necesarias de React y otros módulos.
 import React, { Fragment, useEffect, useState } from "react";
-import connect from "../API/mongoConnection";
-import './style.css'
+import connect from "../../API/mongoConnection";
+import '../style.css'
 
-import EvaluationsTable from "./Tables/EvaluationsTable";
-import EvaluationForm from '../Admin/EvaluationJhonnForm'
+import EvaluationsTable from "../Tables/EvaluationsTable";
+import EvaluationForm from '../../Admin/EvaluationJhonnForm'
 
 const GestionEvaluaciones = ({ id }) => {
   // arreglo vacio para cargar evaluaciones cuando se llama por primera vez

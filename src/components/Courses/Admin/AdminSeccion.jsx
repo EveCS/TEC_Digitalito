@@ -2,7 +2,7 @@
 
 import React, { Fragment } from "react";
 import { useParams } from 'react-router-dom';
-import GestionTemas from "../GestionTemas";
+import GestionTemas from "../Gestion/GestionTemas";
 
 const AdminSeccion = () => {
   let { id } = useParams();

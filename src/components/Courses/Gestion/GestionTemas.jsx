@@ -1,9 +1,9 @@
 // Importa las dependencias necesarias de React y otros módulos.
 import React, { Fragment, useEffect, useState } from "react";
-import connect from "../API/mongoConnection";
-import './style.css'
-import TemaForm from "./Forms/TemaForm"
-import TemasTable from "./Tables/TemasTable";
+import connect from "../../API/mongoConnection";
+import '../style.css'
+import TemaForm from "../Forms/TemaForm"
+import TemasTable from "../Tables/TemasTable";
 
 const GestionTemas = ({ id }) => {
   // arreglo vacio para cargar Temas cuando se llama por primera vez

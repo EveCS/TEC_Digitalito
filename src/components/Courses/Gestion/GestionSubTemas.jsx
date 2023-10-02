@@ -1,9 +1,9 @@
 // Importa las dependencias necesarias de React y otros módulos.
 import React, { Fragment, useEffect, useState } from "react";
-import connect from "../API/mongoConnection";
-import './style.css'
-import SubTemaForm from "./Forms/SubTemaForm"
-import SubTemaTable from "./Tables/SubTemaTable";
+import connect from "../../API/mongoConnection";
+import '../style.css'
+import SubTemaForm from "../Forms/SubTemaForm"
+import SubTemaTable from "../Tables/SubTemaTable";
 
 const GestionSubTemas = ({ id }) => {
   // arreglo vacio para cargar SubTemas cuando se llama por primera vez

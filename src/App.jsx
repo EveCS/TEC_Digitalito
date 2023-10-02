@@ -8,15 +8,15 @@ import { AdminMenu } from "./components/Admin/AdminMenu";
 import { MiCuenta } from "./components/Client/MiCuenta";
 import { MisCursos } from "./components/Client/MisCursos";
 import { MatricularCurso } from "./components/Client/MatricularCurso";
-import GestionCursos from "./components/Courses/GestionCursos";
+import GestionCursos from "./components/Courses/Gestion/GestionCursos";
 import AdminCurso from "./components/Courses/Admin/AdminCurso";
 import AdminSeccion from "./components/Courses/Admin/AdminSeccion";
 import { EstudiantesEnCurso } from "./components/Admin/EstudiantesPorCurso";
 import { AddFriends } from "./components/Client/AddFriends";
 import AdminEvaluacion from "./components/Courses/Admin/AdminEvaluacion";
 import EvaluationFormJhonn from "./components/Admin/EvaluationJhonnForm";
-import GestionEvaluaciones from "./components/Courses/GestionEvaluaciones";
-import GestionSecciones from "./components/Courses/GestionSecciones";
+import GestionEvaluaciones from "./components/Courses/Gestion/GestionEvaluaciones";
+import GestionSecciones from "./components/Courses/Gestion/GestionSecciones";
 import AdminTema from "./components/Courses/Admin/AdminTema";
 
 export function App() {

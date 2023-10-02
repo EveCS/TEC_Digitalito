@@ -2,10 +2,10 @@
 
 import React, { Fragment, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import connect from "../API/mongoConnection";
-import './style.css'
-import CursosForm from "./Forms/CoursesForm";
-import CoursesTable from "./Tables/CoursesTable";
+import connect from "../../API/mongoConnection";
+import '../style.css'
+import CursosForm from "../Forms/CoursesForm";
+import CoursesTable from "../Tables/CoursesTable";
 
 const GestionCursos = () => {
 
