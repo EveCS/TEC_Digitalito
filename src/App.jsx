@@ -19,7 +19,7 @@ import GestionEvaluaciones from "./components/Courses/GestionEvaluaciones";
 import GestionSecciones from "./components/Courses/GestionSecciones";
 import AdminTema from "./components/Courses/Admin/AdminTema";
 import HacerEvaluacion from "./components/Client/HacerEvaluacion";
-
+import VerNotas from "./components/Client/VerMisNotas";
 export function App() {
   return (
     <Router>
@@ -34,6 +34,7 @@ export function App() {
             element={<MisCursos />}
           />
           <Route exact path="/addFriends" element={<AddFriends />} />
+          <Route exact path="/verNotas" element={<VerNotas />} />
           <Route exact path="/hacerEvaluacion" element={<HacerEvaluacion />} />
           <Route exact path="/adminMenu" element={<AdminMenu />} />
           <Route exact path="/gestionCursos" element={<GestionCursos />} />
