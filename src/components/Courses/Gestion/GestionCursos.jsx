@@ -2,20 +2,17 @@
 
 import React, { Fragment, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import connect from "../API/mongoConnection";
-import './style.css'
-import CursosForm from "./Forms/CoursesForm";
-import CoursesTable from "./Tables/CoursesTable";
+import connect from "../../API/mongoConnection";
+import '../style.css'
+import CursosForm from "../Forms/CoursesForm";
+import CoursesTable from "../Tables/CoursesTable";
 
 const GestionCursos = () => {
 
   const location = useLocation();
   const username = location.state && location.state.usuario ? location.state.usuario : "DefaultUsername";
-
-
   const [cursos, setCursos] = useState([]);
   const [cursoForm, setCursoForm] = useState({
-    _id: "",
     codigo: "",
     nombre: "",
     descripcion: "",
@@ -61,13 +58,24 @@ const GestionCursos = () => {
       console.error(error);
     }
   }
+  async function duplicarCurso(curso) {
+    try {
+
+      await connect.CursoService.duplicarCurso(curso);
+      getCursos();
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
 
   return (
     <Fragment>
-
-      <CoursesTable {...{ cursos, getCursos, setCursoForm, eliminarCurso, publicarCurso }} />
-      <CursosForm {...{ cursoForm, getCursos, setCursoForm }} />
+      <div className="p-3 mb-2 bg-dark vh-100 text-white border-white">
+        <CursosForm {...{ cursoForm, getCursos, setCursoForm }} />
+        <hr></hr>
+        <CoursesTable {...{ cursos, getCursos, setCursoForm, eliminarCurso, publicarCurso, duplicarCurso }} />
+      </div>
     </Fragment>
   );
 };

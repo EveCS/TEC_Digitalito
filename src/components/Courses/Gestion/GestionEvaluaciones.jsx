@@ -1,10 +1,10 @@
 // Importa las dependencias necesarias de React y otros módulos.
 import React, { Fragment, useEffect, useState } from "react";
-import connect from "../API/mongoConnection";
-import './style.css'
+import connect from "../../API/mongoConnection";
+import '../style.css'
 
-import EvaluationsTable from "./Tables/EvaluationsTable";
-import EvaluationForm from '../Admin/EvaluationJhonnForm'
+import EvaluationsTable from "../Tables/EvaluationsTable";
+import EvaluationForm from '../../Admin/EvaluationJhonnForm'
 
 const GestionEvaluaciones = ({ id }) => {
   // arreglo vacio para cargar evaluaciones cuando se llama por primera vez
@@ -12,7 +12,7 @@ const GestionEvaluaciones = ({ id }) => {
   const [Evaluaciones, setEvaluaciones] = useState([]);
 
   const [EvaluacionForm, setEvaluacionForm] = useState({
-    _id: "",
+
     id_curso: id,
     codigo: "",
     nombre: "",
@@ -59,10 +59,10 @@ const GestionEvaluaciones = ({ id }) => {
   }
   return (
     <Fragment>
-
-      <EvaluationsTable Evaluaciones={Evaluaciones} setEvaluacionForm={setEvaluacionForm} eliminarEvaluacion={eliminarEvaluacion} />
-      <EvaluationForm id2={id} EvaluacionForm={EvaluacionForm} getEvaluacionesByCurso={getEvaluacionesByCurso} setEvaluacionForm={setEvaluacionForm} />
-
+      <div className=" bg-dark  text-white border-white">
+        <EvaluationsTable Evaluaciones={Evaluaciones} setEvaluacionForm={setEvaluacionForm} eliminarEvaluacion={eliminarEvaluacion} />
+        <EvaluationForm id2={id} EvaluacionForm={EvaluacionForm} getEvaluacionesByCurso={getEvaluacionesByCurso} setEvaluacionForm={setEvaluacionForm} />
+      </div>
     </Fragment>
   );
 };

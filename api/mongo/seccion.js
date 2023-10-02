@@ -1,21 +1,6 @@
 
-const addMyEndPointstoApp = (app, mongoose) => {
-    const sectionSchema = new mongoose.Schema(
-        {
-            _id: String,
-            id_curso: String,
-            codigo: String,
-            nombre: String,
-            descripcion: String,
-            fechaInicio: Date,
-            fechaFinal: Date,
-            archivos: {
-                nombre: String,
-                direccion: String,
-            }
-        }
-    )
-    const Section = mongoose.model('sections', sectionSchema);
+const addMyEndPointstoApp = (app, Section) => {
+
     app.post('/seccionesByCurso/:id', async (req, res) => {
         try {
             const secciones2 = req.body;
@@ -45,7 +30,7 @@ const addMyEndPointstoApp = (app, mongoose) => {
     // Create a new ev
     app.post('/secciones', async (req, res) => {
         try {
-            console.log(req.body);
+
             const newEv = new Section(req.body);
             await newEv.save();
             res.status(201).json(newEv);

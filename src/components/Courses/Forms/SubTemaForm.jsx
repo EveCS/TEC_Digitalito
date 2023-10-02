@@ -2,38 +2,39 @@ import React, { Fragment } from "react";
 import connect from "../../API/mongoConnection";
 import '../style.css'
 
-const TemasForm = ({ id, TemasForm, getTemasbySeccion, setTemasForm }) => {
+const TemasForm = ({ id, SubTemasForm, getSubTemasbyTema, setSubTemasForm }) => {
 
-  async function agregarTema() {
+  async function agregarSubTema() {
     try {
-      await connect.TemaService.agregarTema(TemasForm);
+      await connect.SubTemaService.agregarSubTema(SubTemasForm);
 
-      setTemasForm({
+      setSubTemasForm({
 
-        id_seccion: id,
+        id_tema: id,
         codigo: "",
         nombre: "",
         descripcion: ""
       });
 
-      getTemasbySeccion(id);
+      getSubTemasbyTema(id);
     } catch (error) {
       console.error(error);
     }
   }
 
-  async function EditarTema() {
+  async function EditarSubTema() {
     try {
-      await connect.TemaService.editarTema(TemasForm._id, TemasForm);
+      await connect.SubTemaService.editarSubTema(SubTemasForm._id, SubTemasForm);
 
-      setTemasForm({
+      setSubTemasForm({
 
-        id_seccion: id,
+        id_tema: id,
         codigo: "",
         nombre: "",
+        descripcion: ""
       });
 
-      getTemasbySeccion(id);
+      getSubTemasbyTema(id);
     } catch (error) {
       console.error(error);
     }
@@ -41,7 +42,7 @@ const TemasForm = ({ id, TemasForm, getTemasbySeccion, setTemasForm }) => {
 
   return (
     <Fragment>
-      <h2>Agregar Tema</h2>
+      <h2>Agregar SubTema</h2>
       <div className="form-grid">
 
 
@@ -50,8 +51,8 @@ const TemasForm = ({ id, TemasForm, getTemasbySeccion, setTemasForm }) => {
           <input
             type="text"
             placeholder="Código"
-            value={TemasForm.codigo}
-            onChange={(e) => setTemasForm({ ...TemasForm, codigo: e.target.value })}
+            value={SubTemasForm.codigo}
+            onChange={(e) => setSubTemasForm({ ...SubTemasForm, codigo: e.target.value })}
           />
         </div>
 
@@ -60,8 +61,8 @@ const TemasForm = ({ id, TemasForm, getTemasbySeccion, setTemasForm }) => {
           <input
             type="text"
             placeholder="Nombre"
-            value={TemasForm.nombre}
-            onChange={(e) => setTemasForm({ ...TemasForm, nombre: e.target.value })}
+            value={SubTemasForm.nombre}
+            onChange={(e) => setSubTemasForm({ ...SubTemasForm, nombre: e.target.value })}
           />
         </div>
 
@@ -69,15 +70,15 @@ const TemasForm = ({ id, TemasForm, getTemasbySeccion, setTemasForm }) => {
           <label>Descripción</label>
           <textarea
             placeholder="Descripción"
-            value={TemasForm.descripcion}
-            onChange={(e) => setTemasForm({ ...TemasForm, descripcion: e.target.value })}
+            value={SubTemasForm.descripcion}
+            onChange={(e) => setSubTemasForm({ ...SubTemasForm, descripcion: e.target.value })}
           />
         </div>
       </div>
 
       <div className="button-links">
-        <button onClick={EditarTema}>Editar Tema</button>
-        <button onClick={agregarTema}>Agregar Nuevo</button>
+        <button onClick={EditarSubTema}>Editar Tema</button>
+        <button onClick={agregarSubTema}>Agregar Nuevo</button>
       </div>
     </Fragment>
   );

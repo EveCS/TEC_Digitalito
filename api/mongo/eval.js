@@ -2,22 +2,8 @@
 
 
 
+const addMyEndPointstoApp = (app, Evaluation) => {
 
-const addMyEndPointstoApp = (app, mongoose) => {
-    const evaluationSchema = new mongoose.Schema({
-        _id: String,
-        id_curso: String,
-        nombre: String,
-        fechaInicio: Date,
-        fechaFinal: Date,
-        opcionesCorrectas: Array,
-        preguntas: [{
-            pregunta: Array,
-            opciones: Array
-        }]
-    });
-
-    const Evaluation = mongoose.model('evaluations', evaluationSchema);
     // Read All (GET)
     app.get('/evaluaciones', async (req, res) => {
         try {
@@ -33,7 +19,6 @@ const addMyEndPointstoApp = (app, mongoose) => {
     // Create a new ev
     app.post('/evaluaciones', async (req, res) => {
         try {
-            console.log(req.body);
             const newEv = new Evaluation(req.body);
             await newEv.save();
             res.status(201).json(newEv);
