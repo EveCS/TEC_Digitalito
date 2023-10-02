@@ -11,6 +11,11 @@ export function AddFriends() {
     const username = location.state.usuario;
 
     const [newFriend, setFriend] = useState("");
+    const [amigos, setAmigos] = useState([]);
+    
+
+    // dar estilo al texto en la tabla
+    const estiloDeTexto = { align:"center", color: "White", };
 
     const AgregarAmigo = async () => {
         const response = await getUser(newFriend);
@@ -29,6 +34,7 @@ export function AddFriends() {
                 if (insertFriend) {
                     console.log("Amigo agregado");
                     alert("Amigo agregado");
+                    window.location.reload();
                 } else {
                     console.log("No se pudo agregar amigo");
                     alert("No se pudo agregar amigo");
@@ -43,12 +49,22 @@ export function AddFriends() {
         }
     };
 
-    const VerAmigos = async () => {
+    /*const VerAmigos = async () => {
+        let varColor = "Black";
         //Sacar la data de amigos de la lista y mostrar en pantalla
-        const response = await getFriends(username);
+        const listaAmigos = await getFriends(username);
         
-    };
+    };*/
 
+    useEffect(() => {
+        const obtenerAmigos = async () => {
+          const listaAmigos = await getFriends(username);
+          setAmigos(listaAmigos);
+        };
+    
+        obtenerAmigos();
+     }, [username]);
+    
     const BuscarAmigo = async () => {
         if (newFriend) return alert("Debes llenar el campo requerido");
     };
@@ -72,21 +88,31 @@ export function AddFriends() {
                                 <label for="userFriend">Usuario</label>
                             </div>
 
+                            <div className="form-floating mx-5 my-2">
+                                return (
+                                    <div>
+                                    <h2 style={estiloDeTexto}>Lista Amigos</h2>
+                                    <ul>
+                                        {amigos.map((amigo, index) => (
+                                        <li style={estiloDeTexto} key={index}>{amigo}</li>
+                                        ))}
+                                    </ul>
+                                    </div>
+                                );                                
+                            </div>
+
                             <div className="my-5 mb-5">
                                 <div className="col">
-                                    <button onClick={BuscarAmigo} className="w-100 btn btn-lg btn-primary my-3">Buscar Amigo</button>
+                                    <button onClick={BuscarAmigo} className="w-100 btn btn-lg btn-primary">Buscar Amigo</button>
                                 </div>
                                 <div className="col">
-                                    <button onClick={AgregarAmigo} className="w-100 btn btn-lg btn-primary">Agregar Amigo</button>
-                                </div>
-                                <div className="col">
-                                    <button onClick={VerAmigos} className="w-100 btn btn-lg btn-primary my-3">Ver Amigos</button>
+                                    <button onClick={AgregarAmigo} className="w-100 btn btn-lg btn-primary  my-3">Agregar Amigo</button>
                                 </div>
                                 <div className="col">
                                     <button onClick={Cancelar} className="w-100 btn btn-lg btn-secondary">Cancelar</button>
                                 </div>
                             </div>
-            </div>
+                    </div>
             </div>
         </Fragment>
     )
