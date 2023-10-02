@@ -16,6 +16,7 @@ import { AddFriends } from "./components/Client/AddFriends";
 import AdminEvaluacion from "./components/Courses/Admin/AdminEvaluacion";
 import EvaluationFormJhonn from "./components/Admin/EvaluationJhonnForm";
 import GestionEvaluaciones from "./components/Courses/GestionEvaluaciones";
+import { Chat } from "./components/Client/Chat"
 
 export function App() {
   return (
@@ -37,6 +38,7 @@ export function App() {
           <Route exact path="/adminEvaluacion/:id" element={<GestionEvaluaciones />} />
           <Route exact path="/estudiantesEnCurso" element={<EstudiantesEnCurso />} />
           <Route exact path="/miCuenta" element={<MiCuenta />} />
+          <Route exact path="/Chat" element={<Chat/>} />
 
           <Route exact path="/matricularcurso" element={<MatricularCurso />} />
           <Route exact path="/EvaluationFormJhonn" element={<EvaluationFormJhonn />} />

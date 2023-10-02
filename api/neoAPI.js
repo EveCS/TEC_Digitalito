@@ -4,6 +4,10 @@ const neo4j = require('neo4j-driver');
 const app = express();
 const driver = neo4j.driver('bolt://127.0.0.1:7687', neo4j.auth.basic('neo4j', '12345678'));
 
+const cors = require('cors');
+
+app.use(cors()) // Use this after the variable declaration
+
 //GETS
 
 //Obtiene todos los chats de una persona. Si el usuario genera una conversación con otro, aunque no tenga mensajes aún, también vendría acá

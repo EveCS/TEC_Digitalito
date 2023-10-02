@@ -26,6 +26,10 @@ export function ClientMenu() {
         navigate('/miCuenta',{state:{usuario: username}});
     };
 
+    const misChats = () => {
+        navigate('/Chat',{state:{usuario: username}})
+    };
+
 
 
     return (
@@ -41,6 +45,7 @@ export function ClientMenu() {
                     <button onClick={misCursos} type="button" class="w-200 btn btn-lg btn-primary">Mis Cursos</button>
                     <button onClick={matriculaCursos} type="button" class="w-200 btn btn-lg btn-primary">Matricular</button>
                     <button onClick={editarCuenta} type="button" class="w-200 btn btn-lg btn-primary">Editar Cuenta</button>
+                    <button onClick={misChats} type="button" class="w-200 btn btn-lg btn-primary">Conversaciones</button>
                     <button onClick={() => {navigate('/..',{})}} type="button" class="w-200 btn btn-lg btn-primary">Cerrar Sesión</button>
                 </div>
                 </div>
