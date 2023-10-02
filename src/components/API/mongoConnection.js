@@ -136,7 +136,7 @@ const SubTemaService = {
 
     obtenerSubTemaByTema: async (id) => {
 
-        const response = await axios.get(`${BASE_URL}/SubtemasByTemas/${id}`);
+        const response = await axios.get(`${BASE_URL}/subtemasByTema/${id}`);
         return response.data;
     },
 

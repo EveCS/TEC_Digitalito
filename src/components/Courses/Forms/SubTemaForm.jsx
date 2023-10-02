@@ -28,7 +28,7 @@ const TemasForm = ({ id, SubTemasForm, getSubTemasbyTema, setSubTemasForm }) => 
 
       setSubTemasForm({
         _id: "",
-        id_seccion: id,
+        id_tema: id,
         codigo: "",
         nombre: "",
         descripcion: ""

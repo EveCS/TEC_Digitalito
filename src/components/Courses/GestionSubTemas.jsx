@@ -15,23 +15,25 @@ const GestionSubTemas = ({ id }) => {
     id_tema: id,
     codigo: "",
     nombre: "",
+    descripcion: "a"
 
   });
 
   // Se muestran las SubTemas en pantalla apenas carga la página
   useEffect(() => {
-    getSubTemasbySeccion();
+
+    getSubTemasbyTema();
 
   }, []); // es vació porque sólo se ejecutara una vez
 
 
   // async se refiere a que puede contener operaciones asincronicas
-  async function getSubTemasbySeccion() {
+  async function getSubTemasbyTema() {
 
     try {
       // Intenta obtener datos de SubTemas utilizando el servicio SubTemaservice.
-      const data = await connect.SubTemaservice.obtenerTemaBySeccion(id);
-      console.log(data);
+      const data = await connect.SubTemaService.obtenerSubTemaByTema(id);
+
       // Una vez que se obtienen los datos exitosamente, actualiza el estado SubTemas con esos datos. 
       setSubTemas(data);
       // En caso de que ocurra un error al obtener los datos, imprime el error en la consola.
@@ -43,8 +45,8 @@ const GestionSubTemas = ({ id }) => {
   // Delete a SubTemas
   async function eliminarSubTemas(id2) {
     try {
-      await connect.SubTemaservice.eliminarTema(id2);
-      getSubTemasbySeccion();
+      await connect.SubTemaService.eliminarSubTema(id2);
+      getSubTemasbyTema();
     } catch (error) {
       console.error(error);
     }
@@ -53,7 +55,7 @@ const GestionSubTemas = ({ id }) => {
     <Fragment>
 
       <SubTemaTable {...{ SubTemas, setSubTemasForm, eliminarSubTemas }} />
-      <SubTemaForm {...{ id, SubTemasForm, getSubTemasbySeccion, setSubTemasForm }} />
+      <SubTemaForm {...{ id, SubTemasForm, getSubTemasbyTema, setSubTemasForm }} />
 
     </Fragment>
   );

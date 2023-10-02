@@ -3,7 +3,7 @@ const addMyEndPointstoApp = (app, mongoose) => {
     const subtemaschema = new mongoose.Schema(
         {
             _id: String,
-            id_Tema: String,
+            id_tema: String,
             codigo: String,
             nombre: String,
             descripcion: String,
@@ -11,6 +11,7 @@ const addMyEndPointstoApp = (app, mongoose) => {
         }
     )
     const subtema = mongoose.model('subtemas', subtemaschema);
+
     app.post('/subtemasbyTema/:id', async (req, res) => {
         try {
             const subtemas2 = req.body;
@@ -19,7 +20,7 @@ const addMyEndPointstoApp = (app, mongoose) => {
                 throw new Error('subtemas2 should be an array');
             }
 
-            const curso = await Course.findOne({ _id: req.params.id });
+            const curso = await subtema.findOne({ _id: req.params.id });
 
             // Check if curso.subtemas exists, if not, create it as an empty array
             if (!curso.subtemas) {
@@ -38,7 +39,7 @@ const addMyEndPointstoApp = (app, mongoose) => {
     });
 
     // Create a new ev
-    app.post('/subtemas', async (req, res) => {
+    app.post('/SubTemas', async (req, res) => {
         try {
             console.log(req.body);
             const newEv = new subtema(req.body);
@@ -52,8 +53,9 @@ const addMyEndPointstoApp = (app, mongoose) => {
 
     app.get('/subtemasByTema/:id', async (req, res) => {
         try {
-            console.log("subtemas" + req.params.id);
-            const subtemas = await subtema.find({ id_Tema: req.params.id });
+            console.log(req.params.id);
+            const subtemas = await subtema.find({ id_tema: req.params.id });
+            console.log(subtemas);
             res.status(200).json(subtemas);
         } catch (error) {
             console.error(error);

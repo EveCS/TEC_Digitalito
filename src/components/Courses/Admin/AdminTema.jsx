@@ -9,7 +9,7 @@ const AdminTema = () => {
   return (
     <Fragment>
       <h1> Admin Tema  {id}</h1>
-      <GestionSubTemas />
+      <GestionSubTemas id={id} />
     </Fragment>
   );
 };
