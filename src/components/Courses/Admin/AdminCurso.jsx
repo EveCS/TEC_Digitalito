@@ -8,7 +8,11 @@ const AdminCurso = () => {
   let { id } = useParams();
   return (
     <Fragment>
-      <h1> Admin Curso  {id}</h1>
+      <h1>  ID Curso = [{id}]</h1>
+      <a href={`/gestionCursos`} >
+        <i className="fa fa-arrow-left"></i>
+        Gestión de Cursos
+      </a>
 
       <GestionEvaluaciones id={id} />
       <hr></hr>

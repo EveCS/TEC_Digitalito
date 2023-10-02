@@ -22,7 +22,7 @@ const EvaluationsTable = ({ Evaluaciones, setEvaluacionForm, eliminarEvaluacion 
                             <tr key={Evaluacion._id}>
                                 <td>
                                     <a href={`/adminEvaluacion/${Evaluacion._id}`} target="_blank" rel="noopener noreferrer">
-                                        <i className="fa fa-external-link"></i>
+
                                         {Evaluacion._id}
                                     </a>
                                 </td>
