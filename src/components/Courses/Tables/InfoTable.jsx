@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import '../style.css'
+import DownloadButton from "./DownloadButton";
 const InfoTable = ({ Infos, setInfoForm, eliminarInfo }) => {
     return (
         <Fragment>
@@ -10,7 +11,7 @@ const InfoTable = ({ Infos, setInfoForm, eliminarInfo }) => {
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Descripción</th>
-
+                        <th>Nombre Archivo</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -19,14 +20,14 @@ const InfoTable = ({ Infos, setInfoForm, eliminarInfo }) => {
                         Infos.map((Info) => (
                             <tr key={Info._id}>
                                 <td>
-                                    <a href={`/adminInfo/${Info._id}`} target="_blank" rel="noopener noreferrer">
+                                    <a href={`/adminInfo/${Info._id}`} rel="noopener noreferrer">
                                         <i className="fa fa-external-link"></i>
                                         {Info._id}
                                     </a>
                                 </td>
                                 <td>{Info.nombre}</td>
                                 <td>{Info.descripcion}</td>
-
+                                <td> <DownloadButton base64Data={Info.file} filename={Info.filename} /> </td>
                                 <td>
                                     <button onClick={() => setInfoForm(Info)}>Editar</button>
                                     <button onClick={() => eliminarInfo(Info._id)}>Eliminar</button>

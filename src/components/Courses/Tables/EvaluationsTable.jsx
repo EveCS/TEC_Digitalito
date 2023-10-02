@@ -21,7 +21,7 @@ const EvaluationsTable = ({ Evaluaciones, setEvaluacionForm, eliminarEvaluacion 
                         Evaluaciones.map((Evaluacion) => (
                             <tr key={Evaluacion._id}>
                                 <td>
-                                    <a href={`/adminEvaluacion/${Evaluacion._id}`} target="_blank" rel="noopener noreferrer">
+                                    <a href={`/adminEvaluacion/${Evaluacion._id}`} rel="noopener noreferrer">
 
                                         {Evaluacion._id}
                                     </a>

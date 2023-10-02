@@ -19,7 +19,7 @@ const SubTemaTable = ({ SubTemas, setSubTemaForm, eliminarSubTema }) => {
                         SubTemas.map((SubTema) => (
                             <tr key={SubTema._id}>
                                 <td>
-                                    <a href={`/adminSubTema/${SubTema._id}`} target="_blank" rel="noopener noreferrer">
+                                    <a href={`/adminSubTema/${SubTema._id}`} rel="noopener noreferrer">
                                         <i className="fa fa-external-link"></i>
                                         {SubTema._id}
                                     </a>

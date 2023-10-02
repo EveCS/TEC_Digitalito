@@ -12,26 +12,29 @@ const GestionInfos = ({ id }) => {
 
   const [InfosForm, setInfosForm] = useState({
 
-    id_seccion: id,
+    id_ref: id,
     codigo: "",
     nombre: "",
+    descripcion: "",
+    file: "",
+    filename: ""
 
   });
 
   // Se muestran las Infos en pantalla apenas carga la página
   useEffect(() => {
-    getInfosbySeccion();
+    getInfosbyRef();
 
   }, []); // es vació porque sólo se ejecutara una vez
 
 
   // async se refiere a que puede contener operaciones asincronicas
-  async function getInfosbySeccion() {
+  async function getInfosbyRef() {
 
     try {
       // Intenta obtener datos de Infos utilizando el servicio Infoservice.
-      const data = await connect.InfoService.obtenerInfoBySeccion(id);
-      console.log(data);
+      const data = await connect.InfoService.obtenerInfoByRef(id);
+
       // Una vez que se obtienen los datos exitosamente, actualiza el estado Infos con esos datos. 
       setInfos(data);
       // En caso de que ocurra un error al obtener los datos, imprime el error en la consola.
@@ -44,7 +47,7 @@ const GestionInfos = ({ id }) => {
   async function eliminarInfos(id2) {
     try {
       await connect.InfoService.eliminarInfo(id2);
-      getInfosbySeccion();
+      getInfosbyRef();
     } catch (error) {
       console.error(error);
     }
@@ -53,7 +56,7 @@ const GestionInfos = ({ id }) => {
     <Fragment>
 
       <InfosTable {...{ Infos, setInfosForm, eliminarInfos }} />
-      <InfoForm {...{ id, InfosForm, getInfosbySeccion, setInfosForm }} />
+      <InfoForm {...{ id, InfosForm, getInfosbyRef, setInfosForm }} />
 
     </Fragment>
   );

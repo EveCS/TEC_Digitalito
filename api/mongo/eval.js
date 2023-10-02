@@ -33,7 +33,6 @@ const addMyEndPointstoApp = (app, mongoose) => {
     // Create a new ev
     app.post('/evaluaciones', async (req, res) => {
         try {
-            console.log(req.body);
             const newEv = new Evaluation(req.body);
             await newEv.save();
             res.status(201).json(newEv);

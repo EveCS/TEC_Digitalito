@@ -19,7 +19,7 @@ const SectionsTable = ({ Secciones, setSeccionForm, eliminarSeccion }) => {
                         Secciones.map((Seccion) => (
                             <tr key={Seccion._id}>
                                 <td>
-                                    <a href={`/adminSeccion/${Seccion._id}`} target="_blank" rel="noopener noreferrer">
+                                    <a href={`/adminSeccion/${Seccion._id}`} rel="noopener noreferrer">
                                         <i className="fa fa-external-link"></i>
                                         {Seccion._id}
                                     </a>

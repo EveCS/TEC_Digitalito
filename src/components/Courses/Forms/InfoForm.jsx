@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import connect from "../../API/mongoConnection";
 import '../style.css'
 
-const InfosForm = ({ id, InfosForm, getInfosbySeccion, setInfosForm }) => {
+const InfosForm = ({ id, InfosForm, getInfosbyRef, setInfosForm }) => {
 
   async function agregarInfo() {
     try {
@@ -10,13 +10,15 @@ const InfosForm = ({ id, InfosForm, getInfosbySeccion, setInfosForm }) => {
 
       setInfosForm({
 
-        id_seccion: id,
+        id_ref: id,
         codigo: "",
         nombre: "",
-        descripcion: ""
+        descripcion: "",
+        file: "",
+        filename: ""
       });
 
-      getInfosbySeccion(id);
+      getInfosbyRef(id);
     } catch (error) {
       console.error(error);
     }
@@ -28,16 +30,36 @@ const InfosForm = ({ id, InfosForm, getInfosbySeccion, setInfosForm }) => {
 
       setInfosForm({
 
-        id_seccion: id,
+        id_ref: id,
         codigo: "",
         nombre: "",
+        descripcion: "",
+        file: "",
+        filename: ""
       });
 
-      getInfosbySeccion(id);
+      getInfosbyRef(id);
     } catch (error) {
       console.error(error);
     }
   }
+
+
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+
+    reader.onload = () => {
+      const base64String = reader.result.split(',')[1];
+      setInfosForm({ ...InfosForm, file: base64String });
+      setInfosForm({ ...InfosForm, filename: file.name });
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+
 
   return (
     <Fragment>
@@ -73,7 +95,14 @@ const InfosForm = ({ id, InfosForm, getInfosbySeccion, setInfosForm }) => {
             onChange={(e) => setInfosForm({ ...InfosForm, descripcion: e.target.value })}
           />
         </div>
+
+        <div className="input-group">
+          <label>Archivo</label>
+          <input type="file" onChange={handleFileUpload} />
+        </div>
+
       </div>
+
 
       <div className="button-links">
         <button onClick={EditarInfo}>Editar Info</button>

@@ -41,7 +41,7 @@ const addMyEndPointstoApp = (app, mongoose) => {
     // Create a new ev
     app.post('/SubTemas', async (req, res) => {
         try {
-            console.log(req.body);
+
             const newEv = new subtema(req.body);
             await newEv.save();
             res.status(201).json(newEv);
@@ -53,9 +53,9 @@ const addMyEndPointstoApp = (app, mongoose) => {
 
     app.get('/subtemasByTema/:id', async (req, res) => {
         try {
-            console.log(req.params.id);
+
             const subtemas = await subtema.find({ id_tema: req.params.id });
-            console.log(subtemas);
+
             res.status(200).json(subtemas);
         } catch (error) {
             console.error(error);

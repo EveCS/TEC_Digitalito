@@ -177,7 +177,13 @@ const InfoService = {
         return response.data;
     },
 
+    obtenerInfoByRef: async (temaId) => {
+        const response = await axios.get(`${BASE_URL}/infoByRef/${temaId}`);
+        return response.data;
+    },
+
     agregarInfo: async (info) => {
+
         const response = await axios.post(`${BASE_URL}/Info`, info);
         return response.data;
     },

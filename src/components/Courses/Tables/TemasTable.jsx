@@ -19,7 +19,7 @@ const TemasTable = ({ Temas, setTemaForm, eliminarTema }) => {
                         Temas.map((Tema) => (
                             <tr key={Tema._id}>
                                 <td>
-                                    <a href={`/adminTema/${Tema._id}`} target="_blank" rel="noopener noreferrer">
+                                    <a href={`/adminTema/${Tema._id}`} rel="noopener noreferrer">
                                         <i className="fa fa-external-link"></i>
                                         {Tema._id}
                                     </a>

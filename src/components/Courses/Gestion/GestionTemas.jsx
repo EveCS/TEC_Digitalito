@@ -31,7 +31,7 @@ const GestionTemas = ({ id }) => {
     try {
       // Intenta obtener datos de Temas utilizando el servicio Temaservice.
       const data = await connect.TemaService.obtenerTemaBySeccion(id);
-      console.log(data);
+
       // Una vez que se obtienen los datos exitosamente, actualiza el estado Temas con esos datos. 
       setTemas(data);
       // En caso de que ocurra un error al obtener los datos, imprime el error en la consola.
