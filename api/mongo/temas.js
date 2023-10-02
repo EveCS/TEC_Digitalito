@@ -1,16 +1,6 @@
 
-const addMyEndPointstoApp = (app, mongoose) => {
-    const temaschema = new mongoose.Schema(
-        {
-            _id: String,
-            id_seccion: String,
-            codigo: String,
-            nombre: String,
-            descripcion: String,
+const addMyEndPointstoApp = (app, Tema) => {
 
-        }
-    )
-    const Tema = mongoose.model('temas', temaschema);
     app.post('/temasbySeccion/:id', async (req, res) => {
         try {
             const temas2 = req.body;
@@ -40,7 +30,7 @@ const addMyEndPointstoApp = (app, mongoose) => {
     // Create a new ev
     app.post('/temas', async (req, res) => {
         try {
-            console.log(req.body);
+
             const newEv = new Tema(req.body);
             await newEv.save();
             res.status(201).json(newEv);
@@ -52,7 +42,7 @@ const addMyEndPointstoApp = (app, mongoose) => {
 
     app.get('/temasBySeccion/:id', async (req, res) => {
         try {
-            console.log("Temas" + req.params.id);
+
             const temas = await Tema.find({ id_seccion: req.params.id });
             res.status(200).json(temas);
         } catch (error) {

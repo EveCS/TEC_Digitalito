@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import '../style.css'
-const TemasTable = ({ Temas, setTemaForm, eliminarTema }) => {
+const SubTemaTable = ({ SubTemas, setSubTemaForm, eliminarSubTema }) => {
     return (
         <Fragment>
-            <h1>Lista de Temas  </h1>
+            <h1>Lista de SubTemas  </h1>
             <table className="table-bordered">
                 <thead>
                     <tr>
@@ -15,21 +15,21 @@ const TemasTable = ({ Temas, setTemaForm, eliminarTema }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {Temas ? (
-                        Temas.map((Tema) => (
-                            <tr key={Tema._id}>
+                    {SubTemas ? (
+                        SubTemas.map((SubTema) => (
+                            <tr key={SubTema._id}>
                                 <td>
-                                    <a href={`/adminTema/${Tema._id}`} rel="noopener noreferrer">
+                                    <a href={`/adminSubTema/${SubTema._id}`} rel="noopener noreferrer">
                                         <i className="fa fa-external-link"></i>
-                                        {Tema._id}
+                                        {SubTema._id}
                                     </a>
                                 </td>
-                                <td>{Tema.nombre}</td>
-                                <td>{Tema.descripcion}</td>
+                                <td>{SubTema.nombre}</td>
+                                <td>{SubTema.descripcion}</td>
 
                                 <td>
-                                    <button onClick={() => setTemaForm(Tema)}>Editar</button>
-                                    <button onClick={() => eliminarTema(Tema._id)}>Eliminar</button>
+                                    <button onClick={() => setSubTemaForm(SubTema)}>Editar</button>
+                                    <button onClick={() => eliminarSubTema(SubTema._id)}>Eliminar</button>
                                 </td>
                             </tr>
                         ))
@@ -44,4 +44,4 @@ const TemasTable = ({ Temas, setTemaForm, eliminarTema }) => {
         </Fragment>
     );
 };
-export default TemasTable;
+export default SubTemaTable;

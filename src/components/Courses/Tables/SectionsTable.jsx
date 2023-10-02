@@ -8,9 +8,9 @@ const SectionsTable = ({ Secciones, setSeccionForm, eliminarSeccion }) => {
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Codigo</th>
                         <th>Nombre</th>
-                        <th>Descripción</th>
-
+                        <th>Descripcion</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -19,17 +19,18 @@ const SectionsTable = ({ Secciones, setSeccionForm, eliminarSeccion }) => {
                         Secciones.map((Seccion) => (
                             <tr key={Seccion._id}>
                                 <td>
-                                    <a href={`/adminSeccion/${Seccion._id}`} target="_blank" rel="noopener noreferrer">
-                                        <i className="fa fa-external-link"></i>
-                                        {Seccion._id}
+                                    <a className="w-100 btn btn-lg btn-secondary " href={`/adminSeccion/${Seccion._id}`} rel="noopener noreferrer">
+                                        <i className="fa fa-external-link"></i>&nbsp;
+                                        Ver
                                     </a>
                                 </td>
+                                <td>{Seccion.codigo}</td>
                                 <td>{Seccion.nombre}</td>
                                 <td>{Seccion.descripcion}</td>
 
                                 <td>
-                                    <button onClick={() => setSeccionForm(Seccion)}>Editar</button>
-                                    <button onClick={() => eliminarSeccion(Seccion._id)}>Eliminar</button>
+                                    <button className="w-100  btn btn-lg btn-secondary mb-2" onClick={() => setSeccionForm(Seccion)}>Editar</button>
+                                    <button className="w-100 btn btn-lg btn-secondary" onClick={() => eliminarSeccion(Seccion._id)}>Eliminar</button>
                                 </td>
                             </tr>
                         ))

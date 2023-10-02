@@ -4,7 +4,7 @@ import '../style.css'
 const EvaluationsTable = ({ Evaluaciones, setEvaluacionForm, eliminarEvaluacion }) => {
     return (
         <Fragment>
-            <h1>Lista de Evaluaciones  </h1>
+            <h1> Evaluaciones  </h1>
             <table className="table-bordered">
                 <thead>
                     <tr>
@@ -21,8 +21,8 @@ const EvaluationsTable = ({ Evaluaciones, setEvaluacionForm, eliminarEvaluacion 
                         Evaluaciones.map((Evaluacion) => (
                             <tr key={Evaluacion._id}>
                                 <td>
-                                    <a href={`/adminEvaluacion/${Evaluacion._id}`} target="_blank" rel="noopener noreferrer">
-                                        <i className="fa fa-external-link"></i>
+                                    <a href={`/adminEvaluacion/${Evaluacion._id}`} rel="noopener noreferrer">
+
                                         {Evaluacion._id}
                                     </a>
                                 </td>

@@ -1,13 +1,29 @@
 import React, { useState } from "react";
 import { matricularCurso } from "../API/cassandraConnection"; 
 import { useNavigate, useLocation } from "react-router-dom";
+import connect from '../API/mongoConnection';
 
 export function MatricularCurso() {
   const [cursoName, setCursoName] = useState("");
   const location = useLocation();
   const username = location.state.usuario;
 
+  const [existeCurso, setExisteCurso] = useState([]);
+
+  const fetchCurso = async () => {
+      try {
+          const response = await connect.CursoService.obtenerCursosPorID(cursoName);
+          setExisteCurso("false");
+      } catch (error) {
+          console.error('Error al obtener matrícula:', error);
+      }
+  };
+
+
   const handleMatricular = async () => {
+    fetchCurso();
+
+    if (existeCurso!="false"){
     try {
       // call de api
       const response = await matricularCurso(username,cursoName);
@@ -16,6 +32,11 @@ export function MatricularCurso() {
       console.error("Error matriculando curso:", error);
       // el  error
     }
+  }
+  else{
+    alert("Curso no existe");
+    setExisteCurso("");
+  }
   };
 
   return (

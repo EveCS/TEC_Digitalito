@@ -1,9 +1,9 @@
 // Importa las dependencias necesarias de React y otros módulos.
 import React, { Fragment, useEffect, useState } from "react";
-import connect from "../API/mongoConnection";
-import './style.css'
-import SectionForm from "./Forms/SectionForm"
-import SectionsTable from "./Tables/SectionsTable";
+import connect from "../../API/mongoConnection";
+
+import SectionForm from "../Forms/SectionForm"
+import SectionsTable from "../Tables/SectionsTable";
 
 const GestionSecciones = ({ id }) => {
   // arreglo vacio para cargar Secciones cuando se llama por primera vez
@@ -11,7 +11,7 @@ const GestionSecciones = ({ id }) => {
   const [Secciones, setSecciones] = useState([]);
 
   const [SeccionForm, setSeccionForm] = useState({
-    _id: "",
+
     id_curso: id,
     codigo: "",
     nombre: "",
@@ -55,10 +55,10 @@ const GestionSecciones = ({ id }) => {
   }
   return (
     <Fragment>
-
-      <SectionsTable {...{ Secciones, setSeccionForm, eliminarSeccion }} />
-      <SectionForm {...{ id2: id, SeccionForm, getSeccionesByCurso, setSeccionForm }} />
-
+      <div className="p-3 mb-2 bg-dark vh-100 text-white border-white">
+        <SectionsTable {...{ Secciones, setSeccionForm, eliminarSeccion }} />
+        <SectionForm {...{ id2: id, SeccionForm, getSeccionesByCurso, setSeccionForm }} />
+      </div>
     </Fragment>
   );
 };

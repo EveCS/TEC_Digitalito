@@ -1,9 +1,9 @@
 // Importa las dependencias necesarias de React y otros módulos.
 import React, { Fragment, useEffect, useState } from "react";
-import connect from "../API/mongoConnection";
-import './style.css'
-import TemaForm from "./Forms/TemaForm"
-import TemasTable from "./Tables/TemasTable";
+import connect from "../../API/mongoConnection";
+import '../style.css'
+import TemaForm from "../Forms/TemaForm"
+import TemasTable from "../Tables/TemasTable";
 
 const GestionTemas = ({ id }) => {
   // arreglo vacio para cargar Temas cuando se llama por primera vez
@@ -11,7 +11,7 @@ const GestionTemas = ({ id }) => {
   const [Temas, setTemas] = useState([]);
 
   const [TemasForm, setTemasForm] = useState({
-    _id: "",
+
     id_seccion: id,
     codigo: "",
     nombre: "",
@@ -31,7 +31,7 @@ const GestionTemas = ({ id }) => {
     try {
       // Intenta obtener datos de Temas utilizando el servicio Temaservice.
       const data = await connect.TemaService.obtenerTemaBySeccion(id);
-      console.log(data);
+
       // Una vez que se obtienen los datos exitosamente, actualiza el estado Temas con esos datos. 
       setTemas(data);
       // En caso de que ocurra un error al obtener los datos, imprime el error en la consola.

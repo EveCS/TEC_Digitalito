@@ -32,7 +32,9 @@ export function ClientMenu() {
     const verNotas = () => {
         navigate('/verNotas',{state:{usuario: username}});
     };
-   
+    const buscarCursos = () => {
+        navigate('/buscarCurso',{state:{usuario: username}});
+    };
 
     return (
         <Fragment>
@@ -45,6 +47,7 @@ export function ClientMenu() {
                 <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
                     <button onClick={gestionarAmigos} type="button" class="w-200 btn btn-lg btn-primary">Mis Amigos</button>
                     <button onClick={misCursos} type="button" class="w-200 btn btn-lg btn-primary">Mis Cursos</button>
+                    <button onClick={buscarCursos} type="button" class="w-200 btn btn-lg btn-primary">Buscar cursos</button>
                     <button onClick={verNotas} type="button" class="w-200 btn btn-lg btn-primary">Mis notas</button>
                     <button onClick={hacerEvaluacion} type="button" class="w-200 btn btn-lg btn-primary">Hacer evaluacion</button>
                     <button onClick={matriculaCursos} type="button" class="w-200 btn btn-lg btn-primary">Matricular</button>

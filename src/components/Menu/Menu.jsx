@@ -6,13 +6,15 @@ const Menu = () => {
     return (
         <nav className="menu">
             <div className="menu-logo">
-                <img src="/path/to/logo.png" alt="TEC Digitalito" />
+
+                <ul className="menu-links">
+                    <img src="logo192.png" alt="TEC Digitalito" />
+                    <li><a href="/">Tec Digitalito</a></li>
+                    <li><a href="/gestionCursos">Gestion Cursos</a></li>
+                    <li><a href="/register">Registrarse</a></li>
+                </ul>
             </div>
-            <ul className="menu-links">
-                <li><a href="/">Login</a></li>
-                <li><a href="/gestionCursos">Gestion Cursos</a></li>
-                <li><a href="/estudiante">Estudiante</a></li>
-            </ul>
+
         </nav>
     );
 };

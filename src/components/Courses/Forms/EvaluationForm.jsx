@@ -46,7 +46,7 @@ const EvaluationForm = ({ id2, EvaluacionForm, getEvaluacionesByCurso, setEvalua
 
       // Clear the curso form
       setEvaluacionForm({
-        _id: "",
+
         codigo: "",
         nombre: "",
         descripcion: "",
@@ -72,15 +72,7 @@ const EvaluationForm = ({ id2, EvaluacionForm, getEvaluacionesByCurso, setEvalua
 
 
       <div className="form-grid">
-        <div className="input-group">
-          <label>ID</label>
-          <input
-            type="text"
-            placeholder="ID"
-            value={EvaluacionForm._id}
-            onChange={(e) => setEvaluacionForm({ ...EvaluacionForm, _id: e.target.value })}
-          />
-        </div>
+
 
         <div className="input-group">
           <label>Código</label>
