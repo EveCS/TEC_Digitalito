@@ -54,10 +54,10 @@ const GestionInfos = ({ id }) => {
   }
   return (
     <Fragment>
-
-      <InfosTable {...{ Infos, setInfosForm, eliminarInfos }} />
-      <InfoForm {...{ id, InfosForm, getInfosbyRef, setInfosForm }} />
-
+      <div className="p-3 mb-2 bg-dark vh-100 text-white border-white">
+        <InfosTable {...{ Infos, setInfosForm, eliminarInfos }} />
+        <InfoForm {...{ id, InfosForm, getInfosbyRef, setInfosForm }} />
+      </div>
     </Fragment>
   );
 };

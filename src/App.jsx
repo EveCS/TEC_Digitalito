@@ -1,6 +1,5 @@
-import React, { Fragment, useRef, useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { v4 as uuid } from "uuid";
 import { Login } from "./components/Login";
 import { Register } from "./components/Register";
 import { ClientMenu } from "./components/Client/ClientMenu";
@@ -15,8 +14,6 @@ import { EstudiantesEnCurso } from "./components/Admin/EstudiantesPorCurso";
 import { AddFriends } from "./components/Client/AddFriends";
 import AdminEvaluacion from "./components/Courses/Admin/AdminEvaluacion";
 import EvaluationFormJhonn from "./components/Admin/EvaluationJhonnForm";
-import GestionEvaluaciones from "./components/Courses/Gestion/GestionEvaluaciones";
-import GestionSecciones from "./components/Courses/Gestion/GestionSecciones";
 import AdminTema from "./components/Courses/Admin/AdminTema";
 import AdminSubTema from "./components/Courses/Admin/AdminSubTema";
 import HacerEvaluacion from "./components/Client/HacerEvaluacion";
@@ -25,34 +22,30 @@ export function App() {
   return (
     <Router>
       <div className="App">
-        MiCuenta
         <Routes>
           <Route exact path="/" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/clientMenu" element={<ClientMenu />} />
-          <Route
-            exact
-            path="/misCursos"
-            element={<MisCursos />}
-          />
+          <Route exact path="/misCursos" element={<MisCursos />} />
           <Route exact path="/addFriends" element={<AddFriends />} />
           <Route exact path="/verNotas" element={<VerNotas />} />
           <Route exact path="/hacerEvaluacion" element={<HacerEvaluacion />} />
           <Route exact path="/adminMenu" element={<AdminMenu />} />
+
           <Route exact path="/gestionCursos" element={<GestionCursos />} />
           <Route exact path="/adminCurso/:id" element={<AdminCurso />} />
           <Route exact path="/adminEvaluacion/:id" element={<AdminEvaluacion />} />
           <Route exact path="/adminSeccion/:id" element={<AdminSeccion />} />
           <Route exact path="/adminTema/:id" element={<AdminTema />} />
           <Route exact path="/adminSubTema/:id" element={<AdminSubTema />} />
+
           <Route exact path="/estudiantesEnCurso" element={<EstudiantesEnCurso />} />
           <Route exact path="/miCuenta" element={<MiCuenta />} />
-
           <Route exact path="/matricularcurso" element={<MatricularCurso />} />
           <Route exact path="/EvaluationFormJhonn" element={<EvaluationFormJhonn />} />
-
         </Routes>
       </div>
     </Router>
+
   );
 }

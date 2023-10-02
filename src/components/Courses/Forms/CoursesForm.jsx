@@ -85,7 +85,7 @@ const CursosForm = ({ cursoForm, getCursos, setCursoForm, username }) => {
   return (
 
     <div>
-      <button onClick={toggleVisibility}>
+      <button className="w-10 btn btn-lg btn-primary" onClick={toggleVisibility}>
         {isVisible ? 'Cerrar' : 'Editar / Agregar Curso'}
       </button>
       {isVisible && (
@@ -101,6 +101,7 @@ const CursosForm = ({ cursoForm, getCursos, setCursoForm, username }) => {
               <div className="input-group">
                 <label>Código</label>
                 <input
+
                   type="text"
                   placeholder="Código"
                   value={cursoForm.codigo}
@@ -162,8 +163,8 @@ const CursosForm = ({ cursoForm, getCursos, setCursoForm, username }) => {
           </div>
 
           <div className="button-links">
-            <button onClick={EditarCurso}>Editar Curso</button>
-            <button onClick={() => agregarCurso()}>Agregar Nuevo</button>
+            <button className="w-10 btn btn-lg btn-danger" onClick={EditarCurso}>Editar Curso</button> &nbsp;
+            <button className="w-10 btn btn-lg btn-secondary" onClick={() => agregarCurso()}>Agregar Nuevo</button>
           </div>
         </Fragment>
       )}

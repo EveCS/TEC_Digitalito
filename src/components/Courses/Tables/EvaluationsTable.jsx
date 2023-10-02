@@ -4,7 +4,7 @@ import '../style.css'
 const EvaluationsTable = ({ Evaluaciones, setEvaluacionForm, eliminarEvaluacion }) => {
     return (
         <Fragment>
-            <h1>Lista de Evaluaciones  </h1>
+            <h1> Evaluaciones  </h1>
             <table className="table-bordered">
                 <thead>
                     <tr>

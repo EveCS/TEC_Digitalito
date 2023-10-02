@@ -10,13 +10,15 @@ const AdminSeccion = () => {
 
   return (
     <Fragment>
-      <a href={`/gestionCursos`} >
-        <i className="fa fa-arrow-left"></i>
-        Gestión de Cursos
-      </a>
-      <h1> Admin Seccion  {id}</h1>
-      <GestionTemas id={id} />
-      <GestionInfo id={id} tipo="Seccion" />
+      <div className="p-3 mb-2 bg-dark vh-100 text-white border-white">
+        <a href={`/gestionCursos`} >
+          <i className="fa fa-arrow-left"></i>
+          Gestión de Cursos
+        </a>
+        <h1> Admin Seccion  {id}</h1>
+        <GestionTemas id={id} />
+        <GestionInfo id={id} tipo="Seccion" />
+      </div>
     </Fragment>
   );
 };

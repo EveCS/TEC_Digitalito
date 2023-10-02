@@ -5,6 +5,10 @@
     margin: 0 40px;
 }
 
+.border-white {
+    border-color: white;
+}
+
 .img-resize {
     width: 300px;
     /* Set the desired width */
@@ -35,7 +39,7 @@
 
 .table-bordered th,
 .table-bordered td {
-    border: 1px solid black;
+    border: 1px solid rgb(248, 248, 248);
     /* Define the border style */
     padding: 8px;
     /* Add some padding for better spacing */
