@@ -2,6 +2,7 @@
 
 import React, { Fragment } from "react";
 import GestionSubTemas from "../Gestion/GestionSubTemas";
+import GestionInfo from "../Gestion/GestionInfo";
 import { useParams } from 'react-router-dom';
 const AdminTema = () => {
   let { id } = useParams();
@@ -9,6 +10,7 @@ const AdminTema = () => {
     <Fragment>
       <h1> Admin Tema  {id}</h1>
       <GestionSubTemas id={id} />
+      <GestionInfo id={id} tipo="Tema" />
     </Fragment>
   );
 };

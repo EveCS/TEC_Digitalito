@@ -3,7 +3,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import connect from "../../API/mongoConnection";
 import '../style.css'
 import InfoForm from "../Forms/InfoForm"
-import InfosTable from "../Tables/InfosTable";
+import InfosTable from "../Tables/InfoTable";
 
 const GestionInfos = ({ id }) => {
   // arreglo vacio para cargar Infos cuando se llama por primera vez

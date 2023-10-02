@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import '../style.css'
-const TemasTable = ({ Temas, setTemaForm, eliminarTema }) => {
+const InfoTable = ({ Infos, setInfoForm, eliminarInfo }) => {
     return (
         <Fragment>
-            <h1>Lista de Temas  </h1>
+            <h1>Lista de Informacion  </h1>
             <table className="table-bordered">
                 <thead>
                     <tr>
@@ -15,27 +15,27 @@ const TemasTable = ({ Temas, setTemaForm, eliminarTema }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {Temas ? (
-                        Temas.map((Tema) => (
-                            <tr key={Tema._id}>
+                    {Infos ? (
+                        Infos.map((Info) => (
+                            <tr key={Info._id}>
                                 <td>
-                                    <a href={`/adminTema/${Tema._id}`} target="_blank" rel="noopener noreferrer">
+                                    <a href={`/adminInfo/${Info._id}`} target="_blank" rel="noopener noreferrer">
                                         <i className="fa fa-external-link"></i>
-                                        {Tema._id}
+                                        {Info._id}
                                     </a>
                                 </td>
-                                <td>{Tema.nombre}</td>
-                                <td>{Tema.descripcion}</td>
+                                <td>{Info.nombre}</td>
+                                <td>{Info.descripcion}</td>
 
                                 <td>
-                                    <button onClick={() => setTemaForm(Tema)}>Editar</button>
-                                    <button onClick={() => eliminarTema(Tema._id)}>Eliminar</button>
+                                    <button onClick={() => setInfoForm(Info)}>Editar</button>
+                                    <button onClick={() => eliminarInfo(Info._id)}>Eliminar</button>
                                 </td>
                             </tr>
                         ))
                     ) : (
                         <tr>
-                            <td colSpan="6">No hay Temas disponibles</td>
+                            <td colSpan="6">No hay Info disponibles</td>
                         </tr>
                     )}
                 </tbody>
@@ -44,4 +44,4 @@ const TemasTable = ({ Temas, setTemaForm, eliminarTema }) => {
         </Fragment>
     );
 };
-export default TemasTable;
+export default InfoTable;
