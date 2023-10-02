@@ -4,7 +4,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import connect from "../../API/mongoConnection";
 import '../style.css';
 
-const CursosForm = ({ cursoForm, getCursos, setCursoForm }) => {
+const CursosForm = ({ cursoForm, getCursos, setCursoForm, username }) => {
 
 
   // Add or edit a curso
@@ -18,8 +18,14 @@ const CursosForm = ({ cursoForm, getCursos, setCursoForm }) => {
       // Clear the curso form
       setCursoForm({
         _id: "",
+        codigo: "",
         nombre: "",
-        creditos: "",
+        descripcion: "",
+        fechaInicio: "",
+        fechaFin: "",
+        foto: "",
+        publicado: false,
+        username: username
       });
 
       // Fetch the updated list of cursos
@@ -39,8 +45,14 @@ const CursosForm = ({ cursoForm, getCursos, setCursoForm }) => {
       // Clear the curso form
       setCursoForm({
         _id: "",
+        codigo: "",
         nombre: "",
-        creditos: "",
+        descripcion: "",
+        fechaInicio: "",
+        fechaFin: "",
+        foto: "",
+        publicado: false,
+        username: username
       });
 
       // Fetch the updated list of cursos
@@ -115,7 +127,7 @@ const CursosForm = ({ cursoForm, getCursos, setCursoForm }) => {
             <input
               type="date"
               placeholder="Fecha de Inicio"
-              value={cursoForm.fechaInicio}
+              value={cursoForm.fechaInicio ? cursoForm.fechaInicio.split('T')[0] : ''}
               onChange={(e) => setCursoForm({ ...cursoForm, fechaInicio: e.target.value })}
             />
           </div>
@@ -125,7 +137,7 @@ const CursosForm = ({ cursoForm, getCursos, setCursoForm }) => {
             <input
               type="date"
               placeholder="Fecha de Fin (opcional)"
-              value={cursoForm.fechaFin}
+              value={cursoForm.fechaFin ? cursoForm.fechaFin.split('T')[0] : ''}
               onChange={(e) => setCursoForm({ ...cursoForm, fechaFin: e.target.value })}
             />
           </div>
