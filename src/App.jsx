@@ -18,6 +18,7 @@ import EvaluationFormJhonn from "./components/Admin/EvaluationJhonnForm";
 import GestionEvaluaciones from "./components/Courses/GestionEvaluaciones";
 import GestionSecciones from "./components/Courses/GestionSecciones";
 import AdminTema from "./components/Courses/Admin/AdminTema";
+import HacerEvaluacion from "./components/Admin/HacerEvaluacion";
 
 export function App() {
   return (
@@ -33,6 +34,7 @@ export function App() {
             element={<MisCursos />}
           />
           <Route exact path="/addFriends" element={<AddFriends />} />
+          <Route exact path="/hacerEvaluacion" element={<HacerEvaluacion />} />
           <Route exact path="/adminMenu" element={<AdminMenu />} />
           <Route exact path="/gestionCursos" element={<GestionCursos />} />
           <Route exact path="/adminCurso/:id" element={<AdminCurso />} />

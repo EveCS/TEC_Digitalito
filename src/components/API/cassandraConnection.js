@@ -31,8 +31,18 @@ const matricularCurso = async (username,curso) => {
       console.log("Error al buscar el usuario", error);
     }
   }
+
+  const insertNota = async (username,curso,nota) => {
+  try {
+    const response = await axios.post(`http://localhost:3002/insertNota?estudiante_username=${username}&curso_id=${curso}&nota=${nota}`)
+    return (response.data)
+  } catch (error) {
+    console.log("Error al buscar el usuario", error);
+  }
+}
 export {
   getCursosbyUser,
   matricularCurso,
-  getPorCurso
+  getPorCurso,
+  insertNota
 };
