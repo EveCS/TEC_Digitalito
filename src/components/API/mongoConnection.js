@@ -102,7 +102,7 @@ const TemaService = {
     },
 
     obtenerTemaBySeccion: async (id) => {
-        console.log(id);
+
         const response = await axios.get(`${BASE_URL}/temasBySeccion/${id}`);
         return response.data;
     },
@@ -128,12 +128,79 @@ const TemaService = {
     }
 };
 
+const SubTemaService = {
+    obtenerSubTemas: async () => {
+        const response = await axios.get(`${BASE_URL}/subTemas`);
+        return response.data;
+    },
+
+    obtenerSubTemaByTema: async (id) => {
+
+        const response = await axios.get(`${BASE_URL}/SubtemasByTemas/${id}`);
+        return response.data;
+    },
+
+    obtenerSubTemaById: async (temaId) => {
+        const response = await axios.get(`${BASE_URL}/subTemas/${temaId}`);
+        return response.data;
+    },
+
+    agregarSubTema: async (subtema) => {
+        const response = await axios.post(`${BASE_URL}/SubTemas`, subtema);
+        return response.data;
+    },
+
+    editarSubTema: async (temaId, subtema) => {
+        const response = await axios.put(`${BASE_URL}/subTemas/${temaId}`, subtema);
+        return response.data;
+    },
+
+    eliminarSubTema: async (temaId) => {
+        const response = await axios.delete(`${BASE_URL}/subTemas/${temaId}`);
+        return response.data;
+    }
+};
+
+const InfoService = {
+    obtenerInfo: async () => {
+        const response = await axios.get(`${BASE_URL}/info`);
+        return response.data;
+    },
+
+    obtenerInfoByTema: async (id) => {
+        const response = await axios.get(`${BASE_URL}/InfoByTemas/${id}`);
+        return response.data;
+    },
+
+    obtenerInfoById: async (temaId) => {
+        const response = await axios.get(`${BASE_URL}/info/${temaId}`);
+        return response.data;
+    },
+
+    agregarInfo: async (info) => {
+        const response = await axios.post(`${BASE_URL}/Info`, info);
+        return response.data;
+    },
+
+    editarInfo: async (temaId, info) => {
+        const response = await axios.put(`${BASE_URL}/info/${temaId}`, info);
+        return response.data;
+    },
+
+    eliminarInfo: async (temaId) => {
+        const response = await axios.delete(`${BASE_URL}/info/${temaId}`);
+        return response.data;
+    }
+};
+
 
 const services = {
     EvaluacionService,
     CursoService,
     SeccionService,
-    TemaService
+    TemaService,
+    SubTemaService,
+    InfoService
 };
 
 export default services;

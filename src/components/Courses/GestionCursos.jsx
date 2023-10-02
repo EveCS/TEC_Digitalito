@@ -66,8 +66,10 @@ const GestionCursos = () => {
   return (
     <Fragment>
 
-      <CoursesTable {...{ cursos, getCursos, setCursoForm, eliminarCurso, publicarCurso }} />
+
       <CursosForm {...{ cursoForm, getCursos, setCursoForm }} />
+      <hr></hr>
+      <CoursesTable {...{ cursos, getCursos, setCursoForm, eliminarCurso, publicarCurso }} />
     </Fragment>
   );
 };

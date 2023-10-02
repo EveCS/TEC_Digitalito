@@ -7,7 +7,8 @@ const CursosEndpoints = require('./mongo/cursos');
 const EvaluacionesEndpoints = require('./mongo/eval');
 const SeccionEndpoints = require('./mongo/seccion');
 const TemasEndpoints = require('./mongo/temas');
-
+const SubTemasEndpoints = require('./mongo/subtemas');
+const InfoEndpoints = require('./mongo/info');
 
 app.use(express.json());
 app.use(cors());
@@ -16,6 +17,8 @@ app = CursosEndpoints.addMyEndPointstoApp(app, mongoose);
 app = EvaluacionesEndpoints.addMyEndPointstoApp(app, mongoose);
 app = SeccionEndpoints.addMyEndPointstoApp(app, mongoose);
 app = TemasEndpoints.addMyEndPointstoApp(app, mongoose);
+app = SubTemasEndpoints.addMyEndPointstoApp(app, mongoose);
+app = InfoEndpoints.addMyEndPointstoApp(app, mongoose);
 
 const port = process.env.PORT || 3001;
 app.listen(port, async () => {

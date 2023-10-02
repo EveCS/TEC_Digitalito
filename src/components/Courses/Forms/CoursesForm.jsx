@@ -75,93 +75,107 @@ const CursosForm = ({ cursoForm, getCursos, setCursoForm, username }) => {
     reader.readAsDataURL(file);
   };
 
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
+
+
   return (
-    <Fragment>
+
+    <div>
+      <button onClick={toggleVisibility}>
+        {isVisible ? 'Cerrar' : 'Agregar Curso'}
+      </button>
+      {isVisible && (
+        <Fragment>
 
 
 
-      <h2 className="button-links">Editar / Agregar Cursos </h2>
-      <div className="form-container">
-        <div className="form-grid">
-          <div className="input-group">
-            <label>ID</label>
-            <input
-              type="text"
-              placeholder="ID"
-              value={cursoForm._id}
-              onChange={(e) => setCursoForm({ ...cursoForm, _id: e.target.value })}
-            />
+          <h2 className="button-links">Editar / Agregar Cursos </h2>
+          <div className="form-container">
+            <div className="form-grid">
+              <div className="input-group">
+                <label>ID</label>
+                <input
+                  type="text"
+                  placeholder="ID"
+                  value={cursoForm._id}
+                  onChange={(e) => setCursoForm({ ...cursoForm, _id: e.target.value })}
+                />
+              </div>
+
+              <div className="input-group">
+                <label>Código</label>
+                <input
+                  type="text"
+                  placeholder="Código"
+                  value={cursoForm.codigo}
+                  onChange={(e) => setCursoForm({ ...cursoForm, codigo: e.target.value })}
+                />
+              </div>
+
+              <div className="input-group">
+                <label>Nombre</label>
+                <input
+                  type="text"
+                  placeholder="Nombre"
+                  value={cursoForm.nombre}
+                  onChange={(e) => setCursoForm({ ...cursoForm, nombre: e.target.value })}
+                />
+              </div>
+
+              <div className="input-group">
+                <label>Descripción</label>
+                <textarea
+                  placeholder="Descripción"
+                  value={cursoForm.descripcion}
+                  onChange={(e) => setCursoForm({ ...cursoForm, descripcion: e.target.value })}
+                />
+              </div>
+
+              <div className="input-group">
+                <label>Fecha de Inicio</label>
+                <input
+                  type="date"
+                  placeholder="Fecha de Inicio"
+                  value={cursoForm.fechaInicio ? cursoForm.fechaInicio.split('T')[0] : ''}
+                  onChange={(e) => setCursoForm({ ...cursoForm, fechaInicio: e.target.value })}
+                />
+              </div>
+
+              <div className="input-group">
+                <label>Fecha de Fin (opcional)</label>
+                <input
+                  type="date"
+                  placeholder="Fecha de Fin (opcional)"
+                  value={cursoForm.fechaFin ? cursoForm.fechaFin.split('T')[0] : ''}
+                  onChange={(e) => setCursoForm({ ...cursoForm, fechaFin: e.target.value })}
+                />
+              </div>
+
+              <div className="input-group">
+                <label>Subir Foto</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileUpload}
+                />
+                {cursoForm.foto && (
+                  <img className="img-resize" src={`data:image/png;base64,${cursoForm.foto}`} alt="Uploaded" />
+                )}
+              </div>
+            </div>
           </div>
 
-          <div className="input-group">
-            <label>Código</label>
-            <input
-              type="text"
-              placeholder="Código"
-              value={cursoForm.codigo}
-              onChange={(e) => setCursoForm({ ...cursoForm, codigo: e.target.value })}
-            />
+          <div className="button-links">
+            <button onClick={EditarCurso}>Editar Curso</button>
+            <button onClick={() => agregarCurso()}>Agregar Nuevo</button>
           </div>
-
-          <div className="input-group">
-            <label>Nombre</label>
-            <input
-              type="text"
-              placeholder="Nombre"
-              value={cursoForm.nombre}
-              onChange={(e) => setCursoForm({ ...cursoForm, nombre: e.target.value })}
-            />
-          </div>
-
-          <div className="input-group">
-            <label>Descripción</label>
-            <textarea
-              placeholder="Descripción"
-              value={cursoForm.descripcion}
-              onChange={(e) => setCursoForm({ ...cursoForm, descripcion: e.target.value })}
-            />
-          </div>
-
-          <div className="input-group">
-            <label>Fecha de Inicio</label>
-            <input
-              type="date"
-              placeholder="Fecha de Inicio"
-              value={cursoForm.fechaInicio ? cursoForm.fechaInicio.split('T')[0] : ''}
-              onChange={(e) => setCursoForm({ ...cursoForm, fechaInicio: e.target.value })}
-            />
-          </div>
-
-          <div className="input-group">
-            <label>Fecha de Fin (opcional)</label>
-            <input
-              type="date"
-              placeholder="Fecha de Fin (opcional)"
-              value={cursoForm.fechaFin ? cursoForm.fechaFin.split('T')[0] : ''}
-              onChange={(e) => setCursoForm({ ...cursoForm, fechaFin: e.target.value })}
-            />
-          </div>
-
-          <div className="input-group">
-            <label>Subir Foto</label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleFileUpload}
-            />
-            {cursoForm.foto && (
-              <img className="img-resize" src={`data:image/png;base64,${cursoForm.foto}`} alt="Uploaded" />
-            )}
-          </div>
-        </div>
-      </div>
-
-      <div className="button-links">
-        <button onClick={EditarCurso}>Editar Curso</button>
-        <button onClick={() => agregarCurso()}>Agregar Nuevo</button>
-      </div>
-    </Fragment>
-
+        </Fragment>
+      )}
+    </div>
   );
 };
 
