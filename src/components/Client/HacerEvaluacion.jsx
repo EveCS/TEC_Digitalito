@@ -1,10 +1,13 @@
 import React, { Fragment, useEffect, useState } from "react";
 import connect from '../API/mongoConnection';
+import { insertNota } from "../API/cassandraConnection"; 
 
 
 const ExamenComponent = () => {
   const [examenData, setExamenData] = useState([]);
+  const cursoid= "curso123"; // id del curso al que pertenece la evaluacion
   const examenID= "Evaluacion2"; // aca cambio a que sea el id de la evaluacion que voy a hacer.
+  const username="JuanPerez"; // aca cambio al usuario que entro para guardarle la nota.
   const [respuestas, setRespuestas] = useState([]);
   const [notaFinal, setNotaFinal] = useState(null);
 
@@ -38,14 +41,14 @@ const ExamenComponent = () => {
       if (respuesta === opcionesCorrectas[index]) {
         nota++;
       }
+
+    
     });
 
     const notaFinal = (nota / opcionesCorrectas.length) * 100;
     setNotaFinal(notaFinal);
-    console.log("nota"+nota);
-    console.log("notaFInal"+notaFinal);
-    console.log("len"+opcionesCorrectas.length);
 
+    insertNota(username,examenID,cursoid,notaFinal)
 
   };
 

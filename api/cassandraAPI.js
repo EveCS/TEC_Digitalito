@@ -76,7 +76,34 @@ app.get('/getPorUser', (req, res) => {
   });
 });
 
+app.post('/insertNota', (req, res) => {
+  const { estudiante_username,evaluacion_id, curso_id,nota } = req.query;
+  const query = 'INSERT INTO notas_estudiante(estudiante_username,evaluacion_id, curso_id, nota) VALUES (?, ?,?,?);';
+  const params = [estudiante_username,evaluacion_id, curso_id,nota];
 
+  client.execute(query, params, { prepare: true }, (err, result) => {
+      if (err) {
+          res.status(500).json({ error: err.message });
+      } else {
+          res.json(result.rows);
+      }
+  });
+});
+
+
+app.get('/getNotasPorUser', (req, res) => {
+  const { estudiante_username } = req.query;
+  const query = 'SELECT * FROM notas_estudiante WHERE estudiante_username = ? ALLOW FILTERING';
+  const params = [estudiante_username];
+
+  client.execute(query, params, { prepare: true }, (err, result) => {
+      if (err) {
+          res.status(500).json({ error: err.message });
+      } else {
+          res.json(result.rows);
+      }
+  });
+});
 
   app.listen(3002, () => {
     console.log('Server is running on http://localhost:3002');
