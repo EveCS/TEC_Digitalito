@@ -40,7 +40,7 @@ const infoSchema = new mongoose.Schema(
 const Info = mongoose.model('infos', infoSchema);
 
 const evaluationSchema = new mongoose.Schema({
-
+    _id: String,
     id_curso: String,
     nombre: String,
     fechaInicio: Date,
@@ -56,7 +56,7 @@ const Evaluation = mongoose.model('evaluations', evaluationSchema);
 
 const sectionSchema = new mongoose.Schema(
     {
-
+        
         id_curso: String,
         codigo: String,
         nombre: String,
