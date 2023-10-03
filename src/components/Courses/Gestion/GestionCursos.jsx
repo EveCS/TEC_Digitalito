@@ -73,6 +73,11 @@ const GestionCursos = () => {
     <Fragment>
       <div className="bg-dark">
         <div className="row">
+          <h1 className="text-center">
+            <a className="w-25 btn btn-lg btn-secondary" href={`/adminMenu?username=${username}`} >
+              <i className="fa fa-arrow-left"></i>
+              Menu Admin
+            </a> Admin  [{username}]</h1>
           <div className="col-md-3">
             <CursosForm {...{ cursoForm, getCursos, setCursoForm }} />
           </div>

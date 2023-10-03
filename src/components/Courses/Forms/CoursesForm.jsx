@@ -150,7 +150,7 @@ const CursosForm = ({ cursoForm, getCursos, setCursoForm, username }) => {
         </div>
 
         <div className="button-links">
-          <button onClick={EditarCurso} className="btn btn-lg btn-primary">Editar Curso</button> &nbsp;
+          <button onClick={EditarCurso} className="btn btn-lg btn-primary mb-2">Editar Curso</button> &nbsp;
           <button onClick={() => agregarCurso()} className="btn btn-lg btn-primary">Agregar Nuevo</button>
         </div>
       </div>

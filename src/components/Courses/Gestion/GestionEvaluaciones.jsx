@@ -58,12 +58,22 @@ const GestionEvaluaciones = ({ id }) => {
     }
   }
   return (
+
     <Fragment>
-      <div className="p-3 mb-2  bg-dark ">
-        <EvaluationsTable Evaluaciones={Evaluaciones} setEvaluacionForm={setEvaluacionForm} eliminarEvaluacion={eliminarEvaluacion} />
-        <EvaluationForm id2={id} EvaluacionForm={EvaluacionForm} getEvaluacionesByCurso={getEvaluacionesByCurso} setEvaluacionForm={setEvaluacionForm} />
+      <div className="container p-3 mb-2  bg-dark">
+        <div className="row">
+          <div className="col-md-4">
+            <EvaluationForm id2={id} EvaluacionForm={EvaluacionForm} getEvaluacionesByCurso={getEvaluacionesByCurso} setEvaluacionForm={setEvaluacionForm} />
+          </div>
+          <div className="col-md-6">
+
+            <EvaluationsTable Evaluaciones={Evaluaciones} setEvaluacionForm={setEvaluacionForm} eliminarEvaluacion={eliminarEvaluacion} />
+          </div>
+        </div>
       </div>
     </Fragment>
+
+
   );
 };
 
