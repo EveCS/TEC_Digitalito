@@ -20,7 +20,9 @@ export function ClientMenu() {
     const misCursos = () => {
         navigate('/misCursos',{state:{usuario: username}});
     };
-
+    const verChat = () => {
+        navigate('/chats',{state:{usuario: username}});
+    };
 
     const editarCuenta = () => {
         navigate('/miCuenta',{state:{usuario: username}});
@@ -50,6 +52,7 @@ export function ClientMenu() {
                     <button onClick={buscarCursos} type="button" class="w-200 btn btn-lg btn-primary">Buscar cursos</button>
                     <button onClick={verNotas} type="button" class="w-200 btn btn-lg btn-primary">Mis notas</button>
                     <button onClick={hacerEvaluacion} type="button" class="w-200 btn btn-lg btn-primary">Hacer evaluacion</button>
+                    <button onClick={verChat} type="button" class="w-200 btn btn-lg btn-primary">Chats</button>
                     <button onClick={matriculaCursos} type="button" class="w-200 btn btn-lg btn-primary">Matricular</button>
                     <button onClick={editarCuenta} type="button" class="w-200 btn btn-lg btn-primary">Editar Cuenta</button>
                     <button onClick={() => {navigate('/..',{})}} type="button" class="w-200 btn btn-lg btn-primary">Cerrar Sesión</button>

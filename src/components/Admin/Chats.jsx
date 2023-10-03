@@ -28,17 +28,28 @@ export function Chats() {
         
         fetchData();
     }, [username]);
-  
-    const handleSendMessage = async  (chatTitle) => {
-
-        const response = await getParticipantes(chatTitle);
-        setParticipantes(response);
-        const enviarA = participantes.find(participant => participant !== username);
-        sendMessage(username,enviarA,newMessage);
-        setParticipantes("");
-   
-      console.log(`Enviando mensaje '${newMessage}' al chat '${chatTitle}'`);
+    const handleSendMessage = async (chatTitle) => {
+        console.log("chattitle" + chatTitle);
+        try {
+            const response = await getParticipantes(chatTitle);
+    
+            if (response !== null) {
+                setParticipantes(response);
+                console.log(participantes);
+    
+                const enviarA = response.find(participant => participant !== username);
+                sendMessage(username, enviarA, newMessage);
+                setParticipantes("");
+            } else {
+                console.error('getParticipantes devolvió null');
+            }
+    
+            console.log(`Enviando mensaje '${newMessage}' al chat '${chatTitle}'`);
+        } catch (error) {
+            console.error('Error al obtener participantes o enviar mensaje:', error);
+        }
     };
+    
 
     const handleNewContacto = async  (destinatario) => {
 
@@ -49,14 +60,30 @@ export function Chats() {
   
     const groupedChats = {};
   
-    // Agrupar los mensajes por chat
-    chatsData.forEach((chat) => {
-      if (groupedChats[chat.chat]) {
-        groupedChats[chat.chat].push(chat);
-      } else {
-        groupedChats[chat.chat] = [chat];
-      }
-    });
+
+    // Convertir las fechas a objetos Date
+chatsData.forEach((message) => {
+    message.fecha = new Date(message.fecha);
+});
+
+// Ordenar los mensajes por fecha
+chatsData.sort((a, b) => a.fecha - b.fecha);
+
+
+chatsData.forEach((message) => {
+    const participants = message.chat.split(' y ').sort().join(' y ');
+
+    if (groupedChats[participants]) {
+        groupedChats[participants].push(message);
+    } else {
+        groupedChats[participants] = [message];
+    }
+});
+
+const groupedChatsArray = Object.keys(groupedChats).map((participants) => ({
+    chat: participants,
+    messages: groupedChats[participants],
+}));
     return (
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
           <div style={{ marginBottom: '20px', background: '#fff', border: '1px solid #ddd', borderRadius: '8px', padding: '10px', width: '600px' }}>
