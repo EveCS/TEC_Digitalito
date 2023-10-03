@@ -31,7 +31,7 @@ const CoursesTable = ({ cursos, setCursoForm, eliminarCurso, publicarCurso, dupl
                         {cursos.map((curso) => (
                             <tr key={curso._id}>
                                 <td>
-                                    <a className="w-100 btn btn-lg btn-secondary" href={`/adminCurso/${curso._id}`} rel="noopener noreferrer">
+                                    <a className="w-100 btn btn-lg btn-primary" href={`/adminCurso/${curso._id}`} rel="noopener noreferrer">
                                         Ver
                                     </a>
                                 </td>

@@ -28,8 +28,8 @@ const TemasTable = ({ Temas, setTemaForm, eliminarTema }) => {
                                 <td>{Tema.descripcion}</td>
 
                                 <td>
-                                    <button onClick={() => setTemaForm(Tema)}>Editar</button>
-                                    <button onClick={() => eliminarTema(Tema._id)}>Eliminar</button>
+                                    <button class="btn btn-primary" onClick={() => setTemaForm(Tema)}>Editar</button>
+                                    <button class="btn btn-primary" onClick={() => eliminarTema(Tema._id)}>Eliminar</button>
                                 </td>
                             </tr>
                         ))

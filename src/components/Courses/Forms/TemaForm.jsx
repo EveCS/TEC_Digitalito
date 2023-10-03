@@ -75,9 +75,9 @@ const TemasForm = ({ id, TemasForm, getTemasbySeccion, setTemasForm }) => {
         </div>
       </div>
 
-      <div className="button-links">
-        <button onClick={EditarTema}>Editar Tema</button>
-        <button onClick={agregarTema}>Agregar Nuevo</button>
+      <div className="btn btn-primary">
+        <button className="btn btn-primary" onClick={EditarTema}>Editar Tema</button>
+        <button className="btn btn-primary" onClick={agregarTema}>Agregar Nuevo</button>
       </div>
     </Fragment>
   );

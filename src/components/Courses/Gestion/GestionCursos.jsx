@@ -71,7 +71,7 @@ const GestionCursos = () => {
 
   return (
     <Fragment>
-      <div className="p-3 bg-dark  text-white border-white">
+      <div className="p-3 mb-2  bg-dark ">
         <CursosForm {...{ cursoForm, getCursos, setCursoForm }} />
 
         <CoursesTable {...{ cursos, getCursos, setCursoForm, eliminarCurso, publicarCurso, duplicarCurso }} />

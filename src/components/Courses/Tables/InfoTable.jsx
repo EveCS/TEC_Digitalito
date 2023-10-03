@@ -29,8 +29,8 @@ const InfoTable = ({ Infos, setInfoForm, eliminarInfo }) => {
                                 <td>{Info.descripcion}</td>
                                 <td> <DownloadButton base64Data={Info.file} filename={Info.filename} /> </td>
                                 <td>
-                                    <button onClick={() => setInfoForm(Info)}>Editar</button>
-                                    <button onClick={() => eliminarInfo(Info._id)}>Eliminar</button>
+                                    <button class="btn btn-primary" onClick={() => setInfoForm(Info)}>Editar</button>
+                                    <button class="btn btn-primary" onClick={() => eliminarInfo(Info._id)}>Eliminar</button>
                                 </td>
                             </tr>
                         ))

@@ -28,8 +28,8 @@ const SubTemaTable = ({ SubTemas, setSubTemaForm, eliminarSubTema }) => {
                                 <td>{SubTema.descripcion}</td>
 
                                 <td>
-                                    <button onClick={() => setSubTemaForm(SubTema)}>Editar</button>
-                                    <button onClick={() => eliminarSubTema(SubTema._id)}>Eliminar</button>
+                                    <button class="btn btn-primary" onClick={() => setSubTemaForm(SubTema)}>Editar</button>
+                                    <button class="btn btn-primary" onClick={() => eliminarSubTema(SubTema._id)}>Eliminar</button>
                                 </td>
                             </tr>
                         ))

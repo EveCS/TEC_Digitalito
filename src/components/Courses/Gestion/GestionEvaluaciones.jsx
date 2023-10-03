@@ -59,7 +59,7 @@ const GestionEvaluaciones = ({ id }) => {
   }
   return (
     <Fragment>
-      <div className=" bg-dark  text-white border-white">
+      <div className="p-3 mb-2  bg-dark ">
         <EvaluationsTable Evaluaciones={Evaluaciones} setEvaluacionForm={setEvaluacionForm} eliminarEvaluacion={eliminarEvaluacion} />
         <EvaluationForm id2={id} EvaluacionForm={EvaluacionForm} getEvaluacionesByCurso={getEvaluacionesByCurso} setEvaluacionForm={setEvaluacionForm} />
       </div>

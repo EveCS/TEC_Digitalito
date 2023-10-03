@@ -10,7 +10,7 @@ const AdminSeccion = () => {
 
   return (
     <Fragment>
-      <div className="p-3 mb-2 bg-dark vh-100 text-white border-white">
+      <div className="p-3 mb-2  bg-dark ">
         <a href={`/gestionCursos`} >
           <i className="fa fa-arrow-left"></i>
           Gestión de Cursos

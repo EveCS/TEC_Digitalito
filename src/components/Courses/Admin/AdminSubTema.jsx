@@ -7,7 +7,7 @@ const AdminSubTema = () => {
   let { id } = useParams();
   return (
     <Fragment>
-      <div className="p-3 mb-2 bg-dark vh-100 text-white border-white">
+      <div className="p-3 mb-2  bg-dark ">
         <h1> Admin SubTema  {id}</h1>
         <GestionInfo id={id} tipo="SubTema" />
       </div>

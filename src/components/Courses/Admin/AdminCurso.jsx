@@ -10,7 +10,7 @@ const AdminCurso = () => {
   let { id } = useParams();
   return (
     <Fragment>
-      <div className="p-3 mb-2 bg-dark vh-100 text-white border-white">
+      <div className="p-3 mb-2  bg-dark ">
         <h1 className="text-center"> <a className="w-25 btn btn-lg btn-secondary" href={`/gestionCursos`} >
           <i className="fa fa-arrow-left"></i>
           Gestión de Cursos

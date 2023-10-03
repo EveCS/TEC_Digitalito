@@ -153,7 +153,7 @@ const EvaluationForm = ({ id2, EvaluacionForm, getEvaluacionesByCurso, setEvalua
           />
         </div>
       </div>
-      <div className="button-links">
+      <div className="btn btn-primary">
         <button onClick={EditarEvaluacion}>Editar Evaluacion</button>
         <button onClick={agregarEvaluacion}>Agregar Nuevo</button>
       </div>
