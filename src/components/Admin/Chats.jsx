@@ -7,11 +7,14 @@ import { useNavigate, useLocation } from "react-router-dom";
 export function Chats() {
     const [newMessage, setNewMessage] = useState(""); // Estado para el nuevo mensaje
     const [chatsData,setChatsData] = useState([]); // 
+    const [participantes,setParticipantes] = useState([]);
+
     const location = useLocation();
   const username = location.state.usuario;
  
     const fetchData = async () => {
         try {
+            console.log(username);
             const response = await getchats(username);
             setChatsData(response);
         } catch (error) {
@@ -19,12 +22,21 @@ export function Chats() {
         }
     };
 
+
+
     useEffect(() => {
         
         fetchData();
     }, [username]);
   
-    const handleSendMessage = (chatTitle) => {
+    const handleSendMessage = async  (chatTitle) => {
+
+        const response = await getParticipantes(chatTitle);
+        setParticipantes(response);
+        const destinatario = participantes.find(participant => participant !== username);
+
+        sendMessage(username,destinatario,newMessage);
+        setParticipantes("");
       // Aquí debes implementar la lógica de envío de mensaje con tu API
       // Puedes usar 'newMessage' para obtener el contenido del mensaje y 'chatTitle' para saber a qué chat se envía.
       console.log(`Enviando mensaje '${newMessage}' al chat '${chatTitle}'`);

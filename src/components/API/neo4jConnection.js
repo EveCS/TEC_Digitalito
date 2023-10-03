@@ -1,29 +1,33 @@
 import axios from 'axios';
 
 // GET /chats
-const getchats = async (name) => {
-    try {
-      const response = await axios.get(`http://localhost:3004/chats?name=${name}`);
-      return (response.data)
-    } catch (error) {
-      console.log("Error al obtener chats del usuario", error);
-    }
+
+
+const getchats = async (username) => {
+  try {
+    const response = await axios.get(`http://localhost:3004/getChats?username=${username}`);
+    return (response.data)
+  } catch (error) {
+    console.log("Error al obtener chats del usuario", error);
+  }
 }
 
+
+
 //GET /msgsbychat
-const getmsg_bychat = async (name, receiver) => {
+const getParticipantes = async (name) => {
     try {
-      const response = await axios.get(`http://localhost:3004/msgsbychat?name=${name}&receiver=${receiver}`);
+      const response = await axios.get(`http://localhost:3004/chats/participants?chatName=${name}`);
       return (response.data)
     } catch (error) {
-      console.log("Error al obtener los mensajes del chat", error);
+      console.log("Error al obtener los participantes", error);
     }
 }
 
 // POST /envia_msj
 const sendMessage = async (name, receiver, msg) => {
     try {
-      const response = await axios.post(`http://localhost:3004/envia_msj?name=${name}&receiver=${receiver}&msg=${msg}`);
+      const response = await axios.post(`http://localhost:3004/enviarMensaje?nombreUsuario1=${name}&nombreUsuario2=${receiver}&contenidoMensaje=${msg}`);
       return true;
     } catch (error) {
       console.log("Error al enviar el mensaje", error);
@@ -34,6 +38,6 @@ const sendMessage = async (name, receiver, msg) => {
 
 export {
     getchats,
-    getmsg_bychat,
+    getParticipantes,
     sendMessage
 };
