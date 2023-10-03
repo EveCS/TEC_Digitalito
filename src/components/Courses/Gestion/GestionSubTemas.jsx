@@ -52,12 +52,26 @@ const GestionSubTemas = ({ id }) => {
     }
   }
   return (
+
     <Fragment>
-
-      <SubTemaTable {...{ SubTemas, setSubTemasForm, eliminarSubTemas }} />
-      <SubTemaForm {...{ id, SubTemasForm, getSubTemasbyTema, setSubTemasForm }} />
-
+      <div className="bg-dark">
+        <div className="row">
+          <h1 className="text-center">
+            <a className="w-25 btn btn-lg btn-secondary" href={`/adminTema?seccion=${''}`} >
+              <i className="fa fa-arrow-left"></i>
+              Gestion Tema
+            </a> Admin  [{ }]</h1>
+          <div className="col-md-3">
+            <SubTemaForm {...{ id, SubTemasForm, getSubTemasbyTema, setSubTemasForm }} />
+          </div>
+          <div className="col-md-6">
+            <SubTemaTable {...{ SubTemas, setSubTemasForm, eliminarSubTemas }} />
+          </div>
+        </div>
+      </div>
     </Fragment>
+
+
   );
 };
 

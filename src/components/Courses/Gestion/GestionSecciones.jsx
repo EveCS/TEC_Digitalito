@@ -58,9 +58,10 @@ const GestionSecciones = ({ id }) => {
       <div className="container">
         <div className="row">
 
-          <div className="col-md-6 mb-2 bg-dark text-white border-white">
+          <div className="col-md-4 mb-2 bg-dark text-white border-white">
             <SectionForm {...{ id2: id, SeccionForm, getSeccionesByCurso, setSeccionForm }} />
           </div>
+
           <div className="col-md-6 mb-2 bg-dark text-white border-white">
             <SectionsTable {...{ Secciones, setSeccionForm, eliminarSeccion }} />
           </div>
