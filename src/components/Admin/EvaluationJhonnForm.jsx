@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import connect from '../API/mongoConnection';
 
 
-const EvaluationForm = () => {
+const EvaluationForm = ({ id2 }) => {
   const [evaluation, setEvaluation] = useState({
     _id: '',
-    id_curso: '',
+    id_curso: id2,
     nombre: '',
     fechaInicio: '',
     fechaFinal: '',
@@ -53,7 +53,7 @@ const EvaluationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    evaluation.id_curso = "curso1"; // ESTO <------------------------------------ Toca hacer que un boton de cursos lleve a esta pagina, esta pagina ocupa saber el cursoID para guardar la evaluacion y saber que pertenece a ese curso
+    //evaluation.id_curso = "curso1"; // ESTO <------------------------------------ Toca hacer que un boton de cursos lleve a esta pagina, esta pagina ocupa saber el cursoID para guardar la evaluacion y saber que pertenece a ese curso
     evaluation._id = evaluation.nombre; // ACA dejo el _id unico igual al nombre de la evaluacion, asi no hay 2 iguales.
     // Enviar el estado actual a tu servidor
     console.log(evaluation)
