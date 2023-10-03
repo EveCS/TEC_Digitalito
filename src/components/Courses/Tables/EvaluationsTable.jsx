@@ -31,8 +31,8 @@ const EvaluationsTable = ({ Evaluaciones, setEvaluacionForm, eliminarEvaluacion 
                                 <td>{Evaluacion.fechaInicio}</td>
                                 <td>{Evaluacion.fechaFinal}</td>
                                 <td>
-                                    <button class="btn btn-primary" onClick={() => setEvaluacionForm(Evaluacion)}>Editar</button>
-                                    <button class="btn btn-primary" onClick={() => eliminarEvaluacion(Evaluacion._id)}>Eliminar</button>
+                                    <button className="btn btn-primary" onClick={() => setEvaluacionForm(Evaluacion)}>Editar</button>
+                                    <button className="btn btn-primary" onClick={() => eliminarEvaluacion(Evaluacion._id)}>Eliminar</button>
                                 </td>
                             </tr>
                         ))

@@ -79,7 +79,7 @@ const CursosForm = ({ cursoForm, getCursos, setCursoForm, username }) => {
 
   return (
     <Fragment>
-      <div class="p-3 mb-2  bg-dark ">
+      <div className="p-3 mb-2  bg-dark ">
         <div className=""></div>
 
         <h2 style={estiloDeTexto} className="button-links">Editar / Agregar Cursos </h2>
