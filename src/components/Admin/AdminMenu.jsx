@@ -23,19 +23,21 @@ export function AdminMenu() {
               Gestión de cursos
             </button>
             <button
+              onClick={() => { navigate('/chats', { state: { usuario: username } }) }}
+              className="btn btn-primary mb-3 btn-lg"
+              type="button"
+            >
+              Chats
+            </button>
+            <button
               onClick={() => { navigate('/estudiantesEnCurso', {}) }}
               className="btn btn-primary mb-3 btn-lg"
               type="button"
             >
               Ver estudiantes en un curso
             </button>
-            <button
-              onClick={() => {navigate('/hacerEvaluacion',{})}}
-              className="btn btn-primary mb-3 btn-lg"
-              type="button"
-              >
-              Hacer evaluaciones
-            </button>
+           
+         
             <button
               onClick={() => {navigate('/..',{})}}
               className="btn btn-primary mb-3 btn-lg"

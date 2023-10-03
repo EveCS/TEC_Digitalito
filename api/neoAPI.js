@@ -7,60 +7,102 @@ const driver = neo4j.driver('bolt://127.0.0.1:7687', neo4j.auth.basic('neo4j', '
 //GETS
 
 //Obtiene todos los chats de una persona. Si el usuario genera una conversación con otro, aunque no tenga mensajes aún, también vendría acá
-app.get('/chats', (req, res) => {
-  const { name } = req.query;
-  const session = driver.session();
-  
-  session
-    .run('MATCH(p:Usuario{Nombre:"' + name + '"})<-[:PARTICIPANTE]-(c:Chat)-[:PARTICIPANTE]->(p2:Usuario) RETURN p2')
-    .then((result) => {
-      const chats = result.records.map(record => record.get('p2').properties);
-      res.json(chats);
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).json({ error: 'Error al obtener chats' });
-    })
-    .finally(() => session.close());
-});
-
-//Obtiene todos los mensajes del chat seleccionado usando el nombre de la segunda persona
-app.get('/msgsbychat', (req, res) => {
-  const { name, receiver } = req.query;
+app.get('/chats/participants', (req, res) => {
+  const chatName = req.query.chatName;
   const session = driver.session();
 
   session
-    .run('MATCH(p1:Usuario{Nombre:"' + name + '"})<-[:PARTICIPANTE]-(c:Chat)-[:PARTICIPANTE]->(p2:Usuario{Nombre:"' + receiver + '"}) MATCH(m:Mensaje)<-[:TIENE_MENSAJE]-(c) RETURN m ORDER BY m.DateTime')
+    .run(
+      `
+      MATCH (c:Chat {nombre: $chatName})-[:PARTICIPANTE]->(u:Usuario)
+      RETURN u.nombre as participante
+      `,
+      { chatName }
+    )
     .then((result) => {
-      const msgs = result.records.map(record => record.get('m').properties);
-      res.json(msgs);
+      const participants = result.records.map(record => record.get('participante'));
+      res.json(participants);
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).json({ error: 'Error al obtener los mensajes de texto' });
+      res.status(500).json({ error: 'Error al obtener participantes del chat' });
     })
-    .finally(() => session.close());
+    .finally(() => {
+      session.close();
+    });
 });
 
-//POST
 
-//Envía mensajes al chat, crea los usuarios y el chat si no existen 
-app.post('/envia_msj', (req, res) => {
-  const { name, receiver, msg } = req.query;
+
+app.get('/getChats', (req, res) => {
+  const username = req.query.username;
   const session = driver.session();
 
   session
-    .run('MERGE(p1:Usuario{Nombre:"' + name + '"}) MERGE(p2:Usuario{Nombre:"' + receiver + '"}) MERGE(chat:Chat{Nombre:"Chat entre ' + name + ' y ' + receiver + '"}) MERGE(mensaje:Mensaje{Contenido:"' + msg + '", Fecha: datetime()}) MERGE(p1)-[:ENVIADO]->(mensaje)-[:RECIBIDO]->(p2) MERGE(chat)-[:PARTICIPANTE]->(p1) MERGE(chat)-[:PARTICIPANTE]->(p2) MERGE(chat)-[:TIENE_MENSAJE]->(mensaje)')
+    .run(
+      `
+      MATCH (u:Usuario {nombre: $username})<-[:PARTICIPANTE]-(c:Chat)-[:TIENE_MENSAJE]->(m:Mensaje)
+      RETURN c.nombre, m.contenido, m.fecha
+      `,
+      { username }
+    )
     .then((result) => {
-      res.json({ message: 'Mensaje enviado exitosamente' });
+      const data = result.records.map(record => {
+        return {
+          chat: record.get('c.nombre'),
+          contenido: record.get('m.contenido'),
+          fecha: record.get('m.fecha').toString() // Convierte la fecha a una cadena
+        };
+      });
+      res.json(data);
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).json({ error: 'Error al enviar el mensaje' });
+      res.status(500).json({ error: 'Error al obtener chats y mensajes' });
     })
-    .finally(() => session.close());
+    .finally(() => {
+      session.close();
+    });
 });
 
+
+app.post('/enviarMensaje', (req, res) => {
+  const nombreUsuario1 = req.query.nombreUsuario1;
+  const nombreUsuario2 = req.query.nombreUsuario2;
+  const contenidoMensaje = req.query.contenidoMensaje;
+  const session = driver.session();
+
+  session
+    .run(
+      `
+      MERGE (u1:Usuario {nombre: $nombreUsuario1})
+      MERGE (u2:Usuario {nombre: $nombreUsuario2})
+      MERGE (chat:Chat {nombre: u1.nombre + ' y ' + u2.nombre})
+      MERGE (mensaje:Mensaje {contenido: $contenidoMensaje, fecha: datetime()})
+      MERGE (u1)-[:ENVIADO]->(mensaje)-[:RECIBIDO]->(u2)
+      MERGE (chat)-[:PARTICIPANTE]->(u1)
+      MERGE (chat)-[:PARTICIPANTE]->(u2)
+      MERGE (chat)-[:TIENE_MENSAJE]->(mensaje)
+      RETURN chat, mensaje, u1, u2;
+      `,
+      { nombreUsuario1, nombreUsuario2, contenidoMensaje }
+    )
+    .then((result) => {
+      const records = result.records;
+      const chat = records[0].get('chat').properties;
+      const mensaje = records[0].get('mensaje').properties;
+      const u1 = records[0].get('u1').properties;
+      const u2 = records[0].get('u2').properties;
+      res.json({ chat, mensaje, u1, u2 });
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ error: 'Error al crear el chat y los nodos asociados' });
+    })
+    .finally(() => {
+      session.close();
+    });
+});
 
 
 app.listen(3004, () => {

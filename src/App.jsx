@@ -19,7 +19,7 @@ import AdminSubTema from "./components/Courses/Admin/AdminSubTema";
 import HacerEvaluacion from "./components/Client/HacerEvaluacion";
 import VerNotas from "./components/Client/VerMisNotas";
 import { BuscarCursos } from "./components/Client/BuscarCursos";
-
+import { Chats } from "./components/Admin/Chats";
 export function App() {
   return (
     <Router>
@@ -34,7 +34,7 @@ export function App() {
           <Route exact path="/verNotas" element={<VerNotas />} />
           <Route exact path="/hacerEvaluacion" element={<HacerEvaluacion />} />
           <Route exact path="/adminMenu" element={<AdminMenu />} />
-
+          <Route exact path="/chats" element={<Chats />} />
           <Route exact path="/gestionCursos" element={<GestionCursos />} />
           <Route exact path="/adminCurso/:id" element={<AdminCurso />} />
           <Route exact path="/adminEvaluacion/:id" element={<AdminEvaluacion />} />
