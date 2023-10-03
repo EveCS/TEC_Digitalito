@@ -34,13 +34,10 @@ export function Chats() {
         const response = await getParticipantes(chatTitle);
         setParticipantes(response);
         const enviarA = participantes.find(participant => participant !== username);
-
         sendMessage(username,enviarA,newMessage);
         setParticipantes("");
-      // Aquí debes implementar la lógica de envío de mensaje con tu API
-      // Puedes usar 'newMessage' para obtener el contenido del mensaje y 'chatTitle' para saber a qué chat se envía.
+   
       console.log(`Enviando mensaje '${newMessage}' al chat '${chatTitle}'`);
-      // Lógica de envío de mensaje con tu API
     };
 
     const handleNewContacto = async  (destinatario) => {
