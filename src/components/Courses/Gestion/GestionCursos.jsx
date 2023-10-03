@@ -71,10 +71,15 @@ const GestionCursos = () => {
 
   return (
     <Fragment>
-      <div className="p-3 mb-2  bg-dark ">
-        <CursosForm {...{ cursoForm, getCursos, setCursoForm }} />
-
-        <CoursesTable {...{ cursos, getCursos, setCursoForm, eliminarCurso, publicarCurso, duplicarCurso }} />
+      <div className="bg-dark">
+        <div className="row">
+          <div className="col-md-3">
+            <CursosForm {...{ cursoForm, getCursos, setCursoForm }} />
+          </div>
+          <div className="col-md-6">
+            <CoursesTable {...{ cursos, getCursos, setCursoForm, eliminarCurso, publicarCurso, duplicarCurso }} />
+          </div>
+        </div>
       </div>
     </Fragment>
   );
