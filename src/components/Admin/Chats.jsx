@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { sendMessage, getParticipantes,getchats } from '../API/neo4jConnection';
 
 import { useNavigate, useLocation } from "react-router-dom";
@@ -12,10 +12,10 @@ export function Chats() {
  
     const fetchData = async () => {
         try {
-            const response = await getchats(curso);
+            const response = await getchats(username);
             setChatsData(response);
         } catch (error) {
-            console.error('Error al obtener matrícula:', error);
+            console.error('Error al obtener los chats:', error);
         }
     };
 
