@@ -1,37 +1,61 @@
 import React, { Fragment, useEffect, useState } from "react";
 import connect from '../API/mongoConnection';
 import { insertNota } from "../API/cassandraConnection"; 
-
+import { getCursosbyUser } from "../API/cassandraConnection";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const ExamenComponent = () => {
+  const location = useLocation();
+  const username = location.state.usuario;
   const [examenData, setExamenData] = useState([]);
-  const cursoid= "curso123"; // id del curso al que pertenece la evaluacion
-  const examenID= "Evaluacion2"; // aca cambio a que sea el id de la evaluacion que voy a hacer.
-  const username="JuanPerez"; // aca cambio al usuario que entro para guardarle la nota.
+  const [cursoid, setCursoid] = useState([]);
+  const [examenID, setExamenID] = useState([]); // Estado local para examenID
   const [respuestas, setRespuestas] = useState([]);
   const [notaFinal, setNotaFinal] = useState(null);
-
-
-  useEffect(() => {
-    const fetchMatricula = async () => {
+  const [userData,setUserData] = useState([]);
+ 
+   
+    const fetchData = async () => {
         try {
-            console.log("llegue");
-            const response = await connect.EvaluacionService.obtenerCursoById(examenID);
-            setExamenData(response);
-            console.log(examenData);
+            const response = await getCursosbyUser(username);
+            setUserData(response);
+           
         } catch (error) {
-            console.error('Error al obtener el examen:', error);
+            console.error('Error al obtener matrícula:', error);
         }
     };
 
-    fetchMatricula();
-}, [examenID]);
+
+  
 
   const handleChangeRespuesta = (index, valor) => {
     const nuevasRespuestas = [...respuestas];
     nuevasRespuestas[index] = valor;
     setRespuestas(nuevasRespuestas);
   };
+
+  const handleLoadExamen = async () => {
+    fetchData();
+    const cursosIds = userData.map(item => item.curso_id); // sacar el user data
+    console.log(cursosIds);
+    const response = await connect.EvaluacionService.obtenerCursoById(examenID); // sacar evaluacion data
+    setCursoid(response.id_curso);
+
+    try {
+      console.log("Cargando examen...");
+  
+      if (cursosIds.includes(cursoid)) {
+       
+        setExamenData(response);
+   
+      } else {
+        alert('Usted no pertenece al curso que tiene esa evaluacion.');
+      }
+    } catch (error) {
+      console.error('Error al obtener el examen:', error);
+    }
+  };
+  
 
   const handleSubmit = () => {
     const opcionesCorrectas = examenData.opcionesCorrectas;
@@ -41,20 +65,23 @@ const ExamenComponent = () => {
       if (respuesta === opcionesCorrectas[index]) {
         nota++;
       }
-
-    
     });
 
     const notaFinal = (nota / opcionesCorrectas.length) * 100;
     setNotaFinal(notaFinal);
 
     insertNota(username,examenID,cursoid,notaFinal)
-
   };
 
   return (
     <div>
       <h1>{examenData.nombre}</h1>
+      <input 
+        type="text" 
+        value={examenID} 
+        onChange={(e) => setExamenID(e.target.value)}
+      />
+      <button onClick={handleLoadExamen}>Cargar Examen</button> {/* Nuevo botón para cargar el examen */}
       {examenData.preguntas && examenData.preguntas.map((pregunta, index) => (
         <div key={pregunta._id}>
           <p>{pregunta.pregunta[0]}</p>
