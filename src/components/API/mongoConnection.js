@@ -61,6 +61,7 @@ const EvaluacionService = {
         return response.data;
     },
     obtenerEvaluacionesByCurso: async (id) => {
+        console.log(id);
         const response = await axios.get(`${BASE_URL}/evaluacionesByCurso/${id}`);
         return response.data;
     },

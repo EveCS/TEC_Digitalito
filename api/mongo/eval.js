@@ -49,17 +49,9 @@ const addMyEndPointstoApp = (app, Evaluation) => {
                 throw new Error('Evaluaciones2 should be an array');
             }
 
-            const curso = await Course.findOne({ _id: req.params.id });
+            const eval = await Evaluation.findOne({ _id: req.params.id });
 
-            // Check if curso.evaluaciones exists, if not, create it as an empty array
-            if (!curso.evaluaciones) {
-                curso.evaluaciones = [];
-            }
-
-            curso.evaluaciones.push(...evaluaciones2);
-
-            await curso.save();
-            res.status(200).json(curso.evaluaciones);
+            res.status(200).json(eval);
         } catch (error) {
             console.error(error);
             res.status(500).send(error.message);
