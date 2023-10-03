@@ -21,8 +21,6 @@ export function MisCursos() {
         fetchMatricula();
     }, [username]);
 
-
-    console.log(matricula);
     return (
         <Fragment>
             <div className="p-3 mb-2 bg-dark vh-100">
@@ -30,20 +28,16 @@ export function MisCursos() {
                     <h1 className="fw-bold mb-5 text-center text-white">Mis cursos</h1>
                     <div className="reservations">
                         {matricula !== null && (
-                            <div className="reservation">
-                                <pre>
-                                    {JSON.stringify(matricula, null, 2)}
-                                </pre>
-                            </div>
+                            matricula.map((item, index) => (
+                                <div className="reservation" key={index} style={{ color: "white" }}>
+                                    <p>Estudiante: {item.estudiante_username}</p>
+                                    <p>Curso ID: {item.curso_id}</p>
+                                </div>
+                            ))
                         )}
                     </div>
                 </div>
             </div>
         </Fragment>
     );
-    
 }
-
-
-
-

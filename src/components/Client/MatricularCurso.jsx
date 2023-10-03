@@ -7,36 +7,36 @@ export function MatricularCurso() {
   const [cursoName, setCursoName] = useState("");
   const location = useLocation();
   const username = location.state.usuario;
-
-  const [existeCurso, setExisteCurso] = useState([]);
+  const [nombresCursos, setNombresCursos] = useState([]);
+  const [cursosData, setCursosData] = useState([]);
+  const [existeCurso, setExisteCurso] = useState(false); // Changed to boolean
 
   const fetchCurso = async () => {
-      try {
-          const response = await connect.CursoService.obtenerCursosPorID(cursoName);
-          setExisteCurso("false");
-      } catch (error) {
-          console.error('Error al obtener matrícula:', error);
-      }
+    try {
+        const response = await connect.CursoService.obtenerCursos(); // Se asume que esto es asíncrono
+        setCursosData(response);
+        const nombres = response.map(curso => curso.nombre);
+        setNombresCursos(nombres);
+    } catch (error) {
+        console.error('Error al obtener matrícula:', error);
+    }
   };
 
-
   const handleMatricular = async () => {
-    fetchCurso();
-
-    if (existeCurso!="false"){
-    try {
-      // call de api
-      const response = await matricularCurso(username,cursoName);
-      
-    } catch (error) {
-      console.error("Error matriculando curso:", error);
-      // el  error
+    await fetchCurso();
+    const cursoExists = nombresCursos.includes(cursoName);
+    console.log(nombresCursos);
+    console.log(cursoName);
+  
+    if (cursoExists) {
+      try {
+        await matricularCurso(username, cursoName);
+      } catch (error) {
+        console.error("Error matriculando curso:", error);
+      }
+    } else {
+      alert("Curso no existe");
     }
-  }
-  else{
-    alert("Curso no existe");
-    setExisteCurso("");
-  }
   };
 
   return (
