@@ -36,8 +36,13 @@ export function AdminMenu() {
             >
               Ver estudiantes en un curso
             </button>
-
-
+            <button
+              onClick={() => { navigate('/Addfriends', { state: { usuario: username } }) }}
+              className="btn btn-primary mb-3 btn-lg"
+              type="button"
+            >
+              Amigos
+            </button>
             <button
               onClick={() => { navigate('/..', {}) }}
               className="btn btn-primary mb-3 btn-lg"
