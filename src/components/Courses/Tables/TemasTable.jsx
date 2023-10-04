@@ -19,16 +19,16 @@ const TemasTable = ({ Temas, setTemaForm, eliminarTema }) => {
                         Temas.map((Tema) => (
                             <tr key={Tema._id}>
                                 <td>
-                                    <a href={`/adminTema/${Tema._id}`} rel="noopener noreferrer">
+                                    <a className="btn btn-info" href={`/adminTema/${Tema._id}`} rel="noopener noreferrer">
                                         <i className="fa fa-external-link"></i>
-                                        {Tema._id}
+                                        Ver
                                     </a>
                                 </td>
                                 <td>{Tema.nombre}</td>
                                 <td>{Tema.descripcion}</td>
 
                                 <td>
-                                    <button className="btn btn-primary" onClick={() => setTemaForm(Tema)}>Editar</button>
+                                    <button className="btn btn-primary" onClick={() => setTemaForm(Tema)}>Editar</button> &nbsp;
                                     <button className="btn btn-primary" onClick={() => eliminarTema(Tema._id)}>Eliminar</button>
                                 </td>
                             </tr>

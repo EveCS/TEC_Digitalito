@@ -11,10 +11,11 @@ const AdminTema = () => {
       <div className="p-3 mb-2  bg-dark ">
         <a href={`/gestionCursos`} >
           <i className="fa fa-arrow-left"></i>
-          Gestión de Cursos
+
         </a>
-        <h1> Admin Tema  {id}</h1>
+
         <GestionSubTemas id={id} />
+        <hr></hr>
         <GestionInfo id={id} tipo="Tema" />
       </div>
     </Fragment>

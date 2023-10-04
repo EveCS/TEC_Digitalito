@@ -70,9 +70,11 @@ const EvaluationForm = ({ id2 }) => {
 
 
   return (
+
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="nombre">Nombre 2:</label>
+        <h1>Agregar Evaluacion</h1>
+        <label htmlFor="nombre">Nombre :</label>
         <input
           type="text"
           id="nombre"

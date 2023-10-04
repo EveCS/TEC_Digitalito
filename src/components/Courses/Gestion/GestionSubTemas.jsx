@@ -52,12 +52,22 @@ const GestionSubTemas = ({ id }) => {
     }
   }
   return (
+
     <Fragment>
+      <div className="bg-dark container">
+        <div className="row">
 
-      <SubTemaTable {...{ SubTemas, setSubTemasForm, eliminarSubTemas }} />
-      <SubTemaForm {...{ id, SubTemasForm, getSubTemasbyTema, setSubTemasForm }} />
-
+          <div className="col-md-3">
+            <SubTemaForm {...{ id, SubTemasForm, getSubTemasbyTema, setSubTemasForm }} />
+          </div>
+          <div className="col-md-6">
+            <SubTemaTable {...{ SubTemas, setSubTemasForm, eliminarSubTemas }} />
+          </div>
+        </div>
+      </div>
     </Fragment>
+
+
   );
 };
 

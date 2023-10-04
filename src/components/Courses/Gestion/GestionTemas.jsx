@@ -51,11 +51,20 @@ const GestionTemas = ({ id }) => {
   }
   return (
     <Fragment>
+      <div className="container bg-dark">
 
-      <TemasTable {...{ Temas, setTemasForm, eliminarTemas }} />
-      <TemaForm {...{ id, TemasForm, getTemasbySeccion, setTemasForm }} />
-
+        <div className="row">
+          <div className="col-md-4">
+            <TemaForm {...{ id, TemasForm, getTemasbySeccion, setTemasForm }} />
+          </div>
+          <div className="col-md-6">
+            <TemasTable {...{ Temas, setTemasForm, eliminarTemas }} />
+          </div>
+        </div>
+      </div>
     </Fragment>
+
+
   );
 };
 

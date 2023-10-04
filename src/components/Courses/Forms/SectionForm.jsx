@@ -96,7 +96,7 @@ const SectionForm = ({ id2, SeccionForm, getSeccionesByCurso, setSeccionForm }) 
 
       </div>
       <div className="button-links">
-        <button className="w-10 btn btn-lg btn-primary" onClick={EditarSeccion}>Editar Seccion</button>
+        <button className="w-10 btn btn-lg btn-primary  " onClick={EditarSeccion}>Editar Seccion</button> &nbsp;
         <button className="w-10 btn btn-lg btn-primary" onClick={agregarSeccion}>Agregar Nuevo</button>
       </div>
     </Fragment>

@@ -39,6 +39,7 @@ export function App() {
           <Route exact path="/adminCurso/:id" element={<AdminCurso />} />
           <Route exact path="/adminEvaluacion/:id" element={<AdminEvaluacion />} />
           <Route exact path="/adminSeccion/:id" element={<AdminSeccion />} />
+          <Route exact path="/adminSeccion/:id/curso/:idCurso" element={<AdminSeccion />} />
           <Route exact path="/adminTema/:id" element={<AdminTema />} />
           <Route exact path="/adminSubTema/:id" element={<AdminSubTema />} />
 

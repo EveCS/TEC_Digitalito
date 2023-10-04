@@ -16,6 +16,7 @@ const CursoService = {
 
 
     agregarCurso: async (curso) => {
+        delete curso._id;
         const response = await axios.post(`${BASE_URL}/cursos`, curso);
         return response.data;
     },

@@ -71,10 +71,21 @@ const GestionCursos = () => {
 
   return (
     <Fragment>
-      <div className="p-3 mb-2  bg-dark ">
-        <CursosForm {...{ cursoForm, getCursos, setCursoForm }} />
-
-        <CoursesTable {...{ cursos, getCursos, setCursoForm, eliminarCurso, publicarCurso, duplicarCurso }} />
+      <div className=" bg-dark">
+        <div className="row container">
+          <h1 className="text-center">
+            <a className="w-25 btn btn-lg btn-secondary" href={`/adminMenu?username=${username}`} >
+              <i className="fa fa-arrow-left"></i>
+              Menu Admin
+            </a> Admin  [{username}]</h1>
+          <div className="col-md-1"></div>
+          <div className="col-md-4">
+            <CursosForm {...{ cursoForm, getCursos, setCursoForm }} />
+          </div>
+          <div className="col-md-5">
+            <CoursesTable {...{ cursos, getCursos, setCursoForm, eliminarCurso, publicarCurso, duplicarCurso }} />
+          </div>
+        </div>
       </div>
     </Fragment>
   );

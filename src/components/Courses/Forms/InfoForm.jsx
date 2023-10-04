@@ -104,8 +104,8 @@ const InfosForm = ({ id, InfosForm, getInfosbyRef, setInfosForm }) => {
       </div>
 
 
-      <div>
-        <button className="btn btn-primary" onClick={EditarInfo}>Editar Info</button>
+      <div className="button-links">
+        <button className="btn btn-primary" onClick={EditarInfo}>Editar Info</button>&nbsp; &nbsp;
         <button className="btn btn-primary" onClick={agregarInfo}>Agregar Nuevo</button>
       </div>
     </Fragment>

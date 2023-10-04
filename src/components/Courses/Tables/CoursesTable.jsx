@@ -10,7 +10,7 @@ const CoursesTable = ({ cursos, setCursoForm, eliminarCurso, publicarCurso, dupl
     }
     return (
         <Fragment>
-            <div className="p-3 mb-2 bg-dark vh-100 text-white border-white">
+            <div className=" bg-dark  text-white border-white">
                 <h2 className="button-links"> Cursos</h2>
                 <table className="table-bordered">
                     <thead>
@@ -31,7 +31,7 @@ const CoursesTable = ({ cursos, setCursoForm, eliminarCurso, publicarCurso, dupl
                         {cursos.map((curso) => (
                             <tr key={curso._id}>
                                 <td>
-                                    <a className="w-100 btn btn-lg btn-primary" href={`/adminCurso/${curso._id}`} rel="noopener noreferrer">
+                                    <a className="w-100 btn btn-lg btn-info" href={`/adminCurso/${curso._id}`} rel="noopener noreferrer">
                                         Ver
                                     </a>
                                 </td>
@@ -47,9 +47,9 @@ const CoursesTable = ({ cursos, setCursoForm, eliminarCurso, publicarCurso, dupl
                                 <td>{curso.username}</td>
                                 <td>
                                     <button className="w-100 btn btn-lg btn-secondary mb-2" onClick={() => setCursoForm(curso)}>Editar</button><br></br>
-                                    <button className="w-100 btn btn-lg btn-secondary mb-2" onClick={() => duplicarCurso(curso)}>Duplicar</button><br></br>
-                                    <button className="w-100 btn btn-lg btn-secondary mb-2" onClick={() => eliminarCurso(curso._id)}>Eliminar</button><br></br>
-                                    <button className="w-100 btn btn-lg btn-secondary" onClick={() => publicarCurso(curso._id, curso.publicado)}>{curso.publicado ? 'DesPublicar' : 'Publicar'}</button>
+                                    <button className="w-100 btn btn-lg btn-warning mb-2" onClick={() => duplicarCurso(curso)}>Duplicar</button><br></br>
+                                    <button className="w-100 btn btn-lg btn-danger mb-2" onClick={() => eliminarCurso(curso._id)}>Eliminar</button><br></br>
+                                    <button className="w-100 btn btn-lg btn-info" onClick={() => publicarCurso(curso._id, curso.publicado)}>{curso.publicado ? 'DesPublicar' : 'Publicar'}</button>
                                 </td>
 
                             </tr>

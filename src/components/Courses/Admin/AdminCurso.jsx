@@ -18,6 +18,7 @@ const AdminCurso = () => {
 
         <GestionEvaluaciones id={id} />
         <hr></hr>
+
         <GestionSecciones id={id} />
       </div >
     </Fragment>

@@ -1,12 +1,5 @@
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin: 0 40px;
-}
-
 .img-resize {
-    width: 300px;
+    width: 200px;
     /* Set the desired width */
     height: auto;
     /* Maintain aspect ratio */
@@ -17,10 +10,7 @@
     padding: 40px 40px;
 }
 
-.input-group {
-    display: flex;
-    flex-direction: column;
-}
+
 
 .label {
     margin-bottom: 5px;
@@ -42,7 +32,7 @@
 }
 
 .form-container {
-    width: 25%;
+    width: 55%;
     /* Set the width to 25% of the screen */
 }
 
