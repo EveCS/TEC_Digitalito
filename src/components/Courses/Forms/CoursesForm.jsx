@@ -87,7 +87,7 @@ const CursosForm = ({ cursoForm, getCursos, setCursoForm, username }) => {
           <div className="form-grid">
 
             <div className="input-group">
-              <label style={estiloDeTexto} >Código</label>
+              <label>Código</label>
               <input
                 type="text"
                 placeholder="Código"

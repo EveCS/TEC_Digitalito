@@ -62,6 +62,6 @@
     /* Set the width of the inputs to 100% of their container */
 }
 
-label, h1, h2, th, td {
-    color:white;
+ h1, h2, th, td, label {
+    color:rgb(168, 168, 168);
 }
