@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { getUser, getFriends,  addFriend} from "../API/redisConnection";
+import { getCursosbyUser } from "../API/cassandraConnection";
 
 export function AddFriends() {
     //useNavigate es para poder navegar a otra ventana
@@ -16,6 +17,7 @@ export function AddFriends() {
     const [userFriend, setUserFriend] = useState("");
     const [nameFriend, setNameFriend] = useState("");
     const [bodFriend, setBodFriend] = useState("");
+    const [curso, setCurso] = useState([]);
 
     // dar estilo al texto en la tabla
     const estiloDeTexto = { align:"center", color: "White", };
@@ -76,11 +78,21 @@ export function AddFriends() {
         } 
         else {
             return alert("Usuario no registrado");
-        }
-        
-
-        
+        }        
     };
+
+    useEffect(() => {
+        const fetchCurso = async () => {
+            try {
+                const response = await getCursosbyUser(newFriend);
+                setCurso(response);
+            } catch (error) {
+                console.error('Error al obtener matrícula:', error);
+            }
+        };
+
+        fetchCurso();
+    }, [newFriend]);
 
     const mostrarInformacion = () => {
         setMostrarTabla(true);
@@ -124,9 +136,9 @@ export function AddFriends() {
 
                             return (
                                 <div className="App">
-                                <h2 style={estiloDeTexto}>Información del Usuario</h2>
-                                <button onClick={mostrarInformacion} className="w-50 btn btn-lg btn-primary">Mostrar</button>
+                                    <button onClick={mostrarInformacion} className="w-50 btn btn-lg btn-primary">Mostrar</button>
                                 <button onClick={ocultarInformacion} className="w-50 btn btn-lg btn-primary">Ocultar</button>
+                                <h3 className="text-white">Información del Usuario</h3>
                                 {mostrarTabla && username && (
                                     <table>
                                     <tbody>
@@ -143,8 +155,19 @@ export function AddFriends() {
                                         <td style={estiloDeTexto}>{bodFriend}</td>
                                         </tr>
                                     </tbody>
+                                    <h3 className="text-center text-white">Cursos que lleva</h3>
+                                    {curso !== null && (
+                                        curso.map((item, index) => (
+                                            <div className="reservation" key={index} style={{ color: "white" }}>
+                                                <p>Estudiante: {item.estudiante_username}</p>
+                                                <p>Curso ID: {item.curso_id}</p>
+                                            </div>
+                                        ))
+                                    )}
                                     </table>
                                 )}
+
+                                
                                 </div>
                             );
 
