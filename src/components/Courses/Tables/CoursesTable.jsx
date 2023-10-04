@@ -10,7 +10,7 @@ const CoursesTable = ({ cursos, setCursoForm, eliminarCurso, publicarCurso, dupl
     }
     return (
         <Fragment>
-            <div className="p-3 mb-2 bg-dark  text-white border-white">
+            <div className=" bg-dark  text-white border-white">
                 <h2 className="button-links"> Cursos</h2>
                 <table className="table-bordered">
                     <thead>

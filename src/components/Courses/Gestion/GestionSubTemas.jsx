@@ -54,13 +54,9 @@ const GestionSubTemas = ({ id }) => {
   return (
 
     <Fragment>
-      <div className="bg-dark">
+      <div className="bg-dark container">
         <div className="row">
-          <h1 className="text-center">
-            <a className="w-25 btn btn-lg btn-secondary" href={`/adminTema?seccion=${''}`} >
-              <i className="fa fa-arrow-left"></i>
-              Gestion Tema
-            </a> Admin  [{ }]</h1>
+
           <div className="col-md-3">
             <SubTemaForm {...{ id, SubTemasForm, getSubTemasbyTema, setSubTemasForm }} />
           </div>

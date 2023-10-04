@@ -71,17 +71,18 @@ const GestionCursos = () => {
 
   return (
     <Fragment>
-      <div className="bg-dark">
-        <div className="row">
+      <div className=" bg-dark">
+        <div className="row container">
           <h1 className="text-center">
             <a className="w-25 btn btn-lg btn-secondary" href={`/adminMenu?username=${username}`} >
               <i className="fa fa-arrow-left"></i>
               Menu Admin
             </a> Admin  [{username}]</h1>
-          <div className="col-md-3">
+          <div className="col-md-1"></div>
+          <div className="col-md-4">
             <CursosForm {...{ cursoForm, getCursos, setCursoForm }} />
           </div>
-          <div className="col-md-6">
+          <div className="col-md-5">
             <CoursesTable {...{ cursos, getCursos, setCursoForm, eliminarCurso, publicarCurso, duplicarCurso }} />
           </div>
         </div>
