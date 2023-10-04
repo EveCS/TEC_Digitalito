@@ -28,6 +28,7 @@ export function Chats() {
         
         fetchData();
     }, [username]);
+    
     const handleSendMessage = async (chatTitle) => {
         console.log("chattitle" + chatTitle);
         try {
@@ -35,9 +36,11 @@ export function Chats() {
     
             if (response !== null) {
                 setParticipantes(response);
-                console.log(participantes);
-    
+                console.log("username"+username);
+                console.log("username"+newMessage);
+                console.log(response);
                 const enviarA = response.find(participant => participant !== username);
+                console.log("username"+enviarA);
                 sendMessage(username, enviarA, newMessage);
                 setParticipantes("");
             } else {
@@ -122,22 +125,7 @@ const groupedChatsArray = Object.keys(groupedChats).map((participants) => ({
                   </div>
                 ))}
     
-                {/* Campo de enviar mensaje */}
-                <div style={{ display: 'flex', marginTop: '10px' }}>
-                  <input
-                    type="text"
-                    value={newMessage}
-                    onChange={(e) => setNewMessage(e.target.value)}
-                    style={{ flex: '1', padding: '5px', marginRight: '10px' }}
-                    placeholder="Escribe tu mensaje..."
-                  />
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => handleSendMessage(chatTitle)}
-                  >
-                    Enviar
-                  </button>
-                </div>
+                
               </div>
             ))}
           </div>

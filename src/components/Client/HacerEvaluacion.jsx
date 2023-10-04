@@ -37,6 +37,7 @@ const ExamenComponent = () => {
   const handleLoadExamen = async () => {
     fetchData();
     const cursosIds = userData.map(item => item.curso_id); // sacar el user data
+    console.log(cursoid);
     console.log(cursosIds);
     const response = await connect.EvaluacionService.obtenerCursoById(examenID); // sacar evaluacion data
     setCursoid(response.id_curso);
